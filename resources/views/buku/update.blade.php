@@ -21,7 +21,7 @@
             <a href='/buku' class="btn btn-primary">kembali</a>
         </div>
         <div class="d-flex justify-content-between">
-            <a href="#" class="btn btn-primary">+++</a>
+            <a href="/buku/create" class="btn btn-primary">+++</a>
             <a href="#" class="btn btn-info">Recycle Bin</a>
         </div>
         <table class="table table-striped text-center">
@@ -49,7 +49,7 @@
                         <td>{{ $item->detail_jenis_peminatan}}</td>
                         <td>{{ $item->kode_gabungan_final}}</td>
                         <td>
-                            <a href='#' class="btn btn-warning btn-sm">Edit</a>
+                            <a href='{{ url('/buku/edit/'.$item->kode_gabungan_final) }}' class="btn btn-warning btn-sm">Edit</a>
                             <form onsubmit="return confirm('Yakin ingin menghapus sementara data ini?')" class="d-inline" method="POST" action="#">
                                 @csrf
                                 <button type="submit" name="submit" class="btn btn-danger btn-sm">S.Del</button>

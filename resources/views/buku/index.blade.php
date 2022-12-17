@@ -15,8 +15,8 @@
             <a href='/buku/update' class="btn btn-primary">Update Buku</a>
         </div>
         <div class="pb-3">
-            <form action={{ route('buku.cari') }} method="GET" >
-            <input type="search" name="caribuku" placeholder="Cari buku .." value="{{ Request::get('caribuku')}}">
+            <form action="" method="GET" >
+            <input type="search" name="caribuku" placeholder="Cari buku ..">
             <button class="btn btn-primary" type="submit">Cari</button>
             </form>
         </div>
@@ -51,7 +51,7 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $data->links() }}
+        {{ $data->withQueryString()->links() }}
     </div>
 </body>
 @endsection

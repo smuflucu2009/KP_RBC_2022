@@ -1,5 +1,5 @@
 @extends('boostrap/dasar1')
-@section('isi_template1')\
+@section('isi_template1')
 <title>Halaman Detail {{$data->judul_buku}}</title>
 <div>
     <a href="/buku" class="btn btn-secondary">Kembali</a>

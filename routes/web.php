@@ -30,7 +30,9 @@ route::get('/', [PembukaController::class, 'index'])->name('home.index');
 route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
 route::get('/buku/update', [BukuController::class, 'update'])->name('buku.update');
 route::get('/buku/detail/{id}', [BukuController::class, 'detail_buku'])->name('buku.detail_buku');
-Route::get('/cariBuku', [BukuController::class, 'cariBuku'])->name('buku.cari');
+// Route::get('/cariBuku', [BukuController::class, 'cariBuku'])->name('buku.cari');
+route::get('/buku/create', [BukuController::class, 'create'])->name('buku.create');
+route::get('/buku/edit/{id}', [BukuController::class, 'edit'])->name('buku.edit');
 
 route::get('/skripsi', [SkripsiController::class, 'index'])->name('skripsi.index');
 
