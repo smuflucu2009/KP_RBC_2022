@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class SkripsiController extends Controller
+class PustakawanController extends Controller
 {
     function index() {
-        return view('skripsi.index');
+        return view('pustakawan.index');
     }
 }

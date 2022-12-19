@@ -13,13 +13,22 @@
               <a class="nav-link active" aria-current="page" href="/buku">Buku</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/skripsi">Skripsi</a>
+              <a class="nav-link" href="/ta">TA</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/kp">KP</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/jurnal">Jurnal</a>
+              <a class="nav-link" href="/kd">Karya Dosen</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/fasilitas">Fasilitas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/artikel">Artikel</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/pustakawan">Pustakawan</a>
             </li>
           </ul>
         </div>
