@@ -24,6 +24,9 @@
             <button class="btn btn-primary" type="submit">Cari</button>
             </form>
         </div>
+        <div class="pb-3">
+            <a href='/buku/update_admin' class="btn btn-danger btn-sm">Reset</a>
+        </div>
         <table class="table table-striped text-center">
             <thead>
                 <tr>
@@ -52,7 +55,7 @@
                         <td>{{ $item->detail_jenis_peminatan}}</td>
                         <td>
                             <a href='{{ url('/buku/update_admin/edit/'.$item->kode_gabungan_final) }}' class="btn btn-warning btn-sm">Edit</a>
-                            <form onsubmit="return confirm('Yakin ingin menghapus sementara data ini?')" class="d-inline" method="POST" action="#">
+                            <form onsubmit="return confirm('Yakin ingin menghapus sementara data ini?')" class="d-inline" method="POST" action="{{ route('buku.softdelete', $item->kode_gabungan_final) }}">
                                 @csrf
                                 <button type="submit" name="submit" class="btn btn-danger btn-sm">S.Del</button>
                             </form>

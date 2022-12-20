@@ -48,10 +48,11 @@ class BukuController extends Controller
     }
 
     function create(){
-        return view('buku.create');
+        $data = buku::all();
+        return view('buku.create', compact('data'));
     }
 
-    public function store(Request $request)
+    function store(Request $request)
     {
         Session::flash('no', $request->no);
         Session::flash('tanggal_masuk', $request->tanggal_masuk);
@@ -61,32 +62,61 @@ class BukuController extends Controller
         Session::flash('isbn', $request->isbn);
         Session::flash('jenis_peminatan', $request->jenis_peminatan);
         Session::flash('detail_jenis_peminatan', $request->detail_jenis_peminatan);
+        Session::flash('kode_peminatan', $request->kode_peminatan);
         Session::flash('kode_detail_jenis_peminatan', $request->kode_detail_jenis_peminatan);
         Session::flash('kode_tahun', $request->kode_tahun);
         Session::flash('kode_nomor_urut_buku', $request->kode_nomor_urut_buku);
         Session::flash('kode_gabungan_final', $request->kode_gabungan_final);
 
         $request->validate([
-            'id_gunpla' => 'required|unique:Gunpla,id_gunpla',
-            'nama_gunpla' => 'required',
-            'grade' => 'required',
-            'harga' => 'required',
+            'tanggal_masuk' => 'required',
+            'judul_buku' => 'required',
+            'penulis' => 'required',
+            'penerbit' => 'required',
+            'isbn' => 'required',
+            'jenis_peminatan' => 'required',
+            'detail_jenis_peminatan' => 'required',
+            'kode_peminatan' => 'required',
+            'kode_detail_jenis_peminatan' => 'required',
+            'kode_tahun' => 'required',
+            'kode_nomor_urut_buku' => 'required',
+            'kode_gabungan_final' => 'required|unique:Buku,kode_gabungan_final',
         ], [
-            'id_gunpla.required' => 'ID gunpla wajib diisi',
-            'id_gunpla.unique' => 'ID gunpla sudah ada',
-            'nama_gunpla.required' => 'Nama gunpla wajib diisi',
-            'grade.required' => 'Grade gunpla wajib diisi',
-            'harga.required' => 'Harga gunpla wajib diisi',
+            'tanggal_masuk.required' => 'Tanggal Masuk wajib diisi',
+            'judul_buku.required' => 'Judul Buku wajib diisi',
+            'penulis.required' => 'Penulis wajib diisi',
+            'penerbit.required' => 'Penerbit wajib diisi',
+            'isbn.required' => 'ISBN wajib diisi',
+            'jenis_peminatan.required' => 'Jenis Peminatan wajib diisi',
+            'detail_jenis_peminatan.required' => 'Detail Jenis Peminatan wajib diisi',
+            'kode_peminatan.required' => 'Kode Jenis Peminatan wajib diisi',
+            'kode_detail_jenis_peminatan.required' => 'Kode Jenis Peminatan wajib diisi',
+            'kode_tahun.required' => 'Kode Tahun wajib diisi',
+            'kode_nomor_urut_buku' => 'Kode Nomor Urut Wajib diisi',
+            'kode_gabungan_final.required' => 'Kode Buku wajib diisi',
+            'kode_gabungan_final.unique' => 'Kode Buku sudah ada',
         ]);
-        DB::insert('INSERT INTO gunpla(id_gunpla, nama_gunpla, grade, harga) VALUES (:id_gunpla, :nama_gunpla, :grade, :harga)',
+        DB::insert('INSERT INTO buku(no, tanggal_masuk, judul_buku, penulis, penerbit, isbn, jenis_peminatan, 
+        detail_jenis_peminatan, kode_peminatan, kode_detail_jenis_peminatan, kode_tahun, kode_nomor_urut_buku, kode_gabungan_final) 
+        VALUES (:no, :tanggal_masuk, :judul_buku, :penulis, :penerbit, :isbn, :jenis_peminatan, 
+        :detail_jenis_peminatan, :kode_peminatan, :kode_detail_jenis_peminatan, :kode_tahun, :kode_nomor_urut_buku, :kode_gabungan_final)',
         [
-            'id_gunpla' => $request->id_gunpla,
-            'nama_gunpla' => $request->nama_gunpla,
-            'grade' => $request->grade,
-            'harga' => $request->harga,
+            'no' => $request->no,
+            'tanggal_masuk' => $request->tanggal_masuk,
+            'judul_buku' => $request->judul_buku,
+            'penulis' => $request->penulis,
+            'penerbit' => $request->penerbit,
+            'isbn' => $request->isbn,
+            'jenis_peminatan' => $request->jenis_peminatan,
+            'detail_jenis_peminatan' => $request->detail_jenis_peminatan,
+            'kode_peminatan' => $request->kode_peminatan,
+            'kode_detail_jenis_peminatan' => $request->kode_detail_jenis_peminatan,
+            'kode_tahun' => $request->kode_tahun,
+            'kode_nomor_urut_buku' => $request->kode_nomor_urut_buku,
+            'kode_gabungan_final' => $request->kode_gabungan_final,
         ]
         );
-        return redirect()->route('gunpla.index')->with('success', 'Berhasil menambahkan data gunpla');
+        return redirect()->route('buku.update_admin')->with('success', 'Berhasil menambahkan data buku baru');
     }
 
     function edit($id)
@@ -95,12 +125,86 @@ class BukuController extends Controller
         return view('buku.edit')->with('data', $data);
     }
 
-    function update() {
-        //
+    function update(Request $request, $id) {
+        $request->validate([
+            'tanggal_masuk' => 'required',
+            'judul_buku' => 'required',
+            'penulis' => 'required',
+            'penerbit' => 'required',
+            'isbn' => 'required',
+            'jenis_peminatan' => 'required',
+            'detail_jenis_peminatan' => 'required',
+            'kode_peminatan' => 'required',
+            'kode_detail_jenis_peminatan' => 'required',
+            'kode_tahun' => 'required',
+            'kode_nomor_urut_buku' => 'required',
+            'kode_gabungan_final' => 'required|unique:Buku,kode_gabungan_final',
+        ], [
+            'tanggal_masuk.required' => 'Tanggal Masuk wajib diisi',
+            'judul_buku.required' => 'Judul Buku wajib diisi',
+            'penulis.required' => 'Penulis wajib diisi',
+            'penerbit.required' => 'Penerbit wajib diisi',
+            'isbn.required' => 'ISBN wajib diisi',
+            'jenis_peminatan.required' => 'Jenis Peminatan wajib diisi',
+            'detail_jenis_peminatan.required' => 'Detail Jenis Peminatan wajib diisi',
+            'kode_peminatan.required' => 'Kode Jenis Peminatan wajib diisi',
+            'kode_detail_jenis_peminatan.required' => 'Kode Jenis Peminatan wajib diisi',
+            'kode_tahun.required' => 'Kode Tahun wajib diisi',
+            'kode_nomor_urut_buku' => 'Kode Nomor Urut Wajib diisi',
+            'kode_gabungan_final.required' => 'Kode Buku wajib diisi',
+            'kode_gabungan_final.unique' => 'Kode Buku sudah ada',
+        ]);
+        DB::update('UPDATE buku SET no = :no, tanggal_masuk = :tanggal_masuk, judul_buku = :judul_buku, 
+        penulis = :penulis, penerbit = :penerbit, isbn = :isbn, jenis_peminatan = :jenis_peminatan, 
+        detail_jenis_peminatan = :detail_jenis_peminatan, kode_peminatan = :kode_peminatan, kode_detail_jenis_peminatan = :kode_detail_jenis_peminatan, 
+        kode_tahun = :kode_tahun, kode_nomor_urut_buku = :kode_nomor_urut_buku, 
+        kode_gabungan_final = :kode_gabungan_final WHERE kode_gabungan_final = :id',
+        [
+            'id' => $id,
+            'no' => $request->no,
+            'tanggal_masuk' => $request->tanggal_masuk,
+            'judul_buku' => $request->judul_buku,
+            'penulis' => $request->penulis,
+            'penerbit' => $request->penerbit,
+            'isbn' => $request->isbn,
+            'jenis_peminatan' => $request->jenis_peminatan,
+            'detail_jenis_peminatan' => $request->detail_jenis_peminatan,
+            'kode_peminatan' => $request->kode_peminatan,
+            'kode_detail_jenis_peminatan' => $request->kode_detail_jenis_peminatan,
+            'kode_tahun' => $request->kode_tahun,
+            'kode_nomor_urut_buku' => $request->kode_nomor_urut_buku,
+            'kode_gabungan_final' => $request->kode_gabungan_final,
+        ]
+        );
+        return redirect()->route('buku.update_admin')->with('success', 'Berhasil update data buku!');
     }
 
-    public function bin()
+    function bin()
     {
-        return view('buku.bin');
+        $data = DB::select('SELECT * FROM buku where deleted_at = 1');
+        return view('buku.bin')
+        ->with('data', $data);
+    }
+
+    function delete($id)
+    {
+        DB::delete('DELETE FROM buku WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
+        return redirect()->route('buku.update_admin')->with('success', 'Berhasil hapus data buku secara permanen!');
+    }
+
+    function softDelete($id) {
+        DB::update('UPDATE buku SET deleted_at = 1 WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
+        return redirect()->route('buku.update_admin')->with('success', 'Berhasil hapus data buku secara sementara');
+    }
+
+    function restore($id){
+        DB::update('UPDATE buku SET deleted_at = 0 WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
+        return redirect()->route('buku.update_admin')->with('success', 'Data buku telah dikembalikan!');
+    }
+
+    function Gunplasampah() {
+        $data = DB::select('SELECT * FROM gunpla where deleted_at = 1');
+        return view('gunpla.sampah')
+        ->with('data', $data);
     }
 }
