@@ -36,16 +36,17 @@ route::get('/', [PembukaController::class, 'index'])->name('home.index');
 route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
 route::get('/buku/update_admin', [BukuController::class, 'update_admin'])->name('buku.update_admin');
 route::get('/buku/detail/{id}', [BukuController::class, 'detail_buku'])->name('buku.detail_buku');
-route::get('/caribuku', [BukuController::class, 'caribuku'])->name('buku.cari');
+route::get('/buku/cariJP', [BukuController::class, 'cariJP'])->name('buku.cariJP');
+route::get('/buku/cariDJP', [BukuController::class, 'cariDJP'])->name('buku.cariDJP');
 route::get('/buku/update_admin/create', [BukuController::class, 'create'])->name('buku.create');
 route::post('/buku/update_admin/store', [BukuController::class, 'store'])->name('buku.store');
+route::get('/caribuku', [BukuController::class, 'caribuku'])->name('buku.cari');
 route::get('/buku/update_admin/edit/{id}', [BukuController::class, 'edit'])->name('buku.edit');
 route::post('/buku/update_admin/update/{id}', [BukuController::class, 'update'])->name('buku.update');
 route::get('/buku/update_admin/bin', [BukuController::class, 'bin'])->name('buku.bin');
 route::post('/buku/update_admin/delete/{id}', [BukuController::class, 'delete'])->name('buku.delete');
 route::post('/buku/update_admin/softdelete/{id}', [BukuController::class, 'softDelete'])->name('buku.softdelete');
 route::get('/buku/update_admin/restore/{id}', [BukuController::class, 'restore'])->name('buku.restore');
-// route::get('/gunpla-sampah', [GunplaController::class, 'Gunplasampah'])->name('gunpla.sampah');
 
 route::get('/ta', [TAController::class, 'index'])->name('ta.index');
 
@@ -56,5 +57,16 @@ route::get('/kd', [KDController::class, 'index'])->name('kd.index');
 route::get('/fasilitas', [FasilitasController::class, 'index'])->name('fasilitas.index');
 
 route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
+route::get('/buku/update_admin', [BukuController::class, 'update_admin'])->name('buku.update_admin');
+route::get('/buku/detail/{id}', [BukuController::class, 'detail_buku'])->name('buku.detail_buku');
+route::get('/buku/update_admin/create', [BukuController::class, 'create'])->name('buku.create');
+route::post('/buku/update_admin/store', [BukuController::class, 'store'])->name('buku.store');
+route::get('/caribuku', [BukuController::class, 'caribuku'])->name('buku.cari');
+route::get('/buku/update_admin/edit/{id}', [BukuController::class, 'edit'])->name('buku.edit');
+route::post('/buku/update_admin/update/{id}', [BukuController::class, 'update'])->name('buku.update');
+route::get('/buku/update_admin/bin', [BukuController::class, 'bin'])->name('buku.bin');
+route::post('/buku/update_admin/delete/{id}', [BukuController::class, 'delete'])->name('buku.delete');
+route::post('/buku/update_admin/softdelete/{id}', [BukuController::class, 'softDelete'])->name('buku.softdelete');
+route::get('/buku/update_admin/restore/{id}', [BukuController::class, 'restore'])->name('buku.restore');
 
 route::get('/pustakawan', [PustakawanController::class, 'index'])->name('pustakawan.index');

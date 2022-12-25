@@ -1,30 +1,31 @@
-@extends('boostrap/dasar')
-@section('isi_template')
+@extends('boostrap/dasar1')
+@section('isi_template1')
 <head>
-    <title>Halaman Buku</title>
+    <title>Halaman Update Buku - Admin</title>
 </head>
 <body>
     <div>
-        <h1>Ini Halaman Buku</h1>
+        <h1>Ini Halaman Update Buku (Khusus Admin)</h1>
     </div>
     <div>
-        <h2>Tidak ada buku ++, karna yang ++ sudah bnyak tersebar</h2>
+        <h2>Kalem kalo ngedit gan...</h2>
     </div>
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <div class="pb-3">
-            <a href='/buku/update_admin' class="btn btn-primary">Update Buku</a>
+            <a href='/buku' class="btn btn-primary">kembali</a>
+        </div>
+        <div class="d-flex justify-content-between pb-3">
+            <a href="/buku/update_admin/create" class="btn btn-primary">+++</a>
+            <a href="/buku/update_admin/bin" class="btn btn-info">Recycle Bin</a>
         </div>
         <div class="pb-3">
-            <form action="" method="GET" >
-            <input type="search" name="caribuku" placeholder="Cari Buku">
+            <form action="{{ route('buku.cari') }}" method="GET" >
+            <input type="search" name="caribuku_update" placeholder="Cari Buku" value="{{ Request::get('caribuku_update')}}">
             <button class="btn btn-primary" type="submit">Cari</button>
             </form>
         </div>
         <div class="pb-3">
-            <form action="" method="GET" >
-            <input type="search" name="carijp" placeholder="Cari Jenis Peminatan">
-            <button class="btn btn-primary" type="submit">Cari</button>
-            </form>
+            <a href='/buku/update_admin' class="btn btn-danger btn-sm">Reset</a>
         </div>
         <table class="table table-striped text-center">
             <thead>
@@ -36,7 +37,7 @@
                     <th class="col-md-1">Penerbit</th>
                     <th class="col-md-1">Jenis Peminatan</th>
                     <th class="col-md-1">Detail Jenis Peminatan</th>
-                    <th class="col-md-1">Detail Buku</th>
+                    <th class="col-md-1">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,13 +54,17 @@
                         <td>{{ $item->jenis_peminatan}}</td>
                         <td>{{ $item->detail_jenis_peminatan}}</td>
                         <td>
-                            <a href='{{ url('/buku/detail/'.$item->kode_gabungan_final) }}' class="btn btn-info btn-sm">Detail</a>
+                            <a href='{{ url('/buku/update_admin/edit/'.$item->kode_gabungan_final) }}' class="btn btn-warning btn-sm">Edit</a>
+                            <form onsubmit="return confirm('Yakin ingin menghapus sementara data ini?')" class="d-inline" method="POST" action="{{ route('buku.softdelete', $item->kode_gabungan_final) }}">
+                                @csrf
+                                <button type="submit" name="submit" class="btn btn-danger btn-sm">S.Del</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        {{ $data->withQueryString()->links() }}
+        
     </div>
 </body>
 @endsection

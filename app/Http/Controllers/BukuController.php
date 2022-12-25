@@ -20,6 +20,20 @@ class BukuController extends Controller
         return view('buku.index')->with('data', $data);
     }
 
+    function cariJP(Request $request){
+        $carijp = $request->carijp;
+        $data = buku::where('jenis_peminatan', 'like', "%$carijp%")->paginate(5);
+        return view('buku.index')->with('data', $data);
+    }
+
+    function cariDJP(Request $request){
+        $caridjp = $request->caridjp;
+        $data = buku::where('judul_buku', 'like', "%$caridjp%")
+        ->orWhere('detail_jenis_peminatan', 'like', "%$caridjp%")
+        ->paginate(5);
+        return view('buku.index')->with('data', $data);
+    }
+
     function update_admin() {
         $data = DB::select('SELECT * FROM buku where deleted_at = 0');
 
@@ -27,7 +41,7 @@ class BukuController extends Controller
         ->with('data', $data);  
     }
 
-    public function caribuku(Request $request) {
+    function caribuku(Request $request) {
         $caribuku_update = $request->caribuku_update;
 
         $data = DB::table('buku')
@@ -200,11 +214,5 @@ class BukuController extends Controller
     function restore($id){
         DB::update('UPDATE buku SET deleted_at = 0 WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
         return redirect()->route('buku.update_admin')->with('success', 'Data buku telah dikembalikan!');
-    }
-
-    function Gunplasampah() {
-        $data = DB::select('SELECT * FROM gunpla where deleted_at = 1');
-        return view('gunpla.sampah')
-        ->with('data', $data);
     }
 }
