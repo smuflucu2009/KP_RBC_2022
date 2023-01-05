@@ -106,7 +106,7 @@ class BukuController extends Controller
             'kode_peminatan.required' => 'Kode Jenis Peminatan wajib diisi',
             'kode_detail_jenis_peminatan.required' => 'Kode Jenis Peminatan wajib diisi',
             'kode_tahun.required' => 'Kode Tahun wajib diisi',
-            'kode_nomor_urut_buku' => 'Kode Nomor Urut Wajib diisi',
+            'kode_nomor_urut_buku' => 'Kode Nomor Urut wajib diisi',
             'kode_gabungan_final.required' => 'Kode Buku wajib diisi',
             'kode_gabungan_final.unique' => 'Kode Buku sudah ada',
         ]);

@@ -12,7 +12,7 @@
     </div>
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <div class="pb-3">
-            <a href='#' class="btn btn-primary">Update Artikel</a>
+            <a href='/artikel/update_admin' class="btn btn-primary">Update Artikel</a>
         </div>
         <div class="pb-3">
             <form action="" method="GET" >
@@ -25,7 +25,6 @@
                     <th class="col-md-1">No</th>
                     <th class="col-md-1">Judul Artikel</th>
                     <th class="col-md-1">Jenis Artikel</th>
-                    <th class="col-md-1">Isi Artikel</th>
                     <th class="col-md-1">Waktu Artikel</th>
                     <th class="col-md-1">Lebih Lanjut</th>
                 </tr>
@@ -39,10 +38,9 @@
                         <td>{{ $no++}}</td>
                         <td>{{ $item->judul_artikel}}</td>
                         <td>{{ $item->jenis_artikel}}</td>
-                        <td>{{ $item->isi_artikel}}</td>
                         <td>{{ $item->waktu_artikel}}</td>
                         <td>
-                            <a href='#' class="btn btn-info btn-sm">Detail</a>
+                            <a href='{{ url('/artikel/detail/'.$item->id_artikel ) }}' class="btn btn-info btn-sm">Detail</a>
                         </td>
                     </tr>
                 @endforeach
