@@ -4,17 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use PhpParser\Node\Stmt\Do_;
 
-class kp extends Model
+class Skripsi extends Model
 {
-    // ul ini kalo mau pake softdelete tinggal tulis kasih soft delete sama tambahin kolom deleted_at
     use HasFactory;
 
-
-
-    protected $table = 'kp';
-    protected $primaryKey = 'id';
+    protected $table = 'skripsi';
     protected $fillable = [
         "name",
         "nim",
@@ -60,7 +55,4 @@ class kp extends Model
         return asset(env('APP_URL') . 'app/' . $this->file);
     }
 
-
-
 }
-
