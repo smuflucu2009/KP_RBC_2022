@@ -26,3 +26,9 @@ Route::get('kp/{id}', [\App\Http\Controllers\API\KPController::class, 'show']);
 Route::get('skripsi', [\App\Http\Controllers\API\SkripsiController::class, 'index']);
 // Route::post('skripsi/store', [\App\Http\Controllers\API\SkripsiController::class, 'store']);
 Route::get('skripsi/{id}', [\App\Http\Controllers\API\SkripsiController::class, 'show']);
+
+Route::get('gallery', [\App\Http\Controllers\API\GalleryController::class, 'index']);
+Route::post('gallery/store', [\App\Http\Controllers\API\GalleryController::class, 'store']);
+
+Route::get('post', [\App\Http\Controllers\API\PostController::class, 'index']);
+Route::post('post/store', [\App\Http\Controllers\API\PostController::class, 'store']);
