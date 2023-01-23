@@ -54,6 +54,7 @@ route::get('/buku/update_admin/kembali/{id}', [BukuController::class, 'kembali']
 route::get('/buku/update_admin/pinjambuku', [PinjamBukuController::class, 'index'])->name('buku.pinjamb');
 route::get('/buku/update_admin/pinjambuku/create', [PinjamBukuController::class, 'create'])->name('pinjamb.create');
 route::post('/buku/update_admin/pinjambuku/store', [PinjamBukuController::class, 'store'])->name('pinjamb.store');
+route::post('/buku/update_admin/pinjambuku/delete/{id}', [PinjamBukuController::class, 'delete'])->name('pinjamb.delete');
 // Route::get('/join', [JoinController::class, 'join'])->name('join.index');
 
 route::get('/ta', [TAController::class, 'index'])->name('ta.index');

@@ -66,11 +66,6 @@
                                 @csrf
                                 <button type="submit" name="submit" class="btn btn-info btn-sm">Pinjam</button>
                             </form>
-                            <a href="{{ route('buku.kembali', $item->kode_gabungan_final) }}" method="POST" class="btn btn-primary btn-sm">Kembalikan</a>
-                            {{-- <form onsubmit="return confirm('Buku {{$item -> judul_buku}} sudah dikembalikan?')" class="d-inline" method="POST" action="{{ route('buku.kembali', $item->kode_gabungan_final) }}">
-                                @csrf
-                                <button type="submit" name="submit" class="btn btn-info btn-sm">Kembali</button>
-                            </form> --}}
                         </td>
                     </tr>
                 @endforeach

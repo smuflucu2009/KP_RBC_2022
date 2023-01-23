@@ -152,7 +152,7 @@ class BukuController extends Controller
             'kode_detail_jenis_peminatan' => 'required',
             'kode_tahun' => 'required',
             'kode_nomor_urut_buku' => 'required',
-            'kode_gabungan_final' => 'required|unique:Buku,kode_gabungan_final',
+            'kode_gabungan_final' => 'required',
         ], [
             'tanggal_masuk.required' => 'Tanggal Masuk wajib diisi',
             'judul_buku.required' => 'Judul Buku wajib diisi',
@@ -166,7 +166,6 @@ class BukuController extends Controller
             'kode_tahun.required' => 'Kode Tahun wajib diisi',
             'kode_nomor_urut_buku' => 'Kode Nomor Urut Wajib diisi',
             'kode_gabungan_final.required' => 'Kode Buku wajib diisi',
-            'kode_gabungan_final.unique' => 'Kode Buku sudah ada',
         ]);
         DB::update('UPDATE buku SET no = :no, tanggal_masuk = :tanggal_masuk, judul_buku = :judul_buku, 
         penulis = :penulis, penerbit = :penerbit, isbn = :isbn, jenis_peminatan = :jenis_peminatan, 
@@ -223,6 +222,6 @@ class BukuController extends Controller
 
     function kembali($id) {
         DB::update('UPDATE buku SET status_pinjam = 0 WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
-        return redirect()->route('buku.update_admin')->with('success', 'Buku Dikembalikan');
+        return redirect()->route('buku.pinjamb')->with('success', 'Buku Dikembalikan');
     }
 }

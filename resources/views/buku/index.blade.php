@@ -36,6 +36,7 @@
                     <th class="col-md-1">Penerbit</th>
                     <th class="col-md-1">Jenis Peminatan</th>
                     <th class="col-md-1">Detail Jenis Peminatan</th>
+                    <th class="col-md-1">Status Pinjam</th>
                     <th class="col-md-1">Detail Buku</th>
                 </tr>
             </thead>
@@ -52,6 +53,7 @@
                         <td>{{ $item->penerbit}}</td>
                         <td>{{ $item->jenis_peminatan}}</td>
                         <td>{{ $item->detail_jenis_peminatan}}</td>
+                        <td>{{ $item->status_pinjam}}</td>
                         <td>
                             <a href='{{ url('/buku/detail/'.$item->kode_gabungan_final) }}' class="btn btn-info btn-sm">Detail</a>
                         </td>
