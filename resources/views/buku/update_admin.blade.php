@@ -16,6 +16,7 @@
         </div>
         <div class="d-flex justify-content-between pb-3">
             <a href="/buku/update_admin/create" class="btn btn-primary">+++</a>
+            <a href="/buku/update_admin/pinjambuku" class="btn btn-warning">Pinjam Buku</a>
             <a href="/buku/update_admin/bin" class="btn btn-info">Recycle Bin</a>
         </div>
         <div class="pb-3">

@@ -5,10 +5,10 @@
 </head>
 <body>
     <div>
-        <h1>Ini Halaman Homepage ya kawan - kawan xixixi</h1>
+        <h1>Selamat Datang di Web RBC</h1>
     </div>
     <div>
-        <h3>Ini awal setelah login, rencananya...</h3>
+        <h3>Ini web yang dibuat dengan sepenuh hati</h3>
     </div>
 </body>
 @endsection

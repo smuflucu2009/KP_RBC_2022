@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/buku">Buku</a>
+              <a class="nav-link" href="/buku">Buku</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/ta">TA</a>
@@ -18,14 +18,14 @@
             <li class="nav-item">
               <a class="nav-link" href="/kp">KP</a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a class="nav-link" href="/kd">Karya Dosen</a>
-            </li>
+            </li> --}}
             <li class="nav-item">
               <a class="nav-link" href="/fasilitas">Fasilitas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/artikel">Artikel</a>
+              <a class="nav-link" href="/artikel">Artikel (Belum)</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/pustakawan">Pustakawan</a>

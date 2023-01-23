@@ -7,6 +7,7 @@ use App\Http\Controllers\JurnalController;
 use App\Http\Controllers\KDController;
 use App\Http\Controllers\KpController;
 use App\Http\Controllers\PembukaController;
+use App\Http\Controllers\PinjamBukuController;
 use App\Http\Controllers\PustakawanController;
 use App\Http\Controllers\SkripsiController;
 use App\Http\Controllers\TAController;
@@ -48,6 +49,7 @@ route::get('/buku/update_admin/bin', [BukuController::class, 'bin'])->name('buku
 route::post('/buku/update_admin/delete/{id}', [BukuController::class, 'delete'])->name('buku.delete');
 route::post('/buku/update_admin/softdelete/{id}', [BukuController::class, 'softDelete'])->name('buku.softdelete');
 route::get('/buku/update_admin/restore/{id}', [BukuController::class, 'restore'])->name('buku.restore');
+route::get('/buku/update_admin/pinjambuku', [PinjamBukuController::class, 'index'])->name('buku.pinjamb');
 
 route::get('/ta', [TAController::class, 'index'])->name('ta.index');
 

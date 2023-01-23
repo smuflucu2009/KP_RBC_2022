@@ -6,6 +6,7 @@ use App\helpers\ApiFormartter;
 use App\helpers\ApiFormatter;
 use App\Models\Bidang;
 use App\Models\Gallery;
+use App\Models\kp;
 use App\Models\Kpsih;
 use App\Models\KPv2;
 use Illuminate\Support\Facades\DB;
@@ -109,7 +110,7 @@ class GalleryController extends Controller
     public function show($id)
     {
         //
-        $data = KPv2::with(['Bidang', 'Dosen', 'Dosen2'])->where('id', $id)->first();
+        $data = kp::with(['Bidang', 'Dosen', 'Dosen2'])->where('id', $id)->first();
 
         if(!$data){
             return ApiFormatter::createApi(400, 'id not found');

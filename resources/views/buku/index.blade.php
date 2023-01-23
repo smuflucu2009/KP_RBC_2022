@@ -16,16 +16,16 @@
         </div>
         <div class="pb-3">
             <form action="" method="GET" >
-            <input type="search" name="caribuku" placeholder="Cari Buku">
+            <input type="search" name="caribuku" placeholder="Cari...">
             <button class="btn btn-primary" type="submit">Cari</button>
             </form>
         </div>
-        <div class="pb-3">
+        {{-- <div class="pb-3">
             <form action="" method="GET" >
             <input type="search" name="carijp" placeholder="Cari Jenis Peminatan">
             <button class="btn btn-primary" type="submit">Cari</button>
             </form>
-        </div>
+        </div> --}}
         <table class="table table-striped text-center">
             <thead>
                 <tr>

@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('skripsi', function (Blueprint $table) {
             $table->id();
-    $table->string('name');
-    $table->string('nim');
-    // $table->bigInteger('bidang_id');
-    $table->foreignId('bidang_id')->references('id')->on('bidang')->onDelete('cascade')->onUpdate('cascade');
-    $table->integer('tahun');
-    $table->string('judul');
-    $table->string('koleksi');
+            $table->string('name');
+            $table->string('nim');
+            //$table->bigInteger('bidang_id');
+            $table->foreignId('bidang_id')->references('id')->on('bidang')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('tahun');
+            $table->string('judul');
+            $table->string('koleksi');
     // $table->bigInteger('dosen_id');
     // $table->bigInteger('dosen2_id');
     $table->foreignId('dosen_id')->references('id')->on('dosen')->onDelete('cascade')->onUpdate('cascade');
