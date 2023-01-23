@@ -215,4 +215,14 @@ class BukuController extends Controller
         DB::update('UPDATE buku SET deleted_at = 0 WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
         return redirect()->route('buku.update_admin')->with('success', 'Data buku telah dikembalikan!');
     }
+
+    function pinjam($id) {
+        DB::update('UPDATE buku SET status_pinjam = 1 WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
+        return redirect()->route('buku.update_admin')->with('success', 'Buku Dipinjam');
+    }
+
+    function kembali($id) {
+        DB::update('UPDATE buku SET status_pinjam = 0 WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
+        return redirect()->route('buku.update_admin')->with('success', 'Buku Dikembalikan');
+    }
 }
