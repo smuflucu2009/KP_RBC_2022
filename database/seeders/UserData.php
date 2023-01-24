@@ -16,16 +16,34 @@ class UserData extends Seeder
     public function run()
     {
         $user = [ 
+            // [
+            //     'nama_user' => 'Admin',
+            //     'id_user' => '1122334455',
+            //     'password' => bcrypt('adminrupawan'),
+            //     'level' => 1,
+            // ],
+            // [
+            //     'nama_user' => 'Raung Kawijayan',
+            //     'id_user' => '21120120140155',
+            //     'password' => bcrypt('21120120140155'),
+            //     'level' =>2,
+            // ],
             [
-                'nama' => 'Admin',
-                'id_user' => '1122334455',
-                'password' => bcrypt('adminrupawan'),
-                'level' => 1,
+                'nama_user' => 'Aldi Mulyawan',
+                'id_user' => '21120119120026',
+                'password' => bcrypt('21120119120026'),
+                'level' =>2,
             ],
             [
-                'nama' => 'Raung Kawijayan',
-                'id_user' => '21120120140155',
-                'password' => bcrypt('21120120140155'),
+                'nama_user' => 'Fauzan Zaman',
+                'id_user' => '21120119140124',
+                'password' => bcrypt('21120119140124'),
+                'level' =>2,
+            ],
+            [
+                'nama_user' => 'Muhammad Fahreza Isnanto',
+                'id_user' => '21120120120009',
+                'password' => bcrypt('21120120120009'),
                 'level' =>2,
             ],
         ];
