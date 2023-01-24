@@ -1,8 +1,8 @@
-@extends('boostrap/dasar1')
-@section('isi_template1')
+@extends('boostrap/dasar')
+@section('isi_template')
 <title>Halaman Peminjaman</title>
 <div>
-    <a href="/buku/update_admin" class="btn btn-secondary">Kembali</a>
+    <a href="/buku/update_admin/pinjambuku" class="btn btn-secondary">Kembali</a>
     <h1>Ini halaman peminjaman khusus admin</h1>
 </div>
 <form action='{{ route('pinjamb.store') }}' method='post'>
