@@ -40,7 +40,7 @@
                         <a class="nav-link" href="/">tata Tertib</a>
                     </div>
                 </div>
-                <li class="nav-item dropbtn faq" style="text-align: left"> <a href="/">FAQ</a> </li>
+                <li class="nav-item dropbtn faq" style="text-align: left"> <a href="/faq">FAQ</a> </li>
                 <button class="btn-login" type="submit" href="/">Login</button>
             </ul>
         </div>

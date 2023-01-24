@@ -32,12 +32,12 @@
         <h3 id="land_header">FORMS</h3>
         <div class="d-flex justify-content-center">
         <div class="forms">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfyZz9He0__48n6PXslXLQrTaWKfjLg6UvWZmAQWGQr-yRfdw/viewform" target="_blank">PEMINJAMAN
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfyZz9He0__48n6PXslXLQrTaWKfjLg6UvWZmAQWGQr-yRfdw/viewform" target="_blank">PEMINJAMAN <br>
                 BUKU</a>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd4YZszxmkytjNM476Lr3GPpXp4bc3hK9v-TZxXdMmSggUYtw/viewform" target="_blank">PENGUNJUNG
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd4YZszxmkytjNM476Lr3GPpXp4bc3hK9v-TZxXdMmSggUYtw/viewform" target="_blank">PENGUNJUNG <br>
                 PERPUS</a>
-            <a href="https://forms.gle/JYTWbyUvCZKD5GJZ8" target="_blank">SUMBANGAN BUKU</a>
-            <a href="https://forms.gle/qfDarxsqVwXLjs727" target="_blank">FEEDBACK US</a>
+            <a href="https://forms.gle/JYTWbyUvCZKD5GJZ8" target="_blank">SUMBANGAN <br> BUKU</a>
+            <a href="https://forms.gle/qfDarxsqVwXLjs727" target="_blank">FEEDBACK <br> US</a>
         </div>
         </div>
         </div>

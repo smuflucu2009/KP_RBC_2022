@@ -5,6 +5,7 @@ html,body
     margin: 0px;
     padding: 0px;
     overflow-x: hidden; 
+    background: #F1F1F1;
 }
 .nav{
   display: flex;
@@ -209,6 +210,7 @@ gap: 23px;
 }
 
 .btn_panduan button{
+  margin: 2%;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
@@ -224,21 +226,25 @@ border-radius: 20px;
 text-align: left;
 padding-left: 37px;
 border: none;
+size: 100%;
 }
 
 .btn_buku{
   background: url(../asset/btn_buku.png) no-repeat scroll 0 0 transparent;
-  background-position: left;
+  background-position: right;
+  background-size: 100%;
 }
 
 .btn_capstone{
   background: url(../asset/btn_capstone.png) no-repeat scroll 0 0 transparent;
-  background-position: left;
+  background-position: right;
+  background-size: 100%;
 }
 
 .btn_kp{
   background: url(../asset/btn_kp.png) no-repeat scroll 0 0 transparent;
-  background-position: left;
+  background-position: right;
+  background-size: 100%;
 }
 
 .forms{
@@ -278,16 +284,37 @@ color: #FFFFFF;
   justify-content: space-around;
   align-items: center;
   text-align: center;
+  row-gap: 15px;
+
 }
 
 #resource-gap{
-  margin: 20px;
-  margin-top: 10px;
+  /* margin: 20px; */
   border: none;
   overflow-wrap: break-word;
+  gap:15px
 }
 
 #resource-gap a{
   text-decoration: none;
   overflow-wrap: break-word;
+}
+
+.faq-page{
+  background-image: url(../asset/faq_bg.png);
+  width: 100%;
+  background-position: no-repeat;
+}
+.faq-isi{
+  margin-left: 3%;
+  margin-right: 3%;
+  
+  font-family: 'Raleway';
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 43px;
+  letter-spacing: 0.05em;
+  text-align: left;
+  
+
 }
