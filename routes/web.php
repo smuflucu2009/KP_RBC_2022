@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\KPController as APIKPController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\FasilitasController;
@@ -55,11 +56,14 @@ route::get('/buku/update_admin/pinjambuku', [PinjamBukuController::class, 'index
 route::get('/buku/update_admin/pinjambuku/create', [PinjamBukuController::class, 'create'])->name('pinjamb.create');
 route::post('/buku/update_admin/pinjambuku/store', [PinjamBukuController::class, 'store'])->name('pinjamb.store');
 route::post('/buku/update_admin/pinjambuku/delete/{id}', [PinjamBukuController::class, 'delete'])->name('pinjamb.delete');
-// Route::get('/join', [JoinController::class, 'join'])->name('join.index');
 
 route::get('/ta', [TAController::class, 'index'])->name('ta.index');
 
 route::get('/kp', [KpController::class, 'index'])->name('kp.index');
+route::get('/kp/detail/{id}', [KpController::class, 'detail_kp'])->name('kp.detail_kp');
+route::get('/kp/update_admin', [KpController::class, 'update_admin'])->name('kp.update_admin');
+route::get('/kp/update_admin/create', [KpController::class, 'create'])->name('kp.create');
+route::post('/kp/update_admin/store', [KpController::class, 'store'])->name('kp.store');
 
 route::get('/kd', [KDController::class, 'index'])->name('kd.index');
 
