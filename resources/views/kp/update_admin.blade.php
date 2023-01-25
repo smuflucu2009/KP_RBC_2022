@@ -16,14 +16,14 @@
         </div>
         <div class="d-flex justify-content-between pb-3">
             <a href="/kp/update_admin/create" class="btn btn-primary">+++</a>
-            <a href="#" class="btn btn-info">Recycle Bin</a>
+            {{-- <a href="#" class="btn btn-info">Recycle Bin</a> --}}
         </div>
-        {{-- <div class="pb-3">
-            <form action="{{ route('buku.cari') }}" method="GET" >
-            <input type="search" name="caribuku_update" placeholder="Cari Buku" value="{{ Request::get('caribuku_update')}}">
+        <div class="pb-3">
+            <form action="{{ route('kp.cari2') }}" method="GET" >
+            <input type="search" name="cariKP2" placeholder="Cari Buku" value="{{ Request::get('cariKP2')}}">
             <button class="btn btn-primary" type="submit">Cari</button>
             </form>
-        </div> --}}
+        </div>
         <div class="pb-3">
             <a href='/kp/update_admin' class="btn btn-danger btn-sm">Reset</a>
         </div>
@@ -56,15 +56,11 @@
                         <td>{{ $join->perusahaan }}</td>
                         <td>{{ $join->nama_dosen }}</td>
                         <td>
-                            <a href='{{ url('/buku/update_admin/edit/'.$join->id_kp) }}' class="btn btn-warning btn-sm">Edit</a>
-                            {{-- <form onsubmit="return confirm('Yakin ingin menghapus sementara data ini?')" class="d-inline" method="POST" action="{{ route('buku.softdelete', $item->kode_gabungan_final) }}">
+                            <a href='{{ url('/kp/update_admin/edit/'.$join->id_kp) }}' class="btn btn-warning btn-sm">Edit</a>
+                            <form onsubmit="return confirm('Yakin ingin menghapus permanen data KP ini?')" class="d-inline" action="{{ route('kp.delete', $join->id_kp) }}" method="post">
                                 @csrf
-                                <button type="submit" name="submit" class="btn btn-danger btn-sm">S.Del</button>
+                                <button type="submit" name="submit" class="btn btn-danger btn-sm">Delete</button>
                             </form>
-                            <form onsubmit="return confirm('Buku {{$item -> judul_buku}} sudah dipinjam?')" class="d-inline" method="POST" action="{{ route('buku.pinjam', $item->kode_gabungan_final) }}">
-                                @csrf
-                                <button type="submit" name="submit" class="btn btn-info btn-sm">Pinjam</button>
-                            </form> --}}
                         </td>
                     </tr>
                 @endforeach

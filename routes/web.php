@@ -25,17 +25,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Buat patokan
-// route::get('mahasiswa', [MahasiswaController::class, 'index']);
-// route::get('mahasiswa/{id}', [MahasiswaController::class, 'detail'])->where('id', '[0-9]+');
-
-// route::get('/', [HalamanController::class, 'index']);
-// route::get('/tentang', [HalamanController::class, 'tentang']);
-// route::get('/kontak', [HalamanController::class, 'kontak']);
 
 route::get('/', [PembukaController::class, 'index'])->name('home.index');
 
-// Route::resource('/buku', BukuController::class);
 route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
 route::get('/buku/update_admin', [BukuController::class, 'update_admin'])->name('buku.update_admin');
 route::get('/buku/detail/{id}', [BukuController::class, 'detail_buku'])->name('buku.detail_buku');
@@ -64,6 +56,11 @@ route::get('/kp/detail/{id}', [KpController::class, 'detail_kp'])->name('kp.deta
 route::get('/kp/update_admin', [KpController::class, 'update_admin'])->name('kp.update_admin');
 route::get('/kp/update_admin/create', [KpController::class, 'create'])->name('kp.create');
 route::post('/kp/update_admin/store', [KpController::class, 'store'])->name('kp.store');
+route::get('/kp/update_admin/edit/{id}', [KpController::class, 'edit'])->name('kp.edit');
+route::post('/kp/update_admin/update/{id}', [KpController::class, 'update'])->name('kp.update');
+route::post('/kp/update_admin/delete/{id}', [KpController::class, 'delete'])->name('kp.delete');
+route::get('/cariKP', [KpController::class, 'cariKP'])->name('kp.cari');
+route::get('/cariKP2', [KpController::class, 'cariKP2'])->name('kp.cari2');
 
 route::get('/kd', [KDController::class, 'index'])->name('kd.index');
 

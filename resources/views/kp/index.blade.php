@@ -5,13 +5,20 @@
 </head>
 <body>
     <div>
-        <h1>Ini Halaman KP</h1>
+        <h1>Halaman KP</h1>
     </div>
     <div>
-        <h2>intinya isinya kp lah</h2>
+        <a href="/kp/update_admin" class="btn btn-info">Update</a>
     </div>
+    <div> 
+        <form action={{ route('kp.cari') }} method="GET" >
+            <input type="search" name="cariKP" placeholder="Cari data KP .." value="{{ Request::get('cariKP')}}">
+            <button class="btn btn-primary" type="submit">cari </button>
+        </form>
     </div>
-    <a href="/kp/update_admin" class="btn btn-info">Update</a>
+    <div>
+        <a href="/kp" class="btn btn-danger">Reset</a>
+    </div>
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <table class="table table-striped text-center">
             <thead>

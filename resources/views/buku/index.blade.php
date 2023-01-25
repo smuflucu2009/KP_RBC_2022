@@ -5,10 +5,7 @@
 </head>
 <body>
     <div>
-        <h1>Ini Halaman Buku</h1>
-    </div>
-    <div>
-        <h2>Tidak ada buku ++, karna yang ++ sudah bnyak tersebar</h2>
+        <h1>Halaman Buku</h1>
     </div>
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <div class="pb-3">
