@@ -8,7 +8,7 @@
         <h1>Ini Halaman karya dosen</h1>
     </div>
     <div>
-        <h2>Halaman isi karya dosen yang bagus - bagus</h2>
+        <h2>Karya Dosen Terindeks Scopus</h2>
     </div>
 </body>
 @endsection
