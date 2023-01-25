@@ -83,5 +83,5 @@ route::post('/artikel/update_admin/softdelete/{id}', [BukuController::class, 'so
 route::get('/artikel/update_admin/restore/{id}', [BukuController::class, 'restore'])->name('artikel.restore');
 
 route::get('/pustakawan', [PustakawanController::class, 'index'])->name('pustakawan.index');
-
+route::get('/faq', [PembukaController::class, 'faq'])->name('pembuka.faq');
 

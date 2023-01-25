@@ -9,4 +9,8 @@ class PembukaController extends Controller
     function index() {
         return view('pembuka.index');
     }
+
+    function faq(){
+        return view('pembuka.faq');
+    }
 }
