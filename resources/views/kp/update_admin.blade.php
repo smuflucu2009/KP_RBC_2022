@@ -16,7 +16,7 @@
         </div>
         <div class="d-flex justify-content-between pb-3">
             <a href="/kp/update_admin/create" class="btn btn-primary">+++</a>
-            {{-- <a href="#" class="btn btn-info">Recycle Bin</a> --}}
+            <a href="/kp/update_admin/bin" class="btn btn-info">Recycle Bin</a>
         </div>
         <div class="pb-3">
             <form action="{{ route('kp.cari2') }}" method="GET" >
@@ -57,9 +57,9 @@
                         <td>{{ $join->nama_dosen }}</td>
                         <td>
                             <a href='{{ url('/kp/update_admin/edit/'.$join->id_kp) }}' class="btn btn-warning btn-sm">Edit</a>
-                            <form onsubmit="return confirm('Yakin ingin menghapus permanen data KP ini?')" class="d-inline" action="{{ route('kp.delete', $join->id_kp) }}" method="post">
+                            <form onsubmit="return confirm('Yakin ingin menghapus sementara data ini?')" class="d-inline" method="POST" action="{{ route('kp.softdelete', $join->id_kp) }}">
                                 @csrf
-                                <button type="submit" name="submit" class="btn btn-danger btn-sm">Delete</button>
+                                <button type="submit" name="submit" class="btn btn-danger btn-sm">S.Del</button>
                             </form>
                         </td>
                     </tr>

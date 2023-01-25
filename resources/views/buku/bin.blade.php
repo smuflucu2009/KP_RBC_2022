@@ -1,6 +1,6 @@
 @extends('boostrap/dasar')
 @section('isi_template')
-<title>Halaman Recycle Bin</title>
+<title>Halaman Recycle Bin - Buku</title>
 <div>
     <a href="/buku/update_admin" class="btn btn-secondary">Kembali</a>
     <h1>Ini halaman untuk menyimpan buku yang ingin dihapus tpi ingin disimpan</h1>

@@ -61,6 +61,9 @@ route::post('/kp/update_admin/update/{id}', [KpController::class, 'update'])->na
 route::post('/kp/update_admin/delete/{id}', [KpController::class, 'delete'])->name('kp.delete');
 route::get('/cariKP', [KpController::class, 'cariKP'])->name('kp.cari');
 route::get('/cariKP2', [KpController::class, 'cariKP2'])->name('kp.cari2');
+route::get('/kp/update_admin/bin', [KpController::class, 'bin'])->name('kp.bin');
+route::post('/kp/update_admin/softdelete/{id}', [KpController::class, 'softDelete'])->name('kp.softdelete');
+route::get('/kp/update_admin/restore/{id}', [KpController::class, 'restore'])->name('kp.restore');
 
 route::get('/kd', [KDController::class, 'index'])->name('kd.index');
 

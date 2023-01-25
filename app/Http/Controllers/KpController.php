@@ -15,6 +15,7 @@ class KpController extends Controller
         ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
         ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
         'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'abstrak')
+        ->where('kp.deleted_at',0)
         ->get();
 
         return view('kp.index')->with('joins', $joins);
@@ -33,7 +34,8 @@ class KpController extends Controller
         ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
         ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
         'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak')
-        ->where('name', 'like', "%$cariKP%")
+        ->where('kp.deleted_at',0)
+        ->orwhere('name', 'like', "%$cariKP%")
         ->orWhere('nim', 'like', "%$cariKP%")
         ->orWhere('nama_bidang', 'like', "%$cariKP%")
         ->orWhere('tahun', 'like', "%$cariKP%")
@@ -55,7 +57,8 @@ class KpController extends Controller
         ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
         ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
         'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak')
-        ->where('name', 'like', "%$cariKP2%")
+        ->where('kp.deleted_at',0)
+        ->orwhere('name', 'like', "%$cariKP2%")
         ->orWhere('nim', 'like', "%$cariKP2%")
         ->orWhere('nama_bidang', 'like', "%$cariKP2%")
         ->orWhere('tahun', 'like', "%$cariKP2%")
@@ -75,9 +78,23 @@ class KpController extends Controller
         ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
         ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
         'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak')
+        ->where('kp.deleted_at',0)
         ->get();
 
         return view('kp.update_admin')
+        ->with('joins', $joins);  
+    }
+
+    function bin() {
+        $joins = DB::table('kp')
+        ->join('dosen', 'kp.dosen_id', '=', 'dosen.id')
+        ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
+        ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
+        'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak')
+        ->where('kp.deleted_at',1)
+        ->get();
+
+        return view('kp.bin')
         ->with('joins', $joins);  
     }
 
@@ -189,6 +206,16 @@ class KpController extends Controller
     {
         DB::delete('DELETE FROM kp WHERE id_kp = :id_kp', ['id_kp' => $id]);
         return redirect()->route('kp.update_admin')->with('success', 'Berhasil hapus data KP secara permanen!');
+    }
+
+    function softDelete($id) {
+        DB::update('UPDATE kp SET deleted_at = 1 WHERE id_kp = :id_kp', ['id_kp' => $id]);
+        return redirect()->route('kp.update_admin')->with('success', 'Berhasil hapus data KP secara sementara');
+    }
+
+    function restore($id){
+        DB::update('UPDATE kp SET deleted_at = 0 WHERE id_kp = :id_kp', ['id_kp' => $id]);
+        return redirect()->route('kp.update_admin')->with('success', 'Data KP telah dikembalikan!');
     }
     
 }
