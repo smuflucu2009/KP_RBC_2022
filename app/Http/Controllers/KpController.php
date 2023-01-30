@@ -6,6 +6,7 @@ use App\Models\kp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Http\UploadedFile;
 
 class KpController extends Controller
 {
@@ -14,7 +15,7 @@ class KpController extends Controller
         ->join('dosen', 'kp.dosen_id', '=', 'dosen.id')
         ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
         ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
-        'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'abstrak')
+        'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak', 'kp.file')
         ->where('kp.deleted_at',0)
         ->get();
 
@@ -33,7 +34,7 @@ class KpController extends Controller
         ->join('dosen', 'kp.dosen_id', '=', 'dosen.id')
         ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
         ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
-        'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak')
+        'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak', 'kp.file')
         ->where('kp.deleted_at',0)
         ->orwhere('name', 'like', "%$cariKP%")
         ->orWhere('nim', 'like', "%$cariKP%")
@@ -56,7 +57,7 @@ class KpController extends Controller
         ->join('dosen', 'kp.dosen_id', '=', 'dosen.id')
         ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
         ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
-        'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak')
+        'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak', 'kp.file')
         ->where('kp.deleted_at',0)
         ->orwhere('name', 'like', "%$cariKP2%")
         ->orWhere('nim', 'like', "%$cariKP2%")
@@ -77,7 +78,7 @@ class KpController extends Controller
         ->join('dosen', 'kp.dosen_id', '=', 'dosen.id')
         ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
         ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
-        'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak')
+        'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak', 'kp.file')
         ->where('kp.deleted_at',0)
         ->get();
 
@@ -90,7 +91,7 @@ class KpController extends Controller
         ->join('dosen', 'kp.dosen_id', '=', 'dosen.id')
         ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
         ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
-        'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak')
+        'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak', 'kp.file')
         ->where('kp.deleted_at',1)
         ->get();
 
@@ -103,7 +104,7 @@ class KpController extends Controller
         return view('kp.create', compact('joins'));
     }
 
-    function store(Request $request)
+    public function store(Request $request)
     {
         Session::flash('name', $request->name);
         Session::flash('nim', $request->nim);
@@ -125,6 +126,7 @@ class KpController extends Controller
             'lokasi_perusahaan' => 'required',
             'dosen_id' => 'required',
             'abstrak' => 'required',
+            'file' => 'required|mimes:pdf,docx',
         ], [
             'name.required' => 'Nama wajib diisi',
             'nim.required' => 'NIM wajib diisi',
@@ -135,11 +137,19 @@ class KpController extends Controller
             'lokasi_perusahaan.required' => 'Alamat Perusahaan wajib diisi',
             'dosen_id.required' => 'Nama Pembimbing Dosen wajib diisi',
             'abstrak.required' => 'Abstrak KP wajib diisi',
+            'file.required' => 'File KP wajib diisi',
+            'file.mimes' => 'File KP wajib pdf atau docx',
         ]);
+
+        $file_kp = $request->file('file');
+        $file_extensi = $file_kp->extension();
+        $nama_file = date('ymdhis') . '.' . $file_extensi;
+        $file_kp->move(storage_path('pdf\kp'), $nama_file);
+
         DB::insert('INSERT INTO kp(name, nim, bidang_id, 
-        tahun, judul, perusahaan, lokasi_perusahaan, dosen_id, abstrak) 
+        tahun, judul, perusahaan, lokasi_perusahaan, dosen_id, abstrak, file) 
         VALUES (:name, :nim, :bidang_id, :tahun, :judul, :perusahaan, :lokasi_perusahaan, 
-        :dosen_id, :abstrak)',
+        :dosen_id, :abstrak, :file)',
         [
             'name' => $request->name,
             'nim' => $request->nim,
@@ -150,6 +160,7 @@ class KpController extends Controller
             'lokasi_perusahaan' => $request->lokasi_perusahaan,
             'dosen_id' => $request->dosen_id,
             'abstrak' => $request->abstrak,
+            'file' => $nama_file,
         ]
         );
         return redirect()->route('kp.update_admin')->with('success', 'Berhasil menambahkan data KP');
@@ -172,6 +183,7 @@ class KpController extends Controller
             'lokasi_perusahaan' => 'required',
             'dosen_id' => 'required',
             'abstrak' => 'required',
+            'file' => 'required',
         ], [
             'name.required' => 'Nama wajib diisi',
             'nim.required' => 'NIM wajib diisi',
@@ -182,10 +194,11 @@ class KpController extends Controller
             'lokasi_perusahaan.required' => 'Alamat Perusahaan wajib diisi',
             'dosen_id.required' => 'Nama Pembimbing Dosen wajib diisi',
             'abstrak.required' => 'Abstrak KP wajib diisi',
+            'file.required' => 'File KP wajib diupload',
         ]);
         DB::update('UPDATE kp SET name = :name, nim = :nim, bidang_id = :bidang_id, 
         tahun = :tahun, judul = :judul, perusahaan = :perusahaan, lokasi_perusahaan = :lokasi_perusahaan,
-        dosen_id = :dosen_id, abstrak = :abstrak WHERE id_kp = :id',
+        dosen_id = :dosen_id, dosen2_id = :dosen2_id, abstrak = :abstrak, file = :file WHERE id_kp = :id',
         [
             'id' => $id,
             'name' => $request->name,
@@ -196,7 +209,9 @@ class KpController extends Controller
             'perusahaan' => $request->perusahaan,
             'lokasi_perusahaan' => $request->lokasi_perusahaan,
             'dosen_id' => $request->dosen_id,
+            'dosen2_id' => $request->dosen2_id,
             'abstrak' => $request->abstrak,
+            'file' => $request->file,
         ]
         );
         return redirect()->route('kp.update_admin')->with('success', 'Berhasil update data KP!');

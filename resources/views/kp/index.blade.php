@@ -31,6 +31,7 @@
                     <th>Judul</th>
                     <th>Perusahaan</th>
                     <th>Pembimbing KP</th>
+                    {{-- <th>File KP</th> --}}
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -46,6 +47,11 @@
                     <td>{{ $join->judul }}</td>
                     <td>{{ $join->perusahaan }}</td>
                     <td>{{ $join->nama_dosen }}</td>
+                    {{-- <td>
+                        @if ($join->file)
+                            <img style="max-width:50px;max-height:50px" src="{{ url('pdf\kp').'/' . $join->file}}"/>
+                        @endif
+                    </td> --}}
                     <td>
                         <a href='{{ url('/kp/detail/'.$join->id_kp) }}' class="btn btn-info btn-sm">Detail</a>
                     </td>

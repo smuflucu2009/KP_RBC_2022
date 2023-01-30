@@ -5,7 +5,7 @@
     <h1>Ini halaman kp khusus admin</h1>
     <a href="/kp/update_admin" class="btn btn-info">Kembali</a>
 </div>
-<form action='{{ route('kp.store') }}' method='post'>
+<form action='{{ route('kp.store') }}' method='post' enctype="multipart/form-data">
     @csrf
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <div class="mb-3 row">
@@ -79,7 +79,13 @@
         <div class="mb-3 row">
             <label for="abstrak" class="col-sm-2 col-form-label">Abstrak</label>
             <div class="col-sm-10">
-                <input type="textarea" class="form-control" name='abstrak' value="{{ Session::get('abstrak')}}" id="abstrak">
+                <textarea class="form-control" name='abstrak'  id="abstrak">{{ Session::get('abstrak')}}</textarea>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="file" class="col-sm-2 col-form-label">File</label>
+            <div class="col-md-8">
+                <input type="file" class="form-control" name="file" id="file">
             </div>
         </div> 
         <div class="mb-3 row">

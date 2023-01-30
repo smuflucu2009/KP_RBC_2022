@@ -38,6 +38,7 @@
                     <th>Judul</th>
                     <th>Perusahaan</th>
                     <th>Pembimbing KP</th>
+                    <th>File KP</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -54,7 +55,12 @@
                         <td>{{ $join->tahun }}</td>
                         <td>{{ $join->judul }}</td>
                         <td>{{ $join->perusahaan }}</td>
-                        <td>{{ $join->nama_dosen }}</td>
+                        <td>{{ $join->nama_dosen }}</td>                       
+                        <td>
+                            @if ($join->file)
+                                <a class="btn btn-warning btn-sm" href="{{ url('storage\pdf\kp')."/".$join->file}}">Download</a>
+                            @endif
+                        </td>
                         <td>
                             <a href='{{ url('/kp/update_admin/edit/'.$join->id_kp) }}' class="btn btn-warning btn-sm">Edit</a>
                             <form onsubmit="return confirm('Yakin ingin menghapus sementara data ini?')" class="d-inline" method="POST" action="{{ route('kp.softdelete', $join->id_kp) }}">
