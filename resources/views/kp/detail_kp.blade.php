@@ -27,7 +27,9 @@
         <b>Abstrak: </b>{{ $joins->abstrak }}
     </div>
     <div>
-        <a href="#" class="btn btn-info">Download</a>
+        @if ($joins->file)
+            <a class="btn btn-success btn-sm" href="{{ asset('storage/pdf/kp/'. $joins->file)}}">Download</a>
+        @endif
     </div>
 </div>
 @endsection

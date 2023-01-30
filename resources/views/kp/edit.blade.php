@@ -5,7 +5,7 @@
     <a href="/kp/update_admin" class="btn btn-secondary">Kembali</a>
     <h1>Ini Halaman Edit KP {{$joins->judul}}</h1>
 </div>
-<form action='{{ route('kp.update', $joins->id_kp) }}' method='post'>
+<form action='{{ route('kp.update', $joins->id_kp) }}' method='post' enctype="multipart/form-data">
     @csrf
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <div class="mb-3 row">
@@ -81,7 +81,16 @@
             <div class="col-sm-10">
                 <input type="textarea" class="form-control" name='abstrak' value="{{ $joins->abstrak }}" id="abstrak">
             </div>
-        </div> 
+        </div>
+        @if ($joins->file)
+            <h5>Ada File</h5>
+        @endif
+        <div class="mb-3 row">
+            <label for="file" class="col-sm-2 col-form-label">File</label>
+            <div class="col-md-8">
+                <input type="file" class="form-control" name="file" id="file">
+            </div>
+        </div>
         <div class="mb-3 row">
             <label for="submit" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10"><button type="submit" class="btn btn-primary" name="submit">SIMPAN</button>

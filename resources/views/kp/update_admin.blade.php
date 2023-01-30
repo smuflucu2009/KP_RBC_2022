@@ -58,7 +58,7 @@
                         <td>{{ $join->nama_dosen }}</td>                       
                         <td>
                             @if ($join->file)
-                                <a class="btn btn-warning btn-sm" href="{{ url('storage\pdf\kp')."/".$join->file}}">Download</a>
+                                <a class="btn btn-success btn-sm" href="{{ asset('storage/pdf/kp/'. $join->file)}}">Download</a>
                             @endif
                         </td>
                         <td>

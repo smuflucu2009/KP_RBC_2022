@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\File;
 
 class KpController extends Controller
 {
@@ -142,9 +143,9 @@ class KpController extends Controller
         ]);
 
         $file_kp = $request->file('file');
-        $file_extensi = $file_kp->extension();
+        $file_extensi = $file_kp->getClientOriginalName();
         $nama_file = date('ymdhis') . '.' . $file_extensi;
-        $file_kp->move(storage_path('pdf\kp'), $nama_file);
+        $file_kp->move(public_path('storage\pdf\kp'), $nama_file);
 
         DB::insert('INSERT INTO kp(name, nim, bidang_id, 
         tahun, judul, perusahaan, lokasi_perusahaan, dosen_id, abstrak, file) 
@@ -196,6 +197,24 @@ class KpController extends Controller
             'abstrak.required' => 'Abstrak KP wajib diisi',
             'file.required' => 'File KP wajib diupload',
         ]);
+
+        if ($request->hasFile('file')) {
+            $request->validate([
+                'file' => 'mimes:pdf,docx'
+            ], [
+                'file.mimes' => 'File KP wajib pdf atau docx'
+            ]);
+        
+            $file_kp = $request->file('file');
+            $file_extensi = $file_kp->getClientOriginalName();
+            $nama_file = date('ymdhis') . '.' . $file_extensi;
+            $file_kp->move(public_path('storage\pdf\kp'), $nama_file);
+        
+            $data_kp = kp::where('id_kp', $id)->first();
+            File::delete(public_path('storage\pdf\kp') . '/' . $data_kp->file);
+        
+        }
+
         DB::update('UPDATE kp SET name = :name, nim = :nim, bidang_id = :bidang_id, 
         tahun = :tahun, judul = :judul, perusahaan = :perusahaan, lokasi_perusahaan = :lokasi_perusahaan,
         dosen_id = :dosen_id, dosen2_id = :dosen2_id, abstrak = :abstrak, file = :file WHERE id_kp = :id',
@@ -211,7 +230,7 @@ class KpController extends Controller
             'dosen_id' => $request->dosen_id,
             'dosen2_id' => $request->dosen2_id,
             'abstrak' => $request->abstrak,
-            'file' => $request->file,
+            'file' => $nama_file,
         ]
         );
         return redirect()->route('kp.update_admin')->with('success', 'Berhasil update data KP!');
@@ -220,7 +239,7 @@ class KpController extends Controller
     function delete($id)
     {
         DB::delete('DELETE FROM kp WHERE id_kp = :id_kp', ['id_kp' => $id]);
-        return redirect()->route('kp.update_admin')->with('success', 'Berhasil hapus data KP secara permanen!');
+        return redirect()->route('kp.bin')->with('success', 'Berhasil hapus data KP secara permanen!');
     }
 
     function softDelete($id) {
