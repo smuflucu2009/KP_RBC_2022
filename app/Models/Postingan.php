@@ -14,6 +14,7 @@ class Postingan extends Model
         "judul",
         "deskripsi",
         "category_id",
+        "cover_gambar",
 
 
     ];

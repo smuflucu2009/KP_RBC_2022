@@ -9,10 +9,10 @@
         <b>Nama Mahasiswa: </b>{{ $joins->name }}
     </div>
     <div>
-        <b>NIM: </b>{{ $joins->NIM }}
+        <b>NIM: </b>{{ $joins->nim }}
     </div>
     <div>
-        <b>Bidang: </b>{{ $joins->nama_bidang }}
+        <b>Bidang: </b>{{ $joins->nama_bidang}}
     </div>
     <div>
         <b>Perusahaan: </b>{{ $joins->perusahaan }}

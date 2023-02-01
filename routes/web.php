@@ -9,10 +9,12 @@ use App\Http\Controllers\KDController;
 use App\Http\Controllers\KpController;
 use App\Http\Controllers\PembukaController;
 use App\Http\Controllers\PinjamBukuController;
+use App\Http\Controllers\PostinganController;
 use App\Http\Controllers\PustakawanController;
 use App\Http\Controllers\SkripsiController;
 use App\Http\Controllers\TAController;
 use App\Models\artikel;
+use App\Models\Postingan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -69,18 +71,20 @@ route::get('/kd', [KDController::class, 'index'])->name('kd.index');
 
 route::get('/fasilitas', [FasilitasController::class, 'index'])->name('fasilitas.index');
 
-route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
-route::get('/artikel/update_admin', [ArtikelController::class, 'update_admin'])->name('artikel.update_admin');
-route::get('/artikel/detail/{id}', [ArtikelController::class, 'detail_artikel'])->name('artikel.detail_artikel');
-route::get('/artikel/update_admin/create', [ArtikelController::class, 'create'])->name('artikel.create');
-route::post('/artikel/update_admin/store', [ArtikelController::class, 'store'])->name('artikel.store');
-route::get('/cariartikel', [ArtikelController::class, 'cariartikel'])->name('artikel.cari');
-route::get('/artikel/update_admin/edit/{id}', [ArtikelController::class, 'edit'])->name('artikel.edit');
-route::post('/artikel/update_admin/update/{id}', [ArtikelController::class, 'update'])->name('artikel.update');
-route::get('/artikel/update_admin/bin', [BukuController::class, 'bin'])->name('artikel.bin');
-route::post('/artikel/update_admin/delete/{id}', [BukuController::class, 'delete'])->name('artikel.delete');
-route::post('/artikel/update_admin/softdelete/{id}', [BukuController::class, 'softDelete'])->name('artikel.softdelete');
-route::get('/artikel/update_admin/restore/{id}', [BukuController::class, 'restore'])->name('artikel.restore');
+route::get('/postingan', [PostinganController::class, 'index'])->name('postingan.index');
+route::get('/postingan/update_admin', [PostinganController::class, 'update_admin'])->name('postingan.update_admin');
+route::get('/caripostingan', [PostinganController::class, 'caripostingan'])->name('postingan.cari');
+route::get('/caripostingan2', [PostinganController::class, 'caripostingan2'])->name('postingan.cari2');
+route::get('/postingan/detail/{id}', [PostinganController::class, 'detail_postingan'])->name('postingan.detail_postingan');
+route::get('/postingan/update_admin/detail/{id}', [PostinganController::class, 'detail_postingan_admin'])->name('postingan.detail_postingan_admin');
+route::get('/postingan/update_admin/create', [PostinganController::class, 'create'])->name('postingan.create');
+route::post('/postingan/update_admin/store', [PostinganController::class, 'store'])->name('postingan.store');
+route::get('/postingan/update_admin/edit/{id}', [PostinganController::class, 'edit'])->name('postingan.edit');
+route::post('/postingan/update_admin/update/{id}', [PostinganController::class, 'update'])->name('postingan.update');
+route::get('/postingan/update_admin/bin', [PostinganController::class, 'bin'])->name('postingan.bin');
+route::post('/postingan/update_admin/delete/{id}', [PostinganController::class, 'delete'])->name('postingan.delete');
+route::post('/postingan/update_admin/softdelete/{id}', [PostinganController::class, 'softDelete'])->name('postingan.softdelete');
+route::get('/postingan/update_admin/restore/{id}', [PostinganController::class, 'restore'])->name('postingan.restore');
 
 route::get('/pustakawan', [PustakawanController::class, 'index'])->name('pustakawan.index');
 route::get('/faq', [PembukaController::class, 'faq'])->name('pembuka.faq');

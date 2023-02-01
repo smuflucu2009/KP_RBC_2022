@@ -20,7 +20,7 @@
         </div>
         <div class="pb-3">
             <form action="{{ route('kp.cari2') }}" method="GET" >
-            <input type="search" name="cariKP2" placeholder="Cari Buku" value="{{ Request::get('cariKP2')}}">
+            <input type="search" name="cariKP2" placeholder="Cari postingan" value="{{ Request::get('cariKP2')}}">
             <button class="btn btn-primary" type="submit">Cari</button>
             </form>
         </div>

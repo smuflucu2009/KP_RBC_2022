@@ -24,7 +24,13 @@ class KpController extends Controller
     }
 
     function detail_kp($id){
-        $joins = kp::where('id_kp', $id)->first();
+        $joins = DB::table('kp')
+        ->join('dosen', 'kp.dosen_id', '=', 'dosen.id')
+        ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
+        ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
+        'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak', 'kp.file')
+        ->where('id_kp', $id)
+        ->first();
         return view('kp.detail_kp')->with('joins', $joins);
     }
 
