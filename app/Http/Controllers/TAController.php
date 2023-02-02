@@ -9,46 +9,40 @@ use Illuminate\Support\Facades\Session;
 class TAController extends Controller
 {
     public function index(){
-        $joins = DB::table('kp')
-        ->join('dosen', 'kp.dosen_id', '=', 'dosen.id')
-        ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
-        ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
-        'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak', 'kp.file')
-        ->where('kp.deleted_at',0)
+        $joins = DB::table('skripsi')
+        ->join('dosen', 'skripsi.dosen_id', '=', 'dosen.id')
+        ->join('bidang', 'skripsi.bidang_id', '=', 'bidang.id')
+        ->select('skripsi.id_skripsi', 'skripsi.name', 'skripsi.nim', 'bidang.nama_bidang', 'skripsi.tahun',
+         'skripsi.judul', 'dosen.nama_dosen', 'dosen.nama_dosen2', 'skripsi.abstrak', 'skripsi.file')
+        ->where('skripsi.deleted_at',0)
         ->get();
 
-        return view('kp.index')->with('joins', $joins);
+        return view('skripsi.index')->with('joins', $joins);
     }
 
-    function detail_kp($id){
-        $joins = kp::where('id_kp', $id)->first();
-        return view('kp.detail_kp')->with('joins', $joins);
-    }
+    public function cariTA(Request $request) {
+        $cariTA = $request->cariTA;
 
-    public function cariKP(Request $request) {
-        $cariKP = $request->cariKP;
-
-        $joins = DB::table('kp')
-        ->join('dosen', 'kp.dosen_id', '=', 'dosen.id')
-        ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
-        ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
-        'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak', 'kp.file')
-        ->where('kp.deleted_at',0)
-        ->orwhere('name', 'like', "%$cariKP%")
-        ->orWhere('nim', 'like', "%$cariKP%")
-        ->orWhere('nama_bidang', 'like', "%$cariKP%")
-        ->orWhere('tahun', 'like', "%$cariKP%")
-        ->orWhere('judul', 'like', "%$cariKP%")
-        ->orWhere('perusahaan', 'like', "%$cariKP%")
-        ->orWhere('lokasi_perusahaan', 'like', "%$cariKP%")
-        ->orWhere('nama_dosen', 'like', "%$cariKP%")
+        $joins = DB::table('skripsi')
+        ->join('dosen', 'skripsi.dosen_id', '=', 'dosen.id')
+        ->join('bidang', 'skripsi.bidang_id', '=', 'bidang.id')
+        ->select('skripsi.id_skripsi', 'skripsi.name', 'skripsi.nim', 'bidang.nama_bidang', 'skripsi.tahun',
+         'skripsi.judul', 'dosen.nama_dosen', 'dosen.nama_dosen2', 'skripsi.abstrak', 'skripsi.file')
+        ->where('skripsi.deleted_at',0)
+        ->orwhere('name', 'like', "%$cariTA%")
+        ->orWhere('nim', 'like', "%$cariTA%")
+        ->orWhere('nama_bidang', 'like', "%$cariTA%")
+        ->orWhere('tahun', 'like', "%$cariTA%")
+        ->orWhere('judul', 'like', "%$cariTA%")
+        ->orWhere('nama_dosen', 'like', "%$cariTA%")
+        ->orWhere('nama_dosen2', 'like', "%$cariTA%")
         ->get();
 
-        return view('kp.index')
+        return view('skripsi.index')
             ->with('joins', $joins);
     }
 
-    public function cariKP2(Request $request) {
+    public function cariTA2(Request $request) {
         $cariKP2 = $request->cariKP2;
 
         $joins = DB::table('kp')
@@ -69,6 +63,17 @@ class TAController extends Controller
 
         return view('kp.update_admin')
             ->with('joins', $joins);
+    }
+
+    function detail_kp($id){
+        $joins = DB::table('kp')
+        ->join('dosen', 'kp.dosen_id', '=', 'dosen.id')
+        ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
+        ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
+        'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak', 'kp.file')
+        ->where('id_kp', $id)
+        ->first();
+        return view('kp.detail_kp')->with('joins', $joins);
     }
 
     function update_admin() {

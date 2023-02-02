@@ -31,7 +31,6 @@
                     <th>Judul</th>
                     <th>Perusahaan</th>
                     <th>Pembimbing KP</th>
-                    {{-- <th>File KP</th> --}}
                     <th>Aksi</th>
                 </tr>
             </thead>

@@ -13,7 +13,8 @@ class Dosen extends Model
     protected $table = 'dosen';
     protected $primaryKey = 'id';
     protected $fillable = [
-        "name"
+        "name_dosen",
+        "name_dosen2"
 
 
     ];

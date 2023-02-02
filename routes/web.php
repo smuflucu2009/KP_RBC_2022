@@ -51,6 +51,8 @@ route::get('/buku/update_admin/pinjambuku/create', [PinjamBukuController::class,
 route::post('/buku/update_admin/pinjambuku/store', [PinjamBukuController::class, 'store'])->name('pinjamb.store');
 route::post('/buku/update_admin/pinjambuku/delete/{id}', [PinjamBukuController::class, 'delete'])->name('pinjamb.delete');
 
+route::get('/cariTA', [TAController::class, 'cariKP'])->name('ta.cari');
+route::get('/cariTA2', [TAController::class, 'cariTA2'])->name('ta.cari2');
 route::get('/ta', [TAController::class, 'index'])->name('ta.index');
 
 route::get('/kp', [KpController::class, 'index'])->name('kp.index');

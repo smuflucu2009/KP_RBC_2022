@@ -28,7 +28,7 @@
     </div>
     <div>
         @if ($joins->file)
-            <a class="btn btn-success btn-sm" href="{{ asset('storage/pdf/kp/'. $joins->file)}}">Download</a>
+            <a class="btn btn-success btn-sm" href="{{ asset('storage/pdf/kp/'. $joins->file)}}">Lihat File</a>
         @endif
     </div>
 </div>
