@@ -9,7 +9,7 @@
         <div class="land">
             <div class="bg">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12" style="margin-top: 1%">
                         <h1>RUANG BACA <br> COMPUTER ENGINEERING <br></h1>
                         <button class="download" type="submit" href="/">Mobile App <br> Download</button>
                     </div>

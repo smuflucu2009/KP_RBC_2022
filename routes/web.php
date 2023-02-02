@@ -70,6 +70,8 @@ route::get('/kp/update_admin/restore/{id}', [KpController::class, 'restore'])->n
 route::get('/kd', [KDController::class, 'index'])->name('kd.index');
 
 route::get('/fasilitas', [FasilitasController::class, 'index'])->name('fasilitas.index');
+route::get('/RuangBaca', [FasilitasController::class, 'RuangBaca'])->name('fasilitas.RuangBaca');
+route::get('/mobile', [FasilitasController::class, 'mobile'])->name('fasilitas.mobile');
 
 route::get('/postingan', [PostinganController::class, 'index'])->name('postingan.index');
 route::get('/postingan/update_admin', [PostinganController::class, 'update_admin'])->name('postingan.update_admin');
@@ -87,5 +89,7 @@ route::post('/postingan/update_admin/softdelete/{id}', [PostinganController::cla
 route::get('/postingan/update_admin/restore/{id}', [PostinganController::class, 'restore'])->name('postingan.restore');
 
 route::get('/pustakawan', [PustakawanController::class, 'index'])->name('pustakawan.index');
+route::get('/visi', [PustakawanController::class, 'visi'])->name('pustakawan.visi');
+route::get('/jam', [PustakawanController::class, 'jam'])->name('pustakawan.jam');
 route::get('/faq', [PembukaController::class, 'faq'])->name('pembuka.faq');
 

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <nav class="navbar navbar-expand-lg  navbar-light nav">
+    <nav class="navbar sticky-top navbar-expand-lg  navbar-light nav">
         <a class="navbar-brand" href="/">
             <img src="asset/logo.png">
         </a>
@@ -11,19 +11,19 @@
             <span class="navbar-toggler-icon "></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <div class="dropdown">
-                    <li class="nav-item dropdown"><button class="dropbtn">Profil <label
-                                class="arrow_down"></label></button></li>
+                    <li class="nav-item dropdown"><button class="dropbtn"> <span style="white-space:nowrap"> Profil <label
+                                class="arrow_down"></label></span></button></li>
                     <div class="dropdown-content">
-                        <a class="nav-link" href="/">Pustakawan</a>
-                        <a class="nav-link" href="/">Visi & Misi</a>
-                        <a class="nav-link" href="/">Jam Layanan </a>
+                        <a class="nav-link" href="/pustakawan">Pustakawan</a>
+                        <a class="nav-link" href="/visi">Visi & Misi</a>
+                        <a class="nav-link" href="/jam">Jam Layanan </a>
                     </div>
                 </div>
                 <div class="dropdown">
-                    <li class="nav-item dropdown"> <button class="dropbtn">Koleksi <label
-                                class="arrow_down"></label></button> </li>
+                    <li class="nav-item dropdown"> <button class="dropbtn"><span style="white-space:nowrap">Koleksi <label
+                                class="arrow_down"></label></span></button> </li>
                     <div class="dropdown-content">
                         <a class="nav-link" aria-current="page" href="/buku">Koleksi Tercetak</a>
                         <a class="nav-link" href="/ta">Tugas Akhir Digital</a>
@@ -32,19 +32,19 @@
                     </div>
                 </div>
                 <div class="dropdown">
-                    <li class="nav-item dropdown"> <button class="dropbtn">Fasilitas <label
-                                class="arrow_down"></label></button> </li>
+                    <li class="nav-item dropdown"> <button class="dropbtn"><span style="white-space:nowrap">Fasilitas <label
+                                class="arrow_down"></label></span></button> </li>
                     <div class="dropdown-content">
-                        <a class="nav-link" href="/">Ruang Baca</a>
-                        <a class="nav-link" href="/">Mobile App</a>
-                        <a class="nav-link" href="/">tata Tertib</a>
+                        <a class="nav-link" href="/RuangBaca">Ruang Baca</a>
+                        <a class="nav-link" href="/mobile">Mobile App</a>
+                        <a class="nav-link" href="/fasilitas">tata Tertib</a>
                     </div>
                 </div>
-                <li class="nav-item dropbtn faq" style="text-align: left"> <a href="/faq">FAQ</a> </li>
-                <button class="btn-login" type="submit" href="/">Login</button>
+                <li class="nav-item dropbtn"> <a href="/faq">FAQ</a> </li>
+                <button class="btn-primary float-right btn-login" type="submit" href="/">Login</button>
             </ul>
+           
         </div>
-        
     </nav>
 
     <meta charset="UTF-8">
@@ -56,7 +56,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
-
     <link href="css/app.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,6 +64,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link rel="icon" href="asset/logo_footer.png" sizes="192x192">
 </head>
 
 <body>
@@ -75,7 +75,7 @@
 <footer class="footer">
     <div class="row" style="padding-top: 67px">
         <div class="col-sm-3">
-            <img src='asset/logo_footer.png'/>
+            <img src='asset/logo_footer.png' class="img-fluid" alt="Responsive image"/>
         </div>
         <div class="col-sm-3">
             <h4> KONTAK </h4>
