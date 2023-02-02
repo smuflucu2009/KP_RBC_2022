@@ -14,10 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('postingan', function (Blueprint $table) {
-            $table->id();
+            $table->string('id_postingan', 20);
             $table->string('judul');
             $table->longText('deskripsi');
             $table->foreignId('category_id')->references('id')->on('category')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('cover_gambar');
+            $table->tinyInteger('deleted_at', 1)->default(0);
             $table->timestamps();
         });
     }
