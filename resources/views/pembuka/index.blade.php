@@ -9,7 +9,7 @@
         <div class="land">
             <div class="bg">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12" style="margin-top: 1%">
                         <h1>RUANG BACA <br> COMPUTER ENGINEERING <br></h1>
                         <button class="download" type="submit" href="/">Mobile App <br> Download</button>
                     </div>
@@ -18,28 +18,32 @@
         </div>
 
         <div class="panduan">
-            <div >
+            <div>
                 <h3 id="land_header">PANDUAN</h3>
                 <div class="row"></div>
                 <div class="d-flex justify-content-center btn_panduan">
-                    <button class="btn_buku" type="submit"
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSfyZz9He0__48n6PXslXLQrTaWKfjLg6UvWZmAQWGQr-yRfdw/viewform" target="_blank">Peminjaman<br>Buku</button>
-                    <button class="btn_capstone" type="submit" href="http://capstone-ta.ce.undip.ac.id/" target="_blank">Capstone</button>
-                    <button class="btn_kp" type="submit"
-                        href="https://tekkom.ft.undip.ac.id/pendidikan/kerja-praktek" target="_blank">Kerja Praktek</button>
+                    <button class="btn_buku" type="submit" href="" target="_blank"><a
+                            style="text-decoration:none;color:white;"
+                            href="https://docs.google.com/forms/d/e/1FAIpQLSfyZz9He0__48n6PXslXLQrTaWKfjLg6UvWZmAQWGQr-yRfdw/viewform">Peminjaman<br>Buku</a></button>
+                    <button class="btn_capstone" type="submit" href="http://capstone-ta.ce.undip.ac.id/"
+                        target="_blank">Capstone</button>
+                    <button class="btn_kp" type="submit" href="https://tekkom.ft.undip.ac.id/pendidikan/kerja-praktek"
+                        target="_blank">Kerja Praktek</button>
                 </div>
             </div>
-        <h3 id="land_header">FORMS</h3>
-        <div class="d-flex justify-content-center">
-        <div class="forms">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfyZz9He0__48n6PXslXLQrTaWKfjLg6UvWZmAQWGQr-yRfdw/viewform" target="_blank">PEMINJAMAN <br>
-                BUKU</a>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd4YZszxmkytjNM476Lr3GPpXp4bc3hK9v-TZxXdMmSggUYtw/viewform" target="_blank">PENGUNJUNG <br>
-                PERPUS</a>
-            <a href="https://forms.gle/JYTWbyUvCZKD5GJZ8" target="_blank">SUMBANGAN <br> BUKU</a>
-            <a href="https://forms.gle/qfDarxsqVwXLjs727" target="_blank">FEEDBACK <br> US</a>
-        </div>
-        </div>
+            <h3 id="land_header">FORMS</h3>
+            <div class="d-flex justify-content-center">
+                <div class="forms">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfyZz9He0__48n6PXslXLQrTaWKfjLg6UvWZmAQWGQr-yRfdw/viewform"
+                        target="_blank">PEMINJAMAN <br>
+                        BUKU</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd4YZszxmkytjNM476Lr3GPpXp4bc3hK9v-TZxXdMmSggUYtw/viewform"
+                        target="_blank">PENGUNJUNG <br>
+                        PERPUS</a>
+                    <a href="https://forms.gle/JYTWbyUvCZKD5GJZ8" target="_blank">SUMBANGAN <br> BUKU</a>
+                    <a href="https://forms.gle/qfDarxsqVwXLjs727" target="_blank">FEEDBACK <br> US</a>
+                </div>
+            </div>
         </div>
 
         <div class="carousel">
@@ -81,13 +85,13 @@
                         src="asset/gambar 18.png"> </a>
             </div>
             <div id="resource-gap">
-                <a href="https://ejournal.undip.ac.id/?t=MTY2ODQ2MDAyMw=="> <img src="asset/gambar 20.png"
-                        href=""> </a>
+                <a href="https://ejournal.undip.ac.id/?t=MTY2ODQ2MDAyMw==" target="_blank"> <img src="asset/gambar 20.png">
+                </a>
                 <a href="https://www.ieee.org/"> <img src="asset/gambar 21.png"> </a>
-                <a href="https://login.proxy.undip.ac.id/login?url=https://www.embase.com"> <img
-                        src="asset/gambar 22.png"> </a>
-                <a href="https://login.proxy.undip.ac.id/login?url=https://ascelibrary.org"> <img
-                        src="asset/gambar 19.png"> </a>
+                <a href="https://login.proxy.undip.ac.id/login?url=https://www.embase.com" target="_blank"> <img src="asset/gambar 22.png">
+                </a>
+                <a href="https://login.proxy.undip.ac.id/login?url=https://ascelibrary.org" target="_blank"> <img src="asset/gambar 19.png">
+                </a>
             </div>
         </div>
     </body>
