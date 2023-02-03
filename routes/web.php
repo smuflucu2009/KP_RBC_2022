@@ -51,9 +51,19 @@ route::get('/buku/update_admin/pinjambuku/create', [PinjamBukuController::class,
 route::post('/buku/update_admin/pinjambuku/store', [PinjamBukuController::class, 'store'])->name('pinjamb.store');
 route::post('/buku/update_admin/pinjambuku/delete/{id}', [PinjamBukuController::class, 'delete'])->name('pinjamb.delete');
 
-route::get('/cariTA', [TAController::class, 'cariKP'])->name('ta.cari');
-route::get('/cariTA2', [TAController::class, 'cariTA2'])->name('ta.cari2');
-route::get('/ta', [TAController::class, 'index'])->name('ta.index');
+route::get('/cariSkripsi', [SkripsiController::class, 'cariSkripsi'])->name('skripsi.cari');
+route::get('/cariSkripsi2', [SkripsiController::class, 'cariSkripsi2'])->name('skripsi.cari2');
+route::get('/ta', [SkripsiController::class, 'index'])->name('skripsi.index');
+route::get('/skripsi/update_admin', [SkripsiController::class, 'update_admin'])->name('skripsi.update_admin');
+route::get('/skripsi/update_admin/create', [SkripsiController::class, 'create'])->name('skripsi.create');
+route::post('/skripsi/update_admin/store', [SkripsiController::class, 'store'])->name('skripsi.store');
+route::get('/skripsi/update_admin/edit/{id}', [SkripsiController::class, 'edit'])->name('skripsi.edit');
+route::post('/skripsi/update_admin/update/{id}', [SkripsiController::class, 'update'])->name('skripsi.update');
+// route::get('/skripsi/update_admin/bin', [SkripsiController::class, 'bin'])->name('skripsi.bin');
+route::post('/skripsi/update_admin/softdelete/{id}', [SkripsiController::class, 'softDelete'])->name('skripsi.softdelete');
+route::get('/skripsi/update_admin/restore/{id}', [SkripsiController::class, 'restore'])->name('skripsi.restore');
+route::post('/skripsi/update_admin/delete/{id}', [SkripsiController::class, 'delete'])->name('skripsi.delete');
+route::get('/skripsi/detail/{id}', [SkripsiController::class, 'detail_skripsi'])->name('skripsi.detail_skripsi');
 
 route::get('/kp', [KpController::class, 'index'])->name('kp.index');
 route::get('/kp/detail/{id}', [KpController::class, 'detail_kp'])->name('kp.detail_kp');
@@ -65,7 +75,7 @@ route::post('/kp/update_admin/update/{id}', [KpController::class, 'update'])->na
 route::post('/kp/update_admin/delete/{id}', [KpController::class, 'delete'])->name('kp.delete');
 route::get('/cariKP', [KpController::class, 'cariKP'])->name('kp.cari');
 route::get('/cariKP2', [KpController::class, 'cariKP2'])->name('kp.cari2');
-route::get('/kp/update_admin/bin', [KpController::class, 'bin'])->name('kp.bin');
+// route::get('/kp/update_admin/bin', [KpController::class, 'bin'])->name('kp.bin');
 route::post('/kp/update_admin/softdelete/{id}', [KpController::class, 'softDelete'])->name('kp.softdelete');
 route::get('/kp/update_admin/restore/{id}', [KpController::class, 'restore'])->name('kp.restore');
 
@@ -85,7 +95,7 @@ route::get('/postingan/update_admin/create', [PostinganController::class, 'creat
 route::post('/postingan/update_admin/store', [PostinganController::class, 'store'])->name('postingan.store');
 route::get('/postingan/update_admin/edit/{id}', [PostinganController::class, 'edit'])->name('postingan.edit');
 route::post('/postingan/update_admin/update/{id}', [PostinganController::class, 'update'])->name('postingan.update');
-route::get('/postingan/update_admin/bin', [PostinganController::class, 'bin'])->name('postingan.bin');
+// route::get('/postingan/update_admin/bin', [PostinganController::class, 'bin'])->name('postingan.bin');
 route::post('/postingan/update_admin/delete/{id}', [PostinganController::class, 'delete'])->name('postingan.delete');
 route::post('/postingan/update_admin/softdelete/{id}', [PostinganController::class, 'softDelete'])->name('postingan.softdelete');
 route::get('/postingan/update_admin/restore/{id}', [PostinganController::class, 'restore'])->name('postingan.restore');

@@ -45,7 +45,7 @@
                     <td>{{ $join->name_category }}</td>
                     <td>{{ $join->waktu_posting }}</td>
                     <td>
-                        <a href='{{ url('/postingan/detail/'.$join->id_postingan) }}' class="btn btn-info btn-sm">Detail</a>
+                        <a href='{{ url('/postingan/detail/'.$join->id_posting) }}' class="btn btn-info btn-sm">Detail</a>
                     </td>
                 </tr>
               @endforeach

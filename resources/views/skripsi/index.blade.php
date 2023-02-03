@@ -8,11 +8,11 @@
         <h1>Halaman Skripsi</h1>
     </div>
     <div>
-        <a href="/ta/update_admin" class="btn btn-info">Update</a>
+        <a href="/skripsi/update_admin" class="btn btn-info">Update</a>
     </div>
     <div> 
-        <form action={{ route('ta.cari') }} method="GET" >
-            <input type="search" name="cariTA" placeholder="Cari data TA .." value="{{ Request::get('cariTA')}}">
+        <form action={{ route('skripsi.cari') }} method="GET" >
+            <input type="search" name="cariSkripsi" placeholder="Cari data TA .." value="{{ Request::get('cariSkripsi')}}">
             <button class="btn btn-primary" type="submit">cari </button>
         </form>
     </div>
@@ -44,10 +44,10 @@
                     <td>{{ $join->nama_bidang }}</td>
                     <td>{{ $join->tahun }}</td>
                     <td>{{ $join->judul }}</td>
-                    <td>{{ $join->nama_dosen }}</td>
-                    <td>{{ $join->nama_dosen2 }}</td>
+                    <td>{{ $join->namadosen1 }}</td>
+                    <td>{{ $join->namadosen2 }}</td>
                     <td>
-                        <a href='{{ url('/ta/detail/'.$join->id_skripsi) }}' class="btn btn-info btn-sm">Detail</a>
+                        <a href='{{ url('/skripsi/detail/'.$join->id_skripsi) }}' class="btn btn-info btn-sm">Detail</a>
                     </td>
                 </tr>
               @endforeach

@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('galery', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('post_id')->references('id')->on('postingan')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('post_id')->references('id_posting')->on('postingan')->onDelete('cascade')->onUpdate('cascade');
             $table->string('file');
             $table->timestamps();
+
         });
     }
 

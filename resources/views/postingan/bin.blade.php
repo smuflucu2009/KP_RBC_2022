@@ -33,8 +33,8 @@
                     <td>{{ $join->name_category }}</td>
                     <td>{{ $join->waktu_posting }}</td>
                     <td>
-                        <a href="{{ route('postingan.restore', $join->id_postingan) }}" class="btn btn-primary btn-sm">Restore</a>
-                        <form onsubmit="return confirm('Yakin ingin menghapus permanen data KP ini?')" class="d-inline" action="{{ route('postingan.delete', $join->id_postingan) }}" method="post">
+                        <a href="{{ route('postingan.restore', $join->id) }}" class="btn btn-primary btn-sm">Restore</a>
+                        <form onsubmit="return confirm('Yakin ingin menghapus permanen data KP ini?')" class="d-inline" action="{{ route('postingan.delete', $join->id) }}" method="post">
                             @csrf
                             <button type="submit" name="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>

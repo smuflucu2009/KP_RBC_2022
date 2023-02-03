@@ -52,7 +52,7 @@
                         <td>{{ $item->detail_jenis_peminatan}}</td>
                         <td>{{ $item->status_pinjam}}</td>
                         <td>
-                            <a href='{{ url('/buku/detail/'.$item->kode_gabungan_final) }}' class="btn btn-info btn-sm">Detail</a>
+                            <a href='{{ url('/buku/detail/'.$item->id) }}' class="btn btn-info btn-sm">Detail</a>
                         </td>
                     </tr>
                 @endforeach

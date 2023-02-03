@@ -40,8 +40,8 @@
                         <td>{{ $join->awal_pinjam }}</td>
                         <td>{{ $join->akhir_pinjam }}</td>
                         <td>
-                            <a href="{{ route('buku.kembali', $join->kode_gabungan_final) }}" method="POST" class="btn btn-primary btn-sm">Kembalikan</a>
-                            <form onsubmit="return confirm('Yakin ingin menghapus permanen data ini?')" class="d-inline" action="{{ route('pinjamb.delete', $join->id_pinjam) }}" method="post">
+                            <a href="{{ route('buku.kembali', $join->id_buku) }}" method="POST" class="btn btn-primary btn-sm">Kembalikan</a>
+                            <form onsubmit="return confirm('Yakin ingin menghapus permanen data ini?')" class="d-inline" action="{{ route('pinjamb.delete', $join->id) }}" method="post">
                                 @csrf
                                 <button type="submit" name="submit" class="btn btn-danger btn-sm">Hapus</button>
                             </form>

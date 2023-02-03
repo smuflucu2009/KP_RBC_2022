@@ -14,7 +14,7 @@ class PostinganController extends Controller
     public function index(){
         $joins = DB::table('postingan')
         ->join('category', 'postingan.category_id', '=', 'category.id')
-        ->select('postingan.id_postingan', 'postingan.judul', 'postingan.deskripsi', 'category.name_category', 'postingan.waktu_posting', 'postingan.cover_gambar')
+        ->select('postingan.id_posting', 'postingan.judul', 'postingan.deskripsi', 'category.name_category', 'postingan.waktu_posting', 'postingan.cover_gambar')
         ->where('postingan.deleted_at',0)
         ->get();
 
@@ -24,8 +24,8 @@ class PostinganController extends Controller
     function detail_postingan($id){
         $joins = DB::table('postingan')
         ->join('category', 'postingan.category_id', '=', 'category.id')
-        ->select('postingan.id_postingan', 'postingan.judul', 'postingan.deskripsi', 'category.name_category', 'postingan.waktu_posting', 'postingan.cover_gambar')
-        ->where('id_postingan', $id)
+        ->select('postingan.id_posting', 'postingan.judul', 'postingan.deskripsi', 'category.name_category', 'postingan.waktu_posting', 'postingan.cover_gambar')
+        ->where('id_posting', $id)
         ->first();
         return view('postingan.detail_postingan')->with('joins', $joins);
     }
@@ -33,8 +33,8 @@ class PostinganController extends Controller
     function detail_postingan_admin($id){
         $joins = DB::table('postingan')
         ->join('category', 'postingan.category_id', '=', 'category.id')
-        ->select('postingan.id_postingan', 'postingan.judul', 'postingan.deskripsi', 'category.name_category', 'postingan.waktu_posting', 'postingan.cover_gambar')
-        ->where('id_postingan', $id)
+        ->select('postingan.id_posting', 'postingan.judul', 'postingan.deskripsi', 'category.name_category', 'postingan.waktu_posting', 'postingan.cover_gambar')
+        ->where('id_posting', $id)
         ->first();
         return view('postingan.detail_postingan_admin')->with('joins', $joins);
     } 
@@ -42,7 +42,7 @@ class PostinganController extends Controller
     function update_admin() {
         $joins = DB::table('postingan')
         ->join('category', 'postingan.category_id', '=', 'category.id')
-        ->select('postingan.id_postingan', 'postingan.judul', 'postingan.deskripsi', 'category.name_category', 'postingan.waktu_posting', 'postingan.cover_gambar')
+        ->select('postingan.id_posting', 'postingan.judul', 'postingan.deskripsi', 'category.name_category', 'postingan.waktu_posting', 'postingan.cover_gambar')
         ->where('postingan.deleted_at',0)
         ->get();
 
@@ -52,7 +52,7 @@ class PostinganController extends Controller
     function bin() {
         $joins = DB::table('postingan')
         ->join('category', 'postingan.category_id', '=', 'category.id')
-        ->select('postingan.id_postingan', 'postingan.judul', 'postingan.deskripsi', 'category.name_category', 'postingan.waktu_posting', 'postingan.cover_gambar')
+        ->select('postingan.id_posting', 'postingan.judul', 'postingan.deskripsi', 'category.name_category', 'postingan.waktu_posting', 'postingan.cover_gambar')
         ->where('postingan.deleted_at',1)
         ->get();
 
@@ -65,8 +65,8 @@ class PostinganController extends Controller
 
         $joins = DB::table('postingan')
         ->join('category', 'postingan.category_id', '=', 'category.id')
-        ->select('postingan.id_postingan', 'postingan.judul', 'postingan.deskripsi', 'category.name_category', 'postingan.waktu_posting', 'postingan.cover_gambar')
-        ->where('postingan.deleted_at',0)
+        ->select('postingan.id_posting', 'postingan.judul', 'postingan.deskripsi', 'category.name_category', 'postingan.waktu_posting', 'postingan.cover_gambar')
+        // ->where('postingan.deleted_at',0)
         ->orwhere('judul', 'like', "%$caripostingan%")
         ->orWhere('name_category', 'like', "%$caripostingan%")
         ->orWhere('waktu_posting', 'like', "%$caripostingan%")
@@ -80,8 +80,8 @@ class PostinganController extends Controller
 
         $joins = DB::table('postingan')
         ->join('category', 'postingan.category_id', '=', 'category.id')
-        ->select('postingan.id_postingan', 'postingan.judul', 'postingan.deskripsi', 'category.name_category', 'postingan.waktu_posting', 'postingan.cover_gambar')
-        ->where('postingan.deleted_at',0)
+        ->select('postingan.id_posting', 'postingan.judul', 'postingan.deskripsi', 'category.name_category', 'postingan.waktu_posting', 'postingan.cover_gambar')
+        // ->where('postingan.deleted_at',0)
         ->orwhere('judul', 'like', "%$caripostingan2%")
         ->orWhere('name_category', 'like', "%$caripostingan2%")
         ->orWhere('waktu_posting', 'like', "%$caripostingan2%")
@@ -134,7 +134,7 @@ class PostinganController extends Controller
 
     function edit($id)
     {
-        $joins = Postingan::where('id_postingan', $id)->first();
+        $joins = Postingan::where('id_posting', $id)->first();
         return view('postingan.edit')->with('joins', $joins);
     }
 
@@ -163,13 +163,13 @@ class PostinganController extends Controller
             $nama_gambar = date('ymdhis') . '.' . $gambar_extensi;
             $file_gambar->move(public_path('storage\postingan\cover_image'), $nama_gambar);
         
-            $data_postingan = Postingan::where('id_postingan', $id)->first();
+            $data_postingan = Postingan::where('id_posting', $id)->first();
             File::delete(public_path('storage\postingan\cover_image') . '/' . $data_postingan->cover_gambar);
         
         }
 
         DB::update('UPDATE postingan SET judul = :judul, deskripsi = :deskripsi, category_id = :category_id, 
-        cover_gambar = :cover_gambar WHERE id_postingan = :id',
+        cover_gambar = :cover_gambar WHERE id_posting = :id',
         [
             'id' => $id,
             'judul' => $request->judul,
@@ -183,17 +183,17 @@ class PostinganController extends Controller
 
     function delete($id)
     {
-        DB::delete('DELETE FROM postingan WHERE id_postingan = :id_postingan', ['id_postingan' => $id]);
-        return redirect()->route('postingan.bin')->with('success', 'Berhasil hapus news secara permanen!');
+        DB::delete('DELETE FROM postingan WHERE id_posting = :id_posting', ['id_posting' => $id]);
+        return redirect()->route('postingan.update_admin')->with('success', 'Berhasil hapus news secara permanen!');
     }
 
     function softDelete($id) {
-        DB::update('UPDATE postingan SET deleted_at = 1 WHERE id_postingan = :id_postingan', ['id_postingan' => $id]);
+        DB::update('UPDATE postingan SET deleted_at = 1 WHERE id = :id', ['id' => $id]);
         return redirect()->route('postingan.update_admin')->with('success', 'Berhasil hapus news secara sementara');
     }
 
     function restore($id){
-        DB::update('UPDATE postingan SET deleted_at = 0 WHERE id_postingan = :id_postingan', ['id_postingan' => $id]);
+        DB::update('UPDATE postingan SET deleted_at = 0 WHERE id = :id', ['id' => $id]);
         return redirect()->route('postingan.update_admin')->with('success', 'Data news telah dikembalikan!');
     }
 }

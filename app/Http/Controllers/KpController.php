@@ -29,7 +29,7 @@ class KpController extends Controller
         ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
         ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
         'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak', 'kp.file')
-        ->where('id_kp', $id)
+        ->where('id', $id)
         ->first();
         return view('kp.detail_kp')->with('joins', $joins);
     }
@@ -42,7 +42,7 @@ class KpController extends Controller
         ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
         ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
         'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak', 'kp.file')
-        ->where('kp.deleted_at',0)
+        // ->where('kp.deleted_at',0)
         ->orwhere('name', 'like', "%$cariKP%")
         ->orWhere('nim', 'like', "%$cariKP%")
         ->orWhere('nama_bidang', 'like', "%$cariKP%")
@@ -65,7 +65,7 @@ class KpController extends Controller
         ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
         ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
         'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak', 'kp.file')
-        ->where('kp.deleted_at',0)
+        // ->where('kp.deleted_at',0)
         ->orwhere('name', 'like', "%$cariKP2%")
         ->orWhere('nim', 'like', "%$cariKP2%")
         ->orWhere('nama_bidang', 'like', "%$cariKP2%")
@@ -223,7 +223,7 @@ class KpController extends Controller
 
         DB::update('UPDATE kp SET name = :name, nim = :nim, bidang_id = :bidang_id, 
         tahun = :tahun, judul = :judul, perusahaan = :perusahaan, lokasi_perusahaan = :lokasi_perusahaan,
-        dosen_id = :dosen_id, dosen2_id = :dosen2_id, abstrak = :abstrak, file = :file WHERE id_kp = :id',
+        dosen_id = :dosen_id, abstrak = :abstrak, file = :file WHERE id_kp = :id',
         [
             'id' => $id,
             'name' => $request->name,
@@ -234,7 +234,6 @@ class KpController extends Controller
             'perusahaan' => $request->perusahaan,
             'lokasi_perusahaan' => $request->lokasi_perusahaan,
             'dosen_id' => $request->dosen_id,
-            'dosen2_id' => $request->dosen2_id,
             'abstrak' => $request->abstrak,
             'file' => $nama_file,
         ]
@@ -245,16 +244,16 @@ class KpController extends Controller
     function delete($id)
     {
         DB::delete('DELETE FROM kp WHERE id_kp = :id_kp', ['id_kp' => $id]);
-        return redirect()->route('kp.bin')->with('success', 'Berhasil hapus data KP secara permanen!');
+        return redirect()->route('kp.update_admin')->with('success', 'Berhasil hapus data KP secara permanen!');
     }
 
     function softDelete($id) {
-        DB::update('UPDATE kp SET deleted_at = 1 WHERE id_kp = :id_kp', ['id_kp' => $id]);
+        DB::update('UPDATE kp SET deleted_at = 1 WHERE id = :id', ['id' => $id]);
         return redirect()->route('kp.update_admin')->with('success', 'Berhasil hapus data KP secara sementara');
     }
 
     function restore($id){
-        DB::update('UPDATE kp SET deleted_at = 0 WHERE id_kp = :id_kp', ['id_kp' => $id]);
+        DB::update('UPDATE kp SET deleted_at = 0 WHERE id = :id', ['id' => $id]);
         return redirect()->route('kp.update_admin')->with('success', 'Data KP telah dikembalikan!');
     }
     

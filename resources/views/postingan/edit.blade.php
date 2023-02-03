@@ -14,7 +14,7 @@
     <a href="/postingan/update_admin" class="btn btn-secondary">Kembali</a>
     <h1>Ini halaman untuk edit postingan</h1>
 </div>
-<form action='{{ route('postingan.update', $joins->id_postingan) }}' method='post' enctype="multipart/form-data">
+<form action='{{ route('postingan.update', $joins->id_posting) }}' method='post' enctype="multipart/form-data">
     @csrf
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <div class="mb-3 row">

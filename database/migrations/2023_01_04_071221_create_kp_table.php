@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('kp', function (Blueprint $table) {
-            $table->bigInteger('id_kp', 20)->primary();
+            $table->bigIncrements('id_kp');
             $table->string('name');
             $table->string('nim');
             // $table->bigInteger('bidang_id');
@@ -25,13 +25,12 @@ return new class extends Migration
             $table->string('lokasi_perusahaan');
 
             // $table->bigInteger('dosen_id');
-            // $table->bigInteger('dosen2_id');
             $table->foreignId('dosen_id')->references('id')->on('dosen')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('dosen2_id')->references('id')->on('dosen')->onDelete('cascade')->onUpdate('cascade');
             $table->longText('abstrak');
             $table->string('file');
-            $table->tinyInteger('deleted_at', 1);
+            $table->tinyInteger('deleted_at')->default('0');
             $table->timestamps();
+
         });
     }
 

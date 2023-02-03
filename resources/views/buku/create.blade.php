@@ -9,19 +9,13 @@
     @csrf
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <div class="mb-3 row">
-            <label for="no" class="col-sm-2 col-form-label">No</label>
-            <div class="col-sm-10">
-                <input type="number" class="form-control" name='no' value="{{ Session::get('no')}}" id="no">
-            </div>
-        </div>
-        <div class="mb-3 row">
             <label for="kode_gabungan_final" class="col-sm-2 col-form-label">Kode Buku</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name='kode_gabungan_final' value="{{ Session::get('kode_gabungan_final')}}" id="kode_gabungan_final">
             </div>
         </div>
         <div class="mb-3 row">
-            <label for="tanggal_masuk" class="col-sm-2 col-form-label">Tanggal Masuk</label>
+            <label for="tanggal_masuk" class="col-sm-2 col-form-label">Tahun Masuk</label>
             <div class="col-sm-10">
                 <input type="number" class="form-control" name='tanggal_masuk' value="{{ Session::get('tanggal_masuk')}}" id="tanggal_masuk">
             </div>

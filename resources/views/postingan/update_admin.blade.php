@@ -16,7 +16,7 @@
         </div>
         <div class="d-flex justify-content-between pb-3">
             <a href="/postingan/update_admin/create" class="btn btn-primary">+++</a>
-            <a href="/postingan/update_admin/bin" class="btn btn-info">Recycle Bin</a>
+            {{-- <a href="/postingan/update_admin/bin" class="btn btn-info">Recycle Bin</a> --}}
         </div>
         <div class="pb-3">
             <form action="{{ route('postingan.cari2') }}" method="GET" >
@@ -56,11 +56,15 @@
                         <td>{{ $join->waktu_posting }}</td>
                         <td>{{ $join->deskripsi }}</td>
                         <td>
-                            <a href='{{ url('/postingan/update_admin/detail/'.$join->id_postingan) }}' class="btn btn-info btn-sm">Detail</a>
-                            <a href='{{ url('/postingan/update_admin/edit/'.$join->id_postingan) }}' class="btn btn-warning btn-sm">Edit</a>
-                            <form onsubmit="return confirm('Yakin ingin menghapus sementara data ini?')" class="d-inline" method="POST" action="{{ route('postingan.softdelete', $join->id_postingan) }}">
+                            <a href='{{ url('/postingan/update_admin/detail/'.$join->id_posting) }}' class="btn btn-info btn-sm">Detail</a>
+                            <a href='{{ url('/postingan/update_admin/edit/'.$join->id_posting) }}' class="btn btn-warning btn-sm">Edit</a>
+                            {{-- <form onsubmit="return confirm('Yakin ingin menghapus sementara data ini?')" class="d-inline" method="POST" action="{{ route('postingan.softdelete', $join->id) }}">
                                 @csrf
                                 <button type="submit" name="submit" class="btn btn-danger btn-sm">S.Del</button>
+                            </form> --}}
+                            <form onsubmit="return confirm('Yakin ingin menghapus permanen data KP ini?')" class="d-inline" action="{{ route('postingan.delete', $join->id_posting) }}" method="post">
+                                @csrf
+                                <button type="submit" name="submit" class="btn btn-danger btn-sm">Delete</button>
                             </form>
                         </td>
                     </tr>
