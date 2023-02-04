@@ -15,19 +15,19 @@ return new class extends Migration
     {
         Schema::create('buku', function (Blueprint $table) {
             // kode_gabungan_final -> id
-            $table->id();
-            $table->integer("tanggal_masuk");
-            $table->string('judul_buku');
-            $table->string('penulis');
-            $table->string('penerbit');
-            $table->string('isbn');
-            $table->string('jenis_peminatan');
-            $table->string('detail_jenis_peminatan');
-            $table->string('kode_peminatan');
-            $table->integer('kode_detail_jenis_peminatan');
-            $table->integer('kode_tahun');
-            $table->string('kode_nomor_urut_buku');
-            $table->string('kode_gabungan_final')->unique();
+            // $table->id()->primary();
+            $table->integer("tanggal_masuk")->nullable();
+            $table->string('judul_buku')->nullable();
+            $table->string('penulis')->nullable();
+            $table->string('penerbit')->nullable();
+            $table->string('isbn')->nullable();
+            $table->string('jenis_peminatan')->nullable();
+            $table->string('detail_jenis_peminatan')->nullable();
+            $table->string('kode_peminatan')->nullable();
+            $table->integer('kode_detail_jenis_peminatan')->nullable();
+            $table->integer('kode_tahun')->nullable();
+            $table->string('kode_nomor_urut_buku')->nullable();
+            $table->string('kode_gabungan_final')->primary();
             $table->tinyInteger('deleted_at')->default('0');
             $table->tinyInteger('status_pinjam')->default('0');
             $table->timestamps();

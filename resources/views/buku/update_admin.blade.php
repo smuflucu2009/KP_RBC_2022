@@ -57,12 +57,12 @@
                         <td>{{ $item->detail_jenis_peminatan}}</td>
                         <td>{{ $item->status_pinjam}}</td>
                         <td>
-                            <a href='{{ url('/buku/update_admin/edit/'.$item->id) }}' class="btn btn-warning btn-sm">Edit</a>
-                            <form onsubmit="return confirm('Yakin ingin menghapus sementara data ini?')" class="d-inline" method="POST" action="{{ route('buku.softdelete', $item->id) }}">
+                            <a href='{{ url('/buku/update_admin/edit/'.$item->kode_gabungan_final) }}' class="btn btn-warning btn-sm">Edit</a>
+                            <form onsubmit="return confirm('Yakin ingin menghapus sementara data ini?')" class="d-inline" method="POST" action="{{ route('buku.softdelete', $item->kode_gabungan_final) }}">
                                 @csrf
                                 <button type="submit" name="submit" class="btn btn-danger btn-sm">S.Del</button>
                             </form>
-                            <form onsubmit="return confirm('Buku {{$item -> judul_buku}} sudah dipinjam?')" class="d-inline" method="POST" action="{{ route('buku.pinjam', $item->id) }}">
+                            <form onsubmit="return confirm('Buku {{$item -> judul_buku}} sudah dipinjam?')" class="d-inline" method="POST" action="{{ route('buku.pinjam', $item->kode_gabungan_final) }}">
                                 @csrf
                                 <button type="submit" name="submit" class="btn btn-info btn-sm">Pinjam</button>
                             </form>

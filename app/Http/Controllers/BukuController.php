@@ -16,7 +16,7 @@ class BukuController extends Controller
         ->orWhere('jenis_peminatan', 'like', "%$caribuku%")
         ->orWhere('detail_jenis_peminatan', 'like', "%$caribuku%")
         ->orWhere('kode_gabungan_final', 'like', "%$caribuku%")
-        ->paginate(5);
+        ->paginate(10);
         return view('buku.index')->with('data', $data);
     }
 
@@ -169,10 +169,9 @@ class BukuController extends Controller
         penulis = :penulis, penerbit = :penerbit, isbn = :isbn, jenis_peminatan = :jenis_peminatan, 
         detail_jenis_peminatan = :detail_jenis_peminatan, kode_peminatan = :kode_peminatan, kode_detail_jenis_peminatan = :kode_detail_jenis_peminatan, 
         kode_tahun = :kode_tahun, kode_nomor_urut_buku = :kode_nomor_urut_buku, 
-        kode_gabungan_final = :kode_gabungan_final WHERE id = :id',
+        kode_gabungan_final = :kode_gabungan_final WHERE kode_gabungan_final = :id',
         [
             'id' => $id,
-            'no' => $request->no,
             'tanggal_masuk' => $request->tanggal_masuk,
             'judul_buku' => $request->judul_buku,
             'penulis' => $request->penulis,
@@ -199,27 +198,27 @@ class BukuController extends Controller
 
     function delete($id)
     {
-        DB::delete('DELETE FROM buku WHERE id = :id', ['id' => $id]);
+        DB::delete('DELETE FROM buku WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
         return redirect()->route('buku.update_admin')->with('success', 'Berhasil hapus data buku secara permanen!');
     }
 
     function softDelete($id) {
-        DB::update('UPDATE buku SET deleted_at = 1 WHERE id = :id', ['id' => $id]);
+        DB::update('UPDATE buku SET deleted_at = 1 WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
         return redirect()->route('buku.update_admin')->with('success', 'Berhasil hapus data buku secara sementara');
     }
 
     function restore($id){
-        DB::update('UPDATE buku SET deleted_at = 0 WHERE id = :id', ['id' => $id]);
+        DB::update('UPDATE buku SET deleted_at = 0 WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
         return redirect()->route('buku.update_admin')->with('success', 'Data buku telah dikembalikan!');
     }
 
     function pinjam($id) {
-        DB::update('UPDATE buku SET status_pinjam = 1 WHERE id = :id', ['id' => $id]);
+        DB::update('UPDATE buku SET status_pinjam = 1 WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
         return redirect()->route('buku.update_admin')->with('success', 'Buku Dipinjam');
     }
 
     function kembali($id) {
-        DB::update('UPDATE buku SET status_pinjam = 0 WHERE id = :id', ['id' => $id]);
+        DB::update('UPDATE buku SET status_pinjam = 0 WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
         return redirect()->route('buku.pinjamb')->with('success', 'Buku Dikembalikan');
     }
 }

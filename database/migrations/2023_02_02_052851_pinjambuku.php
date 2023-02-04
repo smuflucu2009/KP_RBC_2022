@@ -15,9 +15,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pinjambuku', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('kode_gabungan_final')->references('id')->on('buku')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');            
+            $table->bigIncrements('id_pinjam');
+            $table->string('kode_gabungan_final');
+            $table->foreign('kode_gabungan_final')->references('kode_gabungan_final')->on('buku')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('nim')->references('nim')->on('users')->onDelete('cascade')->onUpdate('cascade');            
             $table->date('akhir_pinjam');
             $table->date('awal_pinjam')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamps();

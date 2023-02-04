@@ -11,7 +11,7 @@
         <div class="mb-3 row">
             <label for="no" class="col-sm-2 col-form-label">NIM</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" name='id_user' value="{{ Session::get('id_user')}}" id="id_user">
+                <input type="number" class="form-control" name='nim' value="{{ Session::get('nim')}}" id="nim">
             </div>
         </div>
         <div class="mb-3 row">

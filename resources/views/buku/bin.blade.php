@@ -33,8 +33,8 @@
                     <td>{{ $item->jenis_peminatan}}</td>
                     <td>{{ $item->detail_jenis_peminatan}}</td>
                     <td>
-                        <a href="{{ route('buku.restore', $item->id) }}" class="btn btn-primary btn-sm">Restore</a>
-                        <form onsubmit="return confirm('Yakin ingin menghapus permanen data ini?')" class="d-inline" action="{{ route('buku.delete', $item->id) }}" method="post">
+                        <a href="{{ route('buku.restore', $item->kode_gabungan_final) }}" class="btn btn-primary btn-sm">Restore</a>
+                        <form onsubmit="return confirm('Yakin ingin menghapus permanen data ini?')" class="d-inline" action="{{ route('buku.delete', $item->kode_gabungan_final) }}" method="post">
                             @csrf
                             <button type="submit" name="submit" class="btn btn-danger btn-sm">H.Del</button>
                         </form>

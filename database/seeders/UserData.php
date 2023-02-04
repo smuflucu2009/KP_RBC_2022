@@ -30,21 +30,18 @@ class UserData extends Seeder
             // ],
             [
                 'nama' => 'Aldi Mulyawan',
-                'id_user' => '21120119120026',
+                'nim' => '21120119120026',
                 'password' => bcrypt('21120119120026'),
-                'level' =>2,
             ],
             [
                 'nama' => 'Fauzan Zaman',
-                'id_user' => '21120119140124',
+                'nim' => '21120119140124',
                 'password' => bcrypt('21120119140124'),
-                'level' =>2,
             ],
             [
                 'nama' => 'Muhammad Fahreza Isnanto',
-                'id_user' => '21120120120009',
+                'nim' => '21120120120009',
                 'password' => bcrypt('21120120120009'),
-                'level' =>2,
             ],
         ];
         foreach($user as $key => $value) {
