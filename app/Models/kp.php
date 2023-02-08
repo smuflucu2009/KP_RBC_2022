@@ -53,15 +53,14 @@ class kp extends Model
     public function Dosen(){
         return $this->belongsTo(Dosen::class, 'dosen_id', 'id');
     }
-    public function Dosen2(){
-        return $this->belongsTo(Dosen::class, 'dosen2_id', 'id');
-    }
+
 
     public function getFileUrlAttribute(){
-        return asset(env('APP_URL') . 'app/' . $this->file);
+        return asset('https://docs.google.com/viewerng/viewer?url=' . env('APP_URL') . 'storage/' . $this->file);
     }
 
 
+    
 
 }
 

@@ -85,7 +85,7 @@ class SkripsiController extends Controller
                 'dosen_id' => $request->dosen_id,
                 'dosen2_id' => $request->dosen2_id,
                 'abstrak' => $request->abstrak,
-                'file' => $request->file->StoreAs('pdf/skripsi', $filename)
+                'file' => $request->file->StoreAs('pdf/skripsi', $filename, 'public')
             ]);
 
 

@@ -23,7 +23,7 @@ class KPController extends Controller
         //
 
 
-        $data_query = kp::with(['Bidang', 'Dosen', 'Dosen2']);
+        $data_query = kp::with(['Bidang', 'Dosen']);
 
         if($request->q){
             $data_query->where('judul', 'LIKE', '%' . $request->q . '%')->orWhere('name', 'LIKE', '%' . $request->q . '%');
@@ -103,7 +103,7 @@ class KPController extends Controller
                 'dosen_id' => $request->dosen_id,
                 'dosen2_id' => $request->dosen2_id,
                 'abstrak' => $request->abstrak,
-                'file' => $request->file->StoreAs('pdf/kp', $filename)
+                'file' => $request->file->StoreAs('pdf/kp', $filename, 'public')
             ]);
 
 

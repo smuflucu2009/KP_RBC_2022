@@ -84,7 +84,7 @@ class GalleryController extends Controller
 
                 'post_id' => $request->post_id,
 
-                'file' => $request->file->StoreAs('img/news', $filename)
+                'file' => $request->file->StoreAs('img/news', $filename, 'public')
             ]);
 
 

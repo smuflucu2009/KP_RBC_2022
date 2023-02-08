@@ -29,9 +29,7 @@ class Dosen extends Model
         return $this->hasMany(kp::class, 'dosen_id', 'id');
     }
 
-    public function Dosens2(){
-        return $this->hasMany(kp::class, 'dosen2_id', 'id');
-    }
+   
 
     public function DosensSk(){
         return $this->hasMany(Skripsi::class, 'dosen_id', 'id');
