@@ -29,15 +29,15 @@ class PostinganController extends Controller
         ->first();
         return view('postingan.detail_postingan')->with('joins', $joins);
     }
-    
+
     function detail_postingan_admin($id){
         $joins = DB::table('postingan')
         ->join('category', 'postingan.category_id', '=', 'category.id')
         ->select('postingan.id_posting', 'postingan.judul', 'postingan.deskripsi', 'category.name_category', 'postingan.waktu_posting', 'postingan.cover_gambar')
-        ->where('id_posting', $id)
+        ->where('postingan.id_posting', $id)
         ->first();
         return view('postingan.detail_postingan_admin')->with('joins', $joins);
-    } 
+    }
 
     function update_admin() {
         $joins = DB::table('postingan')
@@ -57,7 +57,7 @@ class PostinganController extends Controller
         ->get();
 
         return view('postingan.bin')
-        ->with('joins', $joins);  
+        ->with('joins', $joins);
     }
 
     public function caripostingan(Request $request) {
@@ -119,8 +119,8 @@ class PostinganController extends Controller
         $nama_gambar = date('ymdhis') . '.' . $gambar_extensi;
         $gambar_cover->move(public_path('storage\postingan\cover_image'), $nama_gambar);
 
-        DB::insert('INSERT INTO postingan(judul, deskripsi, category_id, 
-        cover_gambar) 
+        DB::insert('INSERT INTO postingan(judul, deskripsi, category_id,
+        cover_gambar)
         VALUES (:judul, :deskripsi, :category_id, :cover_gambar)',
         [
             'judul' => $request->judul,
@@ -157,18 +157,18 @@ class PostinganController extends Controller
             ], [
                 'cover_gambar.mimes' => 'Gambar cover wajib png, jpg, atau jpeg'
             ]);
-        
+
             $file_gambar = $request->file('cover_gambar');
             $gambar_extensi = $file_gambar->getClientOriginalName();
             $nama_gambar = date('ymdhis') . '.' . $gambar_extensi;
             $file_gambar->move(public_path('storage\postingan\cover_image'), $nama_gambar);
-        
+
             $data_postingan = Postingan::where('id_posting', $id)->first();
             File::delete(public_path('storage\postingan\cover_image') . '/' . $data_postingan->cover_gambar);
-        
+
         }
 
-        DB::update('UPDATE postingan SET judul = :judul, deskripsi = :deskripsi, category_id = :category_id, 
+        DB::update('UPDATE postingan SET judul = :judul, deskripsi = :deskripsi, category_id = :category_id,
         cover_gambar = :cover_gambar WHERE id_posting = :id',
         [
             'id' => $id,
