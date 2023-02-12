@@ -54,7 +54,7 @@ class SkripsiController extends Controller
         ->join('dosen as dosen2', 'skripsi.dosen2_id', '=', 'dosen2.id')
         ->join('bidang', 'skripsi.bidang_id', '=', 'bidang.id')
         ->select('skripsi.id_skripsi', 'skripsi.name', 'skripsi.nim', 'bidang.nama_bidang', 'skripsi.tahun',
-         'skripsi.judul', 'dosen1.nama_dosen as namadosen1', 
+         'skripsi.judul', 'dosen1.nama_dosen as namadosen1',
          'dosen2.nama_dosen as namadosen2', 'skripsi.abstrak', 'skripsi.file', 'skripsi.deleted_at')
         ->where('name', 'like', "%$cariSkripsi2%")
         ->orWhere('nim', 'like', "%$cariSkripsi2%")
@@ -77,7 +77,7 @@ class SkripsiController extends Controller
         ->join('bidang', 'skripsi.bidang_id', '=', 'bidang.id')
         ->select('skripsi.id_skripsi', 'skripsi.name', 'skripsi.nim', 'bidang.nama_bidang', 'skripsi.tahun',
          'skripsi.judul', 'dosen1.nama_dosen as namadosen1', 'dosen2.nama_dosen as namadosen2', 'skripsi.abstrak', 'skripsi.file')
-        ->where('id_skripsi', $id)
+        ->where('skripsi.id_skripsi', $id)
         ->first();
         return view('skripsi.detail_skripsi')->with('joins', $joins);
     }
@@ -93,7 +93,7 @@ class SkripsiController extends Controller
         ->get();
 
         return view('skripsi.update_admin')
-        ->with('joins', $joins);  
+        ->with('joins', $joins);
     }
 
     function bin() {
@@ -107,7 +107,7 @@ class SkripsiController extends Controller
         ->get();
 
         return view('skripsi.bin')
-        ->with('joins', $joins);  
+        ->with('joins', $joins);
     }
 
     function create(){
@@ -154,8 +154,8 @@ class SkripsiController extends Controller
         $nama_file = date('ymdhis') . '.' . $file_extensi;
         $file_skripsi->move(public_path('storage\pdf\skripsi'), $nama_file);
 
-        DB::insert('INSERT INTO skripsi(name, nim, bidang_id, 
-        tahun, judul, dosen_id, dosen2_id, abstrak, file) 
+        DB::insert('INSERT INTO skripsi(name, nim, bidang_id,
+        tahun, judul, dosen_id, dosen2_id, abstrak, file)
         VALUES (:name, :nim, :bidang_id, :tahun, :judul, :dosen_id, :dosen2_id, :abstrak, :file)',
         [
             'name' => $request->name,
@@ -207,18 +207,18 @@ class SkripsiController extends Controller
             ], [
                 'file.mimes' => 'File KP wajib pdf atau docx'
             ]);
-        
+
             $file_skripsi = $request->file('file');
             $file_extensi = $file_skripsi->getClientOriginalName();
             $nama_file = date('ymdhis') . '.' . $file_extensi;
             $file_skripsi->move(public_path('storage\pdf\skripsi'), $nama_file);
-        
+
             $data_skripsi = Skripsi::where('id_skripsi', $id)->first();
             File::delete(public_path('storage\pdf\skripsi') . '/' . $data_skripsi->file);
-        
+
         }
 
-        DB::update('UPDATE skripsi SET name = :name, nim = :nim, bidang_id = :bidang_id, 
+        DB::update('UPDATE skripsi SET name = :name, nim = :nim, bidang_id = :bidang_id,
         tahun = :tahun, judul = :judul, dosen_id = :dosen_id, dosen2_id = :dosen2_id, abstrak = :abstrak, file = :file WHERE id_skripsi = :id',
         [
             'id' => $id,

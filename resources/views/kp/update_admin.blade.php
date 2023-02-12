@@ -55,7 +55,7 @@
                         <td>{{ $join->tahun }}</td>
                         <td>{{ $join->judul }}</td>
                         <td>{{ $join->perusahaan }}</td>
-                        <td>{{ $join->nama_dosen }}</td>                       
+                        <td>{{ $join->nama_dosen }}</td>
                         <td>
                             @if ($join->file)
                                 <a class="btn btn-success btn-sm" href="{{ asset('storage/pdf/kp/'. $join->file)}}">Download</a>

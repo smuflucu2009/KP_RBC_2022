@@ -54,7 +54,7 @@
                         <td>{{ $join->tahun }}</td>
                         <td>{{ $join->judul }}</td>
                         <td>{{ $join->namadosen1 }}</td>
-                        <td>{{ $join->namadosen2 }}</td>                       
+                        <td>{{ $join->namadosen2 }}</td>
                         <td>
                             @if ($join->file)
                                 <a class="btn btn-success btn-sm" href="{{ asset('storage/pdf/skripsi/'. $join->file)}}">Lihat File</a>

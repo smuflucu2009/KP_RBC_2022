@@ -29,7 +29,7 @@ class KpController extends Controller
         ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
         ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
         'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak', 'kp.file')
-        ->where('id', $id)
+        ->where('kp.id_kp', $id)
         ->first();
         return view('kp.detail_kp')->with('joins', $joins);
     }
@@ -90,7 +90,7 @@ class KpController extends Controller
         ->get();
 
         return view('kp.update_admin')
-        ->with('joins', $joins);  
+        ->with('joins', $joins);
     }
 
     function bin() {
@@ -103,7 +103,7 @@ class KpController extends Controller
         ->get();
 
         return view('kp.bin')
-        ->with('joins', $joins);  
+        ->with('joins', $joins);
     }
 
     function create(){
@@ -153,9 +153,9 @@ class KpController extends Controller
         $nama_file = date('ymdhis') . '.' . $file_extensi;
         $file_kp->move(public_path('storage\pdf\kp'), $nama_file);
 
-        DB::insert('INSERT INTO kp(name, nim, bidang_id, 
-        tahun, judul, perusahaan, lokasi_perusahaan, dosen_id, abstrak, file) 
-        VALUES (:name, :nim, :bidang_id, :tahun, :judul, :perusahaan, :lokasi_perusahaan, 
+        DB::insert('INSERT INTO kp(name, nim, bidang_id,
+        tahun, judul, perusahaan, lokasi_perusahaan, dosen_id, abstrak, file)
+        VALUES (:name, :nim, :bidang_id, :tahun, :judul, :perusahaan, :lokasi_perusahaan,
         :dosen_id, :abstrak, :file)',
         [
             'name' => $request->name,
@@ -210,18 +210,18 @@ class KpController extends Controller
             ], [
                 'file.mimes' => 'File KP wajib pdf atau docx'
             ]);
-        
+
             $file_kp = $request->file('file');
             $file_extensi = $file_kp->getClientOriginalName();
             $nama_file = date('ymdhis') . '.' . $file_extensi;
             $file_kp->move(public_path('storage\pdf\kp'), $nama_file);
-        
+
             $data_kp = kp::where('id_kp', $id)->first();
             File::delete(public_path('storage\pdf\kp') . '/' . $data_kp->file);
-        
+
         }
 
-        DB::update('UPDATE kp SET name = :name, nim = :nim, bidang_id = :bidang_id, 
+        DB::update('UPDATE kp SET name = :name, nim = :nim, bidang_id = :bidang_id,
         tahun = :tahun, judul = :judul, perusahaan = :perusahaan, lokasi_perusahaan = :lokasi_perusahaan,
         dosen_id = :dosen_id, abstrak = :abstrak, file = :file WHERE id_kp = :id',
         [
@@ -256,5 +256,5 @@ class KpController extends Controller
         DB::update('UPDATE kp SET deleted_at = 0 WHERE id = :id', ['id' => $id]);
         return redirect()->route('kp.update_admin')->with('success', 'Data KP telah dikembalikan!');
     }
-    
+
 }

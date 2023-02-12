@@ -15,26 +15,6 @@ class BidangSeed extends Seeder
      */
     public function run()
     {
-        $seed = [
-            [
-                'id' => '1',
-                'nama_bidang' => 'RPL',
-            ],
-            [
-                'id' => '2',
-                'nama_bidang' => 'Multimedia',
-            ],
-            [
-                'id' => '3',
-                'nama_bidang' => 'Jaringan',
-            ],
-            [
-                'id' => '4',
-                'nama_bidang' => 'Embedded',
-            ],
-        ];
-        foreach($seed as $key => $value) {
-            Bidang::create($value);
-        }
+        
     }
 }
