@@ -10,51 +10,83 @@ use Illuminate\Support\Facades\Session;
 class BukuController extends Controller
 {
     function index(Request $request){
-        $caribuku = $request->caribuku;
-        $data = buku::where('judul_buku', 'like', "%$caribuku%")
-        ->orWhere('penulis', 'like', "%$caribuku%")
-        ->orWhere('jenis_peminatan', 'like', "%$caribuku%")
-        ->orWhere('detail_jenis_peminatan', 'like', "%$caribuku%")
-        ->orWhere('kode_gabungan_final', 'like', "%$caribuku%")
-        ->paginate(10);
-        return view('buku.index')->with('data', $data);
+        $data= buku::query();
+
+        $data->when($request->judul_buku, function ($query) use ($request) {
+            return $query->where('judul_buku', 'like', '%'.$request->judul_buku.'%');
+        });
+
+        $data->when($request->penulis, function ($query) use ($request) {
+            return $query->where('penulis', 'like', '%'.$request->penulis.'%');
+        });
+
+        $data->when($request->kode_gabungan_final, function ($query) use ($request) {
+            return $query->where('kode_gabungan_final', 'like', '%'.$request->kode_gabungan_final.'%');
+        });
+
+        $data->when($request->penerbit, function ($query) use ($request) {
+            return $query->where('penerbit', 'like', '%'.$request->penerbit.'%');
+        });
+
+        $data->when($request->jenis_peminatan, function ($query) use ($request) {
+            return $query->whereJenisPeminatan($request->jenis_peminatan);
+        });
+
+        $data->when($request->detail_jenis_peminatan, function ($query) use ($request) {
+            return $query->whereDetailJenisPeminatan($request->detail_jenis_peminatan);
+        });
+        
+        return view('buku.index', ['data' => $data->paginate(10)]);
     }
 
-    function cariJP(Request $request){
-        $carijp = $request->carijp;
-        $data = buku::where('jenis_peminatan', 'like', "%$carijp%")->paginate(5);
-        return view('buku.index')->with('data', $data);
+    function update_admin(Request $request) {
+        // $data = DB::select('SELECT * FROM buku where deleted_at = 0');
+        // return view('buku.update_admin')->with('data', $data);
+        // $u = DB::select('SELECT * FROM buku where deleted_at = 0');
+        
+        $data= buku::query();
+
+        $data->when($request->judul_buku, function ($query) use ($request) {
+            return $query->where('judul_buku', 'like', '%'.$request->judul_buku.'%');
+        });
+
+        $data->when($request->penulis, function ($query) use ($request) {
+            return $query->where('penulis', 'like', '%'.$request->penulis.'%');
+        });
+
+        $data->when($request->kode_gabungan_final, function ($query) use ($request) {
+            return $query->where('kode_gabungan_final', 'like', '%'.$request->kode_gabungan_final.'%');
+        });
+
+        $data->when($request->penerbit, function ($query) use ($request) {
+            return $query->where('penerbit', 'like', '%'.$request->penerbit.'%');
+        });
+
+        $data->when($request->jenis_peminatan, function ($query) use ($request) {
+            return $query->whereJenisPeminatan($request->jenis_peminatan);
+        });
+
+        $data->when($request->detail_jenis_peminatan, function ($query) use ($request) {
+            return $query->whereDetailJenisPeminatan($request->detail_jenis_peminatan);
+        });
+        
+        return view('buku.update_admin', ['data' => $data->paginate(10)]);  
     }
 
-    function cariDJP(Request $request){
-        $caridjp = $request->caridjp;
-        $data = buku::where('judul_buku', 'like', "%$caridjp%")
-        ->orWhere('detail_jenis_peminatan', 'like', "%$caridjp%")
-        ->paginate(5);
-        return view('buku.index')->with('data', $data);
-    }
+    // function caribuku(Request $request) {
+    //     $caribuku_update = $request->caribuku_update;
 
-    function update_admin() {
-        $data = DB::select('SELECT * FROM buku where deleted_at = 0');
+    //     $data = DB::table('buku')
+    //     ->where('judul_buku', 'like', "%$caribuku_update%")
+    //     ->orWhere('penulis', 'like', "%$caribuku_update%")
+    //     ->orWhere('jenis_peminatan', 'like', "%$caribuku_update%")
+    //     ->orWhere('detail_jenis_peminatan', 'like', "%$caribuku_update%")
+    //     ->orWhere('kode_gabungan_final', 'like', "%$caribuku_update%")
+    //     ->get();
 
-        return view('buku.update_admin')
-        ->with('data', $data);  
-    }
-
-    function caribuku(Request $request) {
-        $caribuku_update = $request->caribuku_update;
-
-        $data = DB::table('buku')
-        ->where('judul_buku', 'like', "%$caribuku_update%")
-        ->orWhere('penulis', 'like', "%$caribuku_update%")
-        ->orWhere('jenis_peminatan', 'like', "%$caribuku_update%")
-        ->orWhere('detail_jenis_peminatan', 'like', "%$caribuku_update%")
-        ->orWhere('kode_gabungan_final', 'like', "%$caribuku_update%")
-        ->get();
-
-        return view('buku.update_admin')
-            ->with('data', $data);
-    }
+    //     return view('buku.update_admin')
+    //         ->with('data', $data);
+    // }
 
     function detail_buku($id){
         $data = buku::where('kode_gabungan_final', $id)->first();
@@ -189,12 +221,12 @@ class BukuController extends Controller
         return redirect()->route('buku.update_admin')->with('success', 'Berhasil update data buku!');
     }
 
-    function bin()
-    {
-        $data = DB::select('SELECT * FROM buku where deleted_at = 1');
-        return view('buku.bin')
-        ->with('data', $data);
-    }
+    // function bin()
+    // {
+    //     $data = DB::select('SELECT * FROM buku where deleted_at = 1');
+    //     return view('buku.bin')
+    //     ->with('data', $data);
+    // }
 
     function delete($id)
     {
@@ -202,15 +234,15 @@ class BukuController extends Controller
         return redirect()->route('buku.update_admin')->with('success', 'Berhasil hapus data buku secara permanen!');
     }
 
-    function softDelete($id) {
-        DB::update('UPDATE buku SET deleted_at = 1 WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
-        return redirect()->route('buku.update_admin')->with('success', 'Berhasil hapus data buku secara sementara');
-    }
+    // function softDelete($id) {
+    //     DB::update('UPDATE buku SET deleted_at = 1 WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
+    //     return redirect()->route('buku.update_admin')->with('success', 'Berhasil hapus data buku secara sementara');
+    // }
 
-    function restore($id){
-        DB::update('UPDATE buku SET deleted_at = 0 WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
-        return redirect()->route('buku.update_admin')->with('success', 'Data buku telah dikembalikan!');
-    }
+    // function restore($id){
+    //     DB::update('UPDATE buku SET deleted_at = 0 WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
+    //     return redirect()->route('buku.update_admin')->with('success', 'Data buku telah dikembalikan!');
+    // }
 
     function pinjam($id) {
         DB::update('UPDATE buku SET status_pinjam = 1 WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);

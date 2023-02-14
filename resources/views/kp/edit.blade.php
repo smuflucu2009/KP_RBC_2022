@@ -88,7 +88,7 @@
         <div class="mb-3 row">
             <label for="file" class="col-sm-2 col-form-label">File</label>
             <div class="col-md-8">
-                <input type="file" class="form-control" name="file" id="file">
+                <input type="file" class="form-control" name="file" id="file" value="{{ $joins->file }}">
             </div>
         </div>
         <div class="mb-3 row">

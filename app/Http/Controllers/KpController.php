@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bidang;
+use App\Models\buku;
+use App\Models\Dosen;
 use App\Models\kp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,14 +14,37 @@ use Illuminate\Support\Facades\File;
 
 class KpController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $joins = DB::table('kp')
         ->join('dosen', 'kp.dosen_id', '=', 'dosen.id')
         ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
         ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
         'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak', 'kp.file')
-        ->where('kp.deleted_at',0)
-        ->get();
+        ->when($request->name, function ($query) use ($request) {
+            return $query->where('kp.name', 'like', '%'.$request->name.'%');
+        })
+        ->when($request->nim, function ($query) use ($request) {
+            return $query->where('kp.nim', 'like', '%'.$request->nim.'%');
+        })
+        ->when($request->judul, function ($query) use ($request) {
+            return $query->where('kp.judul', 'like', '%'.$request->judul.'%');
+        })
+        ->when($request->tahun, function ($query) use ($request) {
+            return $query->where('kp.tahun', $request->tahun);
+        })
+        ->when($request->perusahaan, function ($query) use ($request) {
+            return $query->where('kp.perusahaan', 'like', '%'.$request->perusahaan.'%');
+        })
+        ->when($request->lokasi_perusahaan, function ($query) use ($request) {
+            return $query->where('kp.lokasi_perusahaan', 'like', '%'.$request->lokasi_perusahaan.'%');
+        })
+        ->when($request->nama_dosen, function ($query) use ($request) {
+            return $query->where('dosen.nama_dosen', 'like', '%'.$request->nama_dosen.'%');
+        })
+        ->when($request->nama_bidang, function ($query) use ($request) {
+            return $query->where('bidang.nama_bidang', 'like', '%'.$request->nama_bidang.'%');
+        })
+        ->paginate(10);
 
         return view('kp.index')->with('joins', $joins);
     }
@@ -34,77 +60,53 @@ class KpController extends Controller
         return view('kp.detail_kp')->with('joins', $joins);
     }
 
-    public function cariKP(Request $request) {
-        $cariKP = $request->cariKP;
-
+    function update_admin(Request $request) {
         $joins = DB::table('kp')
         ->join('dosen', 'kp.dosen_id', '=', 'dosen.id')
         ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
         ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
         'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak', 'kp.file')
-        // ->where('kp.deleted_at',0)
-        ->orwhere('name', 'like', "%$cariKP%")
-        ->orWhere('nim', 'like', "%$cariKP%")
-        ->orWhere('nama_bidang', 'like', "%$cariKP%")
-        ->orWhere('tahun', 'like', "%$cariKP%")
-        ->orWhere('judul', 'like', "%$cariKP%")
-        ->orWhere('perusahaan', 'like', "%$cariKP%")
-        ->orWhere('lokasi_perusahaan', 'like', "%$cariKP%")
-        ->orWhere('nama_dosen', 'like', "%$cariKP%")
-        ->get();
+        ->when($request->name, function ($query) use ($request) {
+            return $query->where('kp.name', 'like', '%'.$request->name.'%');
+        })
+        ->when($request->nim, function ($query) use ($request) {
+            return $query->where('kp.nim', 'like', '%'.$request->nim.'%');
+        })
+        ->when($request->judul, function ($query) use ($request) {
+            return $query->where('kp.judul', 'like', '%'.$request->judul.'%');
+        })
+        ->when($request->tahun, function ($query) use ($request) {
+            return $query->where('kp.tahun', $request->tahun);
+        })
+        ->when($request->perusahaan, function ($query) use ($request) {
+            return $query->where('kp.perusahaan', 'like', '%'.$request->perusahaan.'%');
+        })
+        ->when($request->lokasi_perusahaan, function ($query) use ($request) {
+            return $query->where('kp.lokasi_perusahaan', 'like', '%'.$request->lokasi_perusahaan.'%');
+        })
+        ->when($request->nama_dosen, function ($query) use ($request) {
+            return $query->where('dosen.nama_dosen', 'like', '%'.$request->nama_dosen.'%');
+        })
+        ->when($request->nama_bidang, function ($query) use ($request) {
+            return $query->where('bidang.nama_bidang', 'like', '%'.$request->nama_bidang.'%');
+        })
+        ->paginate(10);
 
-        return view('kp.index')
-            ->with('joins', $joins);
+        return view('kp.update_admin')->with('joins', $joins);
     }
 
-    public function cariKP2(Request $request) {
-        $cariKP2 = $request->cariKP2;
+    // function bin() {
+    //     $joins = DB::table('kp')
+    //     ->join('dosen', 'kp.dosen_id', '=', 'dosen.id')
+    //     ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
+    //     ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
+    //     'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak', 'kp.file')
+    //     ->where('kp.deleted_at',1)
+    //     ->get();
 
-        $joins = DB::table('kp')
-        ->join('dosen', 'kp.dosen_id', '=', 'dosen.id')
-        ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
-        ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
-        'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak', 'kp.file')
-        // ->where('kp.deleted_at',0)
-        ->orwhere('name', 'like', "%$cariKP2%")
-        ->orWhere('nim', 'like', "%$cariKP2%")
-        ->orWhere('nama_bidang', 'like', "%$cariKP2%")
-        ->orWhere('tahun', 'like', "%$cariKP2%")
-        ->orWhere('judul', 'like', "%$cariKP2%")
-        ->orWhere('perusahaan', 'like', "%$cariKP2%")
-        ->orWhere('lokasi_perusahaan', 'like', "%$cariKP2%")
-        ->orWhere('nama_dosen', 'like', "%$cariKP2%")
-        ->get();
-
-        return view('kp.update_admin')
-            ->with('joins', $joins);
-    }
-
-    function update_admin() {
-        $joins = DB::table('kp')
-        ->join('dosen', 'kp.dosen_id', '=', 'dosen.id')
-        ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
-        ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
-        'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak', 'kp.file')
-        ->where('kp.deleted_at',0)
-        ->get();
-
-        return view('kp.update_admin')
-        ->with('joins', $joins);
-    }
-
-    function bin() {
-        $joins = DB::table('kp')
-        ->join('dosen', 'kp.dosen_id', '=', 'dosen.id')
-        ->join('bidang', 'kp.bidang_id', '=', 'bidang.id')
-        ->select('kp.id_kp', 'kp.name', 'kp.nim', 'bidang.nama_bidang', 'kp.tahun', 'kp.judul',
-        'kp.perusahaan', 'kp.lokasi_perusahaan', 'dosen.nama_dosen', 'kp.abstrak', 'kp.file')
-        ->where('kp.deleted_at',1)
-        ->get();
-
-        return view('kp.bin')
-        ->with('joins', $joins);
-    }
+    //     return view('kp.bin')
+    //     ->with('joins', $joins);
+    // }
 
     function create(){
         $joins = kp::all();
@@ -149,8 +151,7 @@ class KpController extends Controller
         ]);
 
         $file_kp = $request->file('file');
-        $file_extensi = $file_kp->getClientOriginalName();
-        $nama_file = date('ymdhis') . '.' . $file_extensi;
+        $nama_file = $file_kp->getClientOriginalName();
         $file_kp->move(public_path('storage\pdf\kp'), $nama_file);
 
         DB::insert('INSERT INTO kp(name, nim, bidang_id,
@@ -190,7 +191,6 @@ class KpController extends Controller
             'lokasi_perusahaan' => 'required',
             'dosen_id' => 'required',
             'abstrak' => 'required',
-            'file' => 'required',
         ], [
             'name.required' => 'Nama wajib diisi',
             'nim.required' => 'NIM wajib diisi',
@@ -201,7 +201,6 @@ class KpController extends Controller
             'lokasi_perusahaan.required' => 'Alamat Perusahaan wajib diisi',
             'dosen_id.required' => 'Nama Pembimbing Dosen wajib diisi',
             'abstrak.required' => 'Abstrak KP wajib diisi',
-            'file.required' => 'File KP wajib diupload',
         ]);
 
         if ($request->hasFile('file')) {
@@ -212,13 +211,15 @@ class KpController extends Controller
             ]);
 
             $file_kp = $request->file('file');
-            $file_extensi = $file_kp->getClientOriginalName();
-            $nama_file = date('ymdhis') . '.' . $file_extensi;
+            $nama_file = $file_kp->getClientOriginalName();
             $file_kp->move(public_path('storage\pdf\kp'), $nama_file);
 
             $data_kp = kp::where('id_kp', $id)->first();
             File::delete(public_path('storage\pdf\kp') . '/' . $data_kp->file);
 
+        } else {
+            $kp = Kp::where('id_kp', $id)->first();
+            $nama_file = $kp->nama_file;
         }
 
         DB::update('UPDATE kp SET name = :name, nim = :nim, bidang_id = :bidang_id,
@@ -243,18 +244,24 @@ class KpController extends Controller
 
     function delete($id)
     {
-        DB::delete('DELETE FROM kp WHERE id_kp = :id_kp', ['id_kp' => $id]);
-        return redirect()->route('kp.update_admin')->with('success', 'Berhasil hapus data KP secara permanen!');
+        // hapus data kp
+        $data_kp = kp::where('id_kp', $id)->first();
+        File::delete(public_path('storage\pdf\kp') . '/' . $data_kp->file);
+ 
+		// hapus data
+		kp::where('id_kp',$id)->delete();
+ 
+		return redirect()->route('kp.update_admin')->with('success', 'Berhasil hapus data KP secara permanen!');
     }
 
-    function softDelete($id) {
-        DB::update('UPDATE kp SET deleted_at = 1 WHERE id = :id', ['id' => $id]);
-        return redirect()->route('kp.update_admin')->with('success', 'Berhasil hapus data KP secara sementara');
-    }
+    // function softDelete($id) {
+    //     DB::update('UPDATE kp SET deleted_at = 1 WHERE id = :id', ['id' => $id]);
+    //     return redirect()->route('kp.update_admin')->with('success', 'Berhasil hapus data KP secara sementara');
+    // }
 
-    function restore($id){
-        DB::update('UPDATE kp SET deleted_at = 0 WHERE id = :id', ['id' => $id]);
-        return redirect()->route('kp.update_admin')->with('success', 'Data KP telah dikembalikan!');
-    }
+    // function restore($id){
+    //     DB::update('UPDATE kp SET deleted_at = 0 WHERE id = :id', ['id' => $id]);
+    //     return redirect()->route('kp.update_admin')->with('success', 'Data KP telah dikembalikan!');
+    // }
 
 }

@@ -21,14 +21,14 @@ return new class extends Migration
             $table->foreignId('bidang_id')->references('id')->on('bidang')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('tahun');
             $table->string('judul');
-    // $table->bigInteger('dosen_id');
-    // $table->bigInteger('dosen2_id');
-    $table->foreignId('dosen_id')->references('id')->on('dosen')->onDelete('cascade')->onUpdate('cascade');
-    $table->foreignId('dosen2_id')->references('id')->on('dosen')->onDelete('cascade')->onUpdate('cascade');
-    $table->longText('abstrak');
-    $table->string('file');
-    $table->tinyInteger('deleted_at')->default('0');
-    $table->timestamps();
+            // $table->bigInteger('dosen_id');
+            // $table->bigInteger('dosen2_id');
+            $table->foreignId('dosen_id')->references('id')->on('dosen')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('dosen2_id')->references('id')->on('dosen')->onDelete('cascade')->onUpdate('cascade');
+            $table->longText('abstrak');
+            $table->string('file');
+            $table->tinyInteger('deleted_at')->default('0');
+            $table->timestamps();
 
         });
     }

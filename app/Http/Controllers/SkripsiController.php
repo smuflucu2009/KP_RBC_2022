@@ -10,64 +10,37 @@ use Illuminate\Support\Facades\Session;
 
 class SkripsiController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $joins = DB::table('skripsi')
         ->join('dosen as dosen1', 'skripsi.dosen_id', '=', 'dosen1.id')
         ->join('dosen as dosen2', 'skripsi.dosen2_id', '=', 'dosen2.id')
         ->join('bidang', 'skripsi.bidang_id', '=', 'bidang.id')
         ->select('skripsi.id_skripsi', 'skripsi.name', 'skripsi.nim', 'bidang.nama_bidang', 'skripsi.tahun',
          'skripsi.judul', 'dosen1.nama_dosen as namadosen1', 'dosen2.nama_dosen as namadosen2', 'skripsi.abstrak', 'skripsi.file')
-        ->where('skripsi.deleted_at',0)
-        ->get();
+        ->when($request->name, function ($query) use ($request) {
+            return $query->where('skripsi.name', 'like', '%'.$request->name.'%');
+        })
+        ->when($request->nim, function ($query) use ($request) {
+            return $query->where('skripsi.nim', 'like', '%'.$request->nim.'%');
+        })
+        ->when($request->tahun, function ($query) use ($request) {
+            return $query->where('skripsi.tahun', $request->tahun);
+        })
+        ->when($request->judul, function ($query) use ($request) {
+            return $query->where('skripsi.judul', 'like', '%'.$request->judul.'%');
+        })
+        ->when($request->nama_bidang, function ($query) use ($request) {
+            return $query->whereNamaBidang($request->nama_bidang);
+        })
+        ->when($request->namadosen1, function ($query) use ($request) {
+            return $query->where('dosen1.nama_dosen', 'like', '%'.$request->namadosen1.'%');
+        })
+        ->when($request->namadosen2, function ($query) use ($request) {
+            return $query->where('dosen2.nama_dosen', 'like', '%'.$request->namadosen2.'%');
+        })
+        ->paginate(10);
 
         return view('skripsi.index')->with('joins', $joins);
-    }
-
-    public function cariSkripsi(Request $request) {
-        $cariSkripsi = $request->cariSkripsi;
-
-        $joins = DB::table('skripsi')
-        ->join('dosen as dosen1', 'skripsi.dosen_id', '=', 'dosen1.id')
-        ->join('dosen as dosen2', 'skripsi.dosen2_id', '=', 'dosen2.id')
-        ->join('bidang', 'skripsi.bidang_id', '=', 'bidang.id')
-        ->select('skripsi.id_skripsi', 'skripsi.name', 'skripsi.nim', 'bidang.nama_bidang', 'skripsi.tahun',
-         'skripsi.judul', 'dosen1.nama_dosen as namadosen1', 'dosen2.nama_dosen as namadosen2', 'skripsi.abstrak', 'skripsi.file')
-        // ->whereNotNull('skripsi.deleted_at')
-        ->where('name', 'like', "%$cariSkripsi%")
-        ->orWhere('nim', 'like', "%$cariSkripsi%")
-        ->orWhere('bidang.nama_bidang', 'like', "%$cariSkripsi%")
-        ->orWhere('tahun', 'like', "%$cariSkripsi%")
-        ->orWhere('judul', 'like', "%$cariSkripsi%")
-        ->orWhere('dosen1.nama_dosen', 'like', "%$cariSkripsi%")
-        ->orWhere('dosen2.nama_dosen', 'like', "%$cariSkripsi%")
-        ->get();
-
-        return view('skripsi.index')
-            ->with('joins', $joins);
-    }
-
-    function cariSkripsi2(Request $request) {
-        $cariSkripsi2 = $request->cariSkripsi2;
-
-        $joins = DB::table('skripsi')
-        ->join('dosen as dosen1', 'skripsi.dosen_id', '=', 'dosen1.id')
-        ->join('dosen as dosen2', 'skripsi.dosen2_id', '=', 'dosen2.id')
-        ->join('bidang', 'skripsi.bidang_id', '=', 'bidang.id')
-        ->select('skripsi.id_skripsi', 'skripsi.name', 'skripsi.nim', 'bidang.nama_bidang', 'skripsi.tahun',
-         'skripsi.judul', 'dosen1.nama_dosen as namadosen1',
-         'dosen2.nama_dosen as namadosen2', 'skripsi.abstrak', 'skripsi.file', 'skripsi.deleted_at')
-        ->where('name', 'like', "%$cariSkripsi2%")
-        ->orWhere('nim', 'like', "%$cariSkripsi2%")
-        ->orWhere('nama_bidang', 'like', "%$cariSkripsi2%")
-        ->orWhere('tahun', 'like', "%$cariSkripsi2%")
-        ->orWhere('judul', 'like', "%$cariSkripsi2%")
-        ->orWhere('dosen1.nama_dosen', 'like', "%$cariSkripsi2%")
-        ->orWhere('dosen2.nama_dosen', 'like', "%$cariSkripsi2%")
-        ->where('skripsi.deleted_at', 0)
-        ->get();
-
-        return view('skripsi.update_admin')
-            ->with('joins', $joins);
     }
 
     function detail_skripsi($id){
@@ -82,18 +55,37 @@ class SkripsiController extends Controller
         return view('skripsi.detail_skripsi')->with('joins', $joins);
     }
 
-    function update_admin() {
+    function update_admin(Request $request) {
         $joins = DB::table('skripsi')
         ->join('dosen as dosen1', 'skripsi.dosen_id', '=', 'dosen1.id')
         ->join('dosen as dosen2', 'skripsi.dosen2_id', '=', 'dosen2.id')
         ->join('bidang', 'skripsi.bidang_id', '=', 'bidang.id')
         ->select('skripsi.id_skripsi', 'skripsi.name', 'skripsi.nim', 'bidang.nama_bidang', 'skripsi.tahun',
          'skripsi.judul', 'dosen1.nama_dosen as namadosen1', 'dosen2.nama_dosen as namadosen2', 'skripsi.abstrak', 'skripsi.file')
-        ->where('skripsi.deleted_at',0)
-        ->get();
+        ->when($request->name, function ($query) use ($request) {
+            return $query->where('skripsi.name', 'like', '%'.$request->name.'%');
+        })
+        ->when($request->nim, function ($query) use ($request) {
+            return $query->where('skripsi.nim', 'like', '%'.$request->nim.'%');
+        })
+        ->when($request->tahun, function ($query) use ($request) {
+            return $query->where('skripsi.tahun', $request->tahun);
+        })
+        ->when($request->judul, function ($query) use ($request) {
+            return $query->where('skripsi.judul', 'like', '%'.$request->judul.'%');
+        })
+        ->when($request->nama_bidang, function ($query) use ($request) {
+            return $query->whereNamaBidang($request->nama_bidang);
+        })
+        ->when($request->namadosen1, function ($query) use ($request) {
+            return $query->where('dosen1.nama_dosen', 'like', '%'.$request->namadosen1.'%');
+        })
+        ->when($request->namadosen2, function ($query) use ($request) {
+            return $query->where('dosen2.nama_dosen', 'like', '%'.$request->namadosen2.'%');
+        })
+        ->paginate(10);
 
-        return view('skripsi.update_admin')
-        ->with('joins', $joins);
+        return view('skripsi.update_admin')->with('joins', $joins);
     }
 
     function bin() {
@@ -150,8 +142,7 @@ class SkripsiController extends Controller
         ]);
 
         $file_skripsi = $request->file('file');
-        $file_extensi = $file_skripsi->getClientOriginalName();
-        $nama_file = date('ymdhis') . '.' . $file_extensi;
+        $nama_file = $file_skripsi->getClientOriginalName();
         $file_skripsi->move(public_path('storage\pdf\skripsi'), $nama_file);
 
         DB::insert('INSERT INTO skripsi(name, nim, bidang_id,
@@ -209,8 +200,7 @@ class SkripsiController extends Controller
             ]);
 
             $file_skripsi = $request->file('file');
-            $file_extensi = $file_skripsi->getClientOriginalName();
-            $nama_file = date('ymdhis') . '.' . $file_extensi;
+            $nama_file = $file_skripsi->getClientOriginalName();
             $file_skripsi->move(public_path('storage\pdf\skripsi'), $nama_file);
 
             $data_skripsi = Skripsi::where('id_skripsi', $id)->first();
@@ -238,17 +228,22 @@ class SkripsiController extends Controller
 
     function delete($id)
     {
-        DB::delete('DELETE FROM skripsi WHERE id_skripsi = :id_skripsi', ['id_skripsi' => $id]);
-        return redirect()->route('skripsi.update_admin')->with('success', 'Berhasil hapus data KP secara permanen!');
+        $data_kp = Skripsi::where('id_skripsi', $id)->first();
+        File::delete(public_path('storage\pdf\kp') . '/' . $data_kp->file);
+ 
+		// hapus data
+		Skripsi::where('id_skripsi',$id)->delete();
+ 
+		return redirect()->route('skripsi.update_admin')->with('success', 'Berhasil hapus data TA secara permanen!');
     }
 
     function softDelete($id) {
         DB::update('UPDATE skripsi SET deleted_at = 1 WHERE id_skripsi = :id_skripsi', ['id_skripsi' => $id]);
-        return redirect()->route('skripsi.update_admin')->with('success', 'Berhasil hapus data KP secara sementara');
+        return redirect()->route('skripsi.update_admin')->with('success', 'Berhasil hapus data TA secara sementara');
     }
 
     function restore($id){
         DB::update('UPDATE skripsi SET deleted_at = 0 WHERE id_skripsi = :id_skripsi', ['id_skripsi' => $id]);
-        return redirect()->route('skripsi.update_admin')->with('success', 'Data KP telah dikembalikan!');
+        return redirect()->route('skripsi.update_admin')->with('success', 'Data TA telah dikembalikan!');
     }
 }
