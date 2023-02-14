@@ -143,7 +143,7 @@ class SkripsiController extends Controller
 
         $file_skripsi = $request->file('file');
         $nama_file = $file_skripsi->getClientOriginalName();
-        $file_skripsi->move(public_path('storage\pdf\skripsi'), $nama_file);
+        $file_skripsi->move(public_path('storage/pdf/skripsi'), $nama_file);
 
         DB::insert('INSERT INTO skripsi(name, nim, bidang_id,
         tahun, judul, dosen_id, dosen2_id, abstrak, file)
@@ -230,10 +230,10 @@ class SkripsiController extends Controller
     {
         $data_kp = Skripsi::where('id_skripsi', $id)->first();
         File::delete(public_path('storage\pdf\kp') . '/' . $data_kp->file);
- 
+
 		// hapus data
 		Skripsi::where('id_skripsi',$id)->delete();
- 
+
 		return redirect()->route('skripsi.update_admin')->with('success', 'Berhasil hapus data TA secara permanen!');
     }
 

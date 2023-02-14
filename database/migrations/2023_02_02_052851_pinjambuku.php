@@ -18,9 +18,9 @@ return new class extends Migration
             $table->bigIncrements('id_pinjam');
             $table->string('kode_gabungan_final');
             $table->foreign('kode_gabungan_final')->references('kode_gabungan_final')->on('buku')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('nim')->references('nim')->on('users')->onDelete('cascade')->onUpdate('cascade');            
+            $table->foreignId('nim')->references('nim')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->date('akhir_pinjam');
-            $table->date('awal_pinjam')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->date('awal_pinjam')->default(date("Y-m-d H:i:s"));
             $table->timestamps();
 
         });

@@ -152,7 +152,7 @@ class KpController extends Controller
 
         $file_kp = $request->file('file');
         $nama_file = $file_kp->getClientOriginalName();
-        $file_kp->move(public_path('storage\pdf\kp'), $nama_file);
+        $file_kp->move(public_path('storage/pdf/kp'), $nama_file);
 
         DB::insert('INSERT INTO kp(name, nim, bidang_id,
         tahun, judul, perusahaan, lokasi_perusahaan, dosen_id, abstrak, file)
@@ -247,10 +247,10 @@ class KpController extends Controller
         // hapus data kp
         $data_kp = kp::where('id_kp', $id)->first();
         File::delete(public_path('storage\pdf\kp') . '/' . $data_kp->file);
- 
+
 		// hapus data
 		kp::where('id_kp',$id)->delete();
- 
+
 		return redirect()->route('kp.update_admin')->with('success', 'Berhasil hapus data KP secara permanen!');
     }
 

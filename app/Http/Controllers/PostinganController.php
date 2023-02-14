@@ -117,7 +117,7 @@ class PostinganController extends Controller
         $gambar_cover = $request->file('cover_gambar');
         $gambar_extensi = $gambar_cover->getClientOriginalName();
         $nama_gambar = date('ymdhis') . '.' . $gambar_extensi;
-        $gambar_cover->move(public_path('storage\postingan\cover_image'), $nama_gambar);
+        $gambar_cover->move(public_path('storage/postingan/cover_image'), $nama_gambar);
 
         DB::insert('INSERT INTO postingan(judul, deskripsi, category_id,
         cover_gambar)

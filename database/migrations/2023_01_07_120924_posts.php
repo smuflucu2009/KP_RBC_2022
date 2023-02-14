@@ -20,7 +20,7 @@ return new class extends Migration
             $table->longText('deskripsi');
             $table->foreignId('category_id')->references('id')->on('category')->onDelete('cascade')->onUpdate('cascade');
             $table->string('cover_gambar');
-            $table->date('waktu_posting')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->date('waktu_posting')->default(date("Y-m-d H:i:s"));
             $table->tinyInteger('deleted_at')->default('0');
             $table->timestamps();
 
