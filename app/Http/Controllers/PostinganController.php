@@ -161,10 +161,10 @@ class PostinganController extends Controller
             $file_gambar = $request->file('cover_gambar');
             $gambar_extensi = $file_gambar->getClientOriginalName();
             $nama_gambar = date('ymdhis') . '.' . $gambar_extensi;
-            $file_gambar->move(public_path('storage\postingan\cover_image'), $nama_gambar);
+            $file_gambar->move(public_path('storage/postingan/cover_image'), $nama_gambar);
 
             $data_postingan = Postingan::where('id_posting', $id)->first();
-            File::delete(public_path('storage\postingan\cover_image') . '/' . $data_postingan->cover_gambar);
+            File::delete(public_path('storage/postingan/cover_image') . '/' . $data_postingan->cover_gambar);
 
         }
 

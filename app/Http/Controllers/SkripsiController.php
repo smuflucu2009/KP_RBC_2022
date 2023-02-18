@@ -201,10 +201,10 @@ class SkripsiController extends Controller
 
             $file_skripsi = $request->file('file');
             $nama_file = $file_skripsi->getClientOriginalName();
-            $file_skripsi->move(public_path('storage\pdf\skripsi'), $nama_file);
+            $file_skripsi->move(public_path('storage/pdf/skripsi'), $nama_file);
 
             $data_skripsi = Skripsi::where('id_skripsi', $id)->first();
-            File::delete(public_path('storage\pdf\skripsi') . '/' . $data_skripsi->file);
+            File::delete(public_path('storage/pdf/skripsi') . '/' . $data_skripsi->file);
 
         }
 
@@ -229,7 +229,7 @@ class SkripsiController extends Controller
     function delete($id)
     {
         $data_kp = Skripsi::where('id_skripsi', $id)->first();
-        File::delete(public_path('storage\pdf\kp') . '/' . $data_kp->file);
+        File::delete(public_path('storage/pdf/kp') . '/' . $data_kp->file);
 
 		// hapus data
 		Skripsi::where('id_skripsi',$id)->delete();

@@ -212,10 +212,10 @@ class KpController extends Controller
 
             $file_kp = $request->file('file');
             $nama_file = $file_kp->getClientOriginalName();
-            $file_kp->move(public_path('storage\pdf\kp'), $nama_file);
+            $file_kp->move(public_path('storage/pdf/kp'), $nama_file);
 
             $data_kp = kp::where('id_kp', $id)->first();
-            File::delete(public_path('storage\pdf\kp') . '/' . $data_kp->file);
+            File::delete(public_path('storage/pdf/kp') . '/' . $data_kp->file);
 
         } else {
             $kp = Kp::where('id_kp', $id)->first();
@@ -246,7 +246,7 @@ class KpController extends Controller
     {
         // hapus data kp
         $data_kp = kp::where('id_kp', $id)->first();
-        File::delete(public_path('storage\pdf\kp') . '/' . $data_kp->file);
+        File::delete(public_path('storage/pdf/kp') . '/' . $data_kp->file);
 
 		// hapus data
 		kp::where('id_kp',$id)->delete();
