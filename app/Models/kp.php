@@ -40,7 +40,11 @@ class kp extends Model
         "dosen2_id",
         "created_at",
         "updated_at",
-        'file'
+        'file',
+        "deleted_at",
+        "perusahaan",
+        "lokasi_perusahaan"
+
     ];
 
 
@@ -60,7 +64,7 @@ class kp extends Model
     }
 
 
-    
+
 
 }
 

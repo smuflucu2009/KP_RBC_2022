@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
-use App\helpers\ApiFormartter;
-use App\helpers\ApiFormatter;
+
+use App\Helpers\ApiFormatter;
 use App\Models\Bidang;
 use App\Models\Kpsih;
 use App\Models\Postingan;
@@ -82,7 +82,7 @@ class PostController extends Controller
             //       'message' => 'bisa',
             //       'data' => $response
             //   ]);
-            
+
             $kp = Postingan::create([
                 'judul' => $request->judul,
                 'deskripsi' => $request->deskripsi,

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Skripsi;
-use App\helpers\ApiFormatter;
+use App\Helpers\ApiFormatter;
 
 use Illuminate\Http\Request;
 

@@ -34,7 +34,8 @@ class Skripsi extends Model
         "dosen2_id",
         "created_at",
         "updated_at",
-        'file'
+        'file',
+        'deleted_at'
     ];
 
 
