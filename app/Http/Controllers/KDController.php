@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class JurnalController extends Controller
+class KDController extends Controller
 {
     function index() {
-        return view('jurnal.index');
+        return view('kd.index');
     }
 }

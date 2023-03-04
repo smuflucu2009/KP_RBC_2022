@@ -1,14 +1,14 @@
 @extends('boostrap/dasar')
 @section('isi_template')
 <head>
-    <title>Halaman Jurnal</title>
+    <title>Halaman karya dosen</title>
 </head>
 <body>
     <div>
-        <h1>Ini Halaman Jurnal</h1>
+        <h1>Ini Halaman karya dosen</h1>
     </div>
     <div>
-        <h2>Pokok Jurnal</h2>
+        <h2>Karya Dosen Terindeks Scopus</h2>
     </div>
 </body>
 @endsection
