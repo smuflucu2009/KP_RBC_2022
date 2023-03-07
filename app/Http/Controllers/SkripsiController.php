@@ -189,7 +189,7 @@ class SkripsiController extends Controller
             'dosen_id.required' => 'Nama Pembimbing Dosen I wajib diisi',
             'dosen2_id.required' => 'Nama Pembimbing Dosen II wajib diisi',
             'abstrak.required' => 'Abstrak TA wajib diisi',
-            'file.required' => 'File TA wajib diisi, bila tidak ada perubahan. Mohon upload ulang file yang sama',
+            'file.required' => 'Laporan TA wajib diisi',
         ]);
 
         if ($request->hasFile('file')) {

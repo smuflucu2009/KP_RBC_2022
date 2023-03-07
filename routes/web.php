@@ -46,15 +46,10 @@ route::post('/buku/update_admin/softdelete/{id}', [BukuController::class, 'softD
 route::get('/buku/update_admin/restore/{id}', [BukuController::class, 'restore'])->name('buku.restore');
 route::post('/buku/update_admin/pinjam/{id}', [BukuController::class, 'pinjam'])->name('buku.pinjam');
 route::get('/buku/update_admin/kembali/{id}', [BukuController::class, 'kembali'])->name('buku.kembali');
-Route::get('/buku/update_admin/export_excel', [BukuController::class, 'export_excel']);
-Route::post('/buku/update_admin/import_excel', [BukuController::class, 'import_excel']);
-
-route::get('/buku/update_admin/pinjambuku/admin', [PinjamBukuController::class, 'admin'])->name('pinjamb.admin');
 route::get('/buku/update_admin/pinjambuku', [PinjamBukuController::class, 'index'])->name('buku.pinjamb');
 route::get('/buku/update_admin/pinjambuku/create', [PinjamBukuController::class, 'create'])->name('pinjamb.create');
 route::post('/buku/update_admin/pinjambuku/store', [PinjamBukuController::class, 'store'])->name('pinjamb.store');
 route::post('/buku/update_admin/pinjambuku/delete/{id}', [PinjamBukuController::class, 'delete'])->name('pinjamb.delete');
-route::post('/buku/update_admin/delete_all', [BukuController::class, 'delete_all'])->name('buku.delete_all');
 
 route::get('/cariSkripsi', [SkripsiController::class, 'cariSkripsi'])->name('skripsi.cari');
 route::get('/cariSkripsi2', [SkripsiController::class, 'cariSkripsi2'])->name('skripsi.cari2');
