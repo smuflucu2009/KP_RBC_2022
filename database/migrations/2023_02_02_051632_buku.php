@@ -29,7 +29,9 @@ return new class extends Migration
             $table->string('kode_nomor_urut_buku')->nullable();
             $table->string('kode_gabungan_final')->primary();
             $table->tinyInteger('deleted_at')->default('0');
-            $table->tinyInteger('status_pinjam')->default('0');
+            $table->string('status_pinjam')->default('Tersedia');
+            // $table->string('status_pinjam')->nullable();
+            // $table->string('status_pinjam')->default('tersedia')->change();
             $table->timestamps();
 
         });

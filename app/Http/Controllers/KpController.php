@@ -191,6 +191,7 @@ class KpController extends Controller
             'lokasi_perusahaan' => 'required',
             'dosen_id' => 'required',
             'abstrak' => 'required',
+            'file' => 'required',
         ], [
             'name.required' => 'Nama wajib diisi',
             'nim.required' => 'NIM wajib diisi',
@@ -201,6 +202,7 @@ class KpController extends Controller
             'lokasi_perusahaan.required' => 'Alamat Perusahaan wajib diisi',
             'dosen_id.required' => 'Nama Pembimbing Dosen wajib diisi',
             'abstrak.required' => 'Abstrak KP wajib diisi',
+            'file.required' => 'File KP wajib diisi, bila tidak ada perubahan. Mohon upload ulang file yang sama',
         ]);
 
         if ($request->hasFile('file')) {
@@ -217,9 +219,6 @@ class KpController extends Controller
             $data_kp = kp::where('id_kp', $id)->first();
             File::delete(public_path('storage/pdf/kp') . '/' . $data_kp->file);
 
-        } else {
-            $kp = Kp::where('id_kp', $id)->first();
-            $nama_file = $kp->nama_file;
         }
 
         DB::update('UPDATE kp SET name = :name, nim = :nim, bidang_id = :bidang_id,
