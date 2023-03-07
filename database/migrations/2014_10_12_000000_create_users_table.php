@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('nim');
             $table->string('nama');
             $table->string('password');
+            $table->string('status')->default('inactive');
             // $table->string('level', 5);
             $table->rememberToken();
             $table->timestamps();
