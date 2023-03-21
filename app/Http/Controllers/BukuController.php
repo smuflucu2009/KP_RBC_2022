@@ -76,7 +76,7 @@ class BukuController extends Controller
     public function delete_all()
 	{
 		DB::table('buku')->delete();
-        return redirect()->route('buku.delete_all')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('buku.update_admin')->with('success', 'Data berhasil dihapus');
 	}
 
     function update_admin(Request $request) {      
@@ -269,16 +269,6 @@ class BukuController extends Controller
         DB::delete('DELETE FROM buku WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
         return redirect()->route('buku.update_admin')->with('success', 'Berhasil hapus data buku secara permanen!');
     }
-
-    // function softDelete($id) {
-    //     DB::update('UPDATE buku SET deleted_at = 1 WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
-    //     return redirect()->route('buku.update_admin')->with('success', 'Berhasil hapus data buku secara sementara');
-    // }
-
-    // function restore($id){
-    //     DB::update('UPDATE buku SET deleted_at = 0 WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
-    //     return redirect()->route('buku.update_admin')->with('success', 'Data buku telah dikembalikan!');
-    // }
 
     function pinjam($id) {
         DB::update('UPDATE buku SET status_pinjam = 1 WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
