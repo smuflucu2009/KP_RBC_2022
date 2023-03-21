@@ -14,8 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('buku', function (Blueprint $table) {
-            // kode_gabungan_final -> id
-            // $table->id()->primary();
             $table->integer("tanggal_masuk")->nullable();
             $table->string('judul_buku')->nullable();
             $table->string('penulis')->nullable();
@@ -29,7 +27,7 @@ return new class extends Migration
             $table->string('kode_nomor_urut_buku')->nullable();
             $table->string('kode_gabungan_final')->primary();
             $table->tinyInteger('deleted_at')->default('0');
-            $table->tinyInteger('status_pinjam')->default('0');
+            $table->string('status_pinjam')->default('Tersedia');
             $table->timestamps();
 
         });
