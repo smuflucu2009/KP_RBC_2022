@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <li class="nav-item dropbtn"> <a href="/faq">FAQ</a> </li>
-                <button class="btn-primary float-right btn-login" type="submit" href="/">Login</button>
+                <button class="btn-primary float-right btn-login" type="submit" href="/sesi/logout">Logout</button>
             </ul>
            
         </div>
@@ -68,6 +68,7 @@
 </head>
 
 <body>
+    @include('boostrap/menu')
     @include('boostrap/pesan')
     @yield('isi_template')
 </body>

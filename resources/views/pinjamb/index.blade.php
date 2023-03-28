@@ -25,7 +25,7 @@
                         <th>Tanggal Peminjaman</th>
                         <th>Tanggal Pengembalian</th>
                         <th>Status Pengembalian</th>
-                        <th>Aksi</th>
+                        {{-- <th>Aksi</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -40,12 +40,12 @@
                             <td>{{ $join->tanggal_peminjaman}}</td>
                             <td>{{ $join->tanggal_pengembalian}}</td>
                             <td>{{ $join->kadaluarsa}}</td>
-                            <td>
+                            {{-- <td>
                                 <form onsubmit="return confirm('Yakin ingin menghapus permanen data ini?')" class="d-inline" action="{{ route('pinjamb.delete', $join->id_pinjam) }}" method="post">
                                     @csrf
                                     <button type="submit" name="submit" class="btn btn-danger btn-sm">Hapus</button>
                                 </form>
-                            </td>
+                            </td> --}}
                         </tr>
                       @endforeach
                   </tbody>
