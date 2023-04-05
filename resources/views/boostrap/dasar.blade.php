@@ -4,7 +4,7 @@
 <head>
     <nav class="navbar sticky-top navbar-expand-lg  navbar-light nav">
         <a class="navbar-brand" href="/">
-            <img src="asset/logo.png">
+            <img src="{{asset('asset/logo.png')}}">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #FDFDFF">
@@ -41,9 +41,25 @@
                     </div>
                 </div>
                 <li class="nav-item dropbtn"> <a href="/faq">FAQ</a> </li>
-                <button class="btn-primary float-right btn-login" type="submit" href="/sesi/logout">Logout</button>
+
+                @auth
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Hello, {{ auth()->user()->nama }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </li>
+                    @else
+                    <button class="btn-primary float-right btn-login" onclick="location.href = '/sesi'">Login</button>
+                @endauth
+
             </ul>
-           
+
         </div>
     </nav>
 
@@ -53,10 +69,11 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
-    <link href="css/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,7 +85,6 @@
 </head>
 
 <body>
-    @include('boostrap/menu')
     @include('boostrap/pesan')
     @yield('isi_template')
 </body>
@@ -76,7 +92,7 @@
 <footer class="footer">
     <div class="row" style="padding-top: 67px">
         <div class="col-sm-3">
-            <img src='asset/logo_footer.png' class="img-fluid" alt="Responsive image"/>
+            <img src="{{asset('asset/logo_footer.png')}}"class="img-fluid" alt="Responsive image">
         </div>
         <div class="col-sm-3">
             <h4> KONTAK </h4>
