@@ -16,6 +16,7 @@ use App\Http\Controllers\SkripsiController;
 use App\Http\Controllers\TAController;
 use App\Models\artikel;
 use App\Models\Postingan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,37 +32,19 @@ use Illuminate\Support\Facades\Route;
 
 route::get('/', [PembukaController::class, 'index'])->name('home.index');
 
-route::get('/sesi', [SessionController::class, 'index'])->middleware('isTamu');
-route::post('/sesi/login', [SessionController::class, 'login'])->middleware('isTamu');
-route::get('/sesi/logout', [SessionController::class, 'logout'])->name('session.logout');
-route::post('/sesi/create', [SessionController::class, 'create'])->middleware('isTamu');
-route::get('/sesi/register', [SessionController::class, 'register'])->name('session.register')->middleware('isTamu');
-
-route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
-route::get('/buku/update_admin', [BukuController::class, 'update_admin'])->name('buku.update_admin')->middleware('isLogin');
-route::get('/buku/detail/{id}', [BukuController::class, 'detail_buku'])->name('buku.detail_buku')->middleware('isLogin');
-// route::get('/buku/cariJP', [BukuController::class, 'cariJP'])->name('buku.cariJP');
-// route::get('/buku/cariDJP', [BukuController::class, 'cariDJP'])->name('buku.cariDJP');
-route::get('/buku/update_admin/create', [BukuController::class, 'create'])->name('buku.create')->middleware('isLogin');
-route::post('/buku/update_admin/store', [BukuController::class, 'store'])->name('buku.store')->middleware('isLogin');
-// route::get('/caribuku', [BukuController::class, 'caribuku'])->name('buku.cari');
-route::get('/buku/update_admin/edit/{id}', [BukuController::class, 'edit'])->name('buku.edit')->middleware('isLogin');
-route::post('/buku/update_admin/update/{id}', [BukuController::class, 'update'])->name('buku.update')->middleware('isLogin');
-// route::get('/buku/update_admin/bin', [BukuController::class, 'bin'])->name('buku.bin');
-route::post('/buku/update_admin/delete/{id}', [BukuController::class, 'delete'])->name('buku.delete')->middleware('isLogin');
+// route::get('/sesi', [SessionController::class, 'index'])->middleware('isTamu');
+// route::post('/sesi/login', [SessionController::class, 'login'])->middleware('isTamu');
+// route::get('/sesi/logout', [SessionController::class, 'logout'])->name('session.logout');
+// route::post('/sesi/create', [SessionController::class, 'create'])->middleware('isTamu');
+// route::get('/sesi/register', [SessionController::class, 'register'])->name('session.register')->middleware('isTamu');
 // route::post('/buku/update_admin/softdelete/{id}', [BukuController::class, 'softDelete'])->name('buku.softdelete');
 // route::get('/buku/update_admin/restore/{id}', [BukuController::class, 'restore'])->name('buku.restore');
-route::post('/buku/update_admin/pinjam/{id}', [BukuController::class, 'pinjam'])->name('buku.pinjam')->middleware('isLogin');
-route::get('/buku/update_admin/kembali/{id}', [BukuController::class, 'kembali'])->name('buku.kembali');
-Route::get('/buku/update_admin/export_excel', [BukuController::class, 'export_excel'])->middleware('isLogin');
-Route::post('/buku/update_admin/import_excel', [BukuController::class, 'import_excel'])->middleware('isLogin');
+// route::get('/buku/cariJP', [BukuController::class, 'cariJP'])->name('buku.cariJP');
+// route::get('/buku/cariDJP', [BukuController::class, 'cariDJP'])->name('buku.cariDJP');
+// route::get('/caribuku', [BukuController::class, 'caribuku'])->name('buku.cari');
+// route::get('/buku/update_admin/bin', [BukuController::class, 'bin'])->name('buku.bin');
 
-route::get('/buku/update_admin/pinjambuku/admin', [PinjamBukuController::class, 'admin'])->name('pinjamb.admin')->middleware('isLogin');
-route::get('/buku/update_admin/pinjambuku', [PinjamBukuController::class, 'index'])->name('buku.pinjamb')->middleware('isLogin');
-route::get('/buku/update_admin/pinjambuku/create', [PinjamBukuController::class, 'create'])->name('pinjamb.create')->middleware('isLogin');
-route::post('/buku/update_admin/pinjambuku/store', [PinjamBukuController::class, 'store'])->name('pinjamb.store')->middleware('isLogin');
-route::post('/buku/update_admin/pinjambuku/delete/{id}', [PinjamBukuController::class, 'delete'])->name('pinjamb.delete')->middleware('isLogin');
-route::post('/buku/update_admin/delete_all', [BukuController::class, 'delete_all'])->name('buku.delete_all')->middleware('isLogin');
+route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
 
 route::get('/cariSkripsi', [SkripsiController::class, 'cariSkripsi'])->name('skripsi.cari');
 route::get('/cariSkripsi2', [SkripsiController::class, 'cariSkripsi2'])->name('skripsi.cari2');
@@ -116,3 +99,27 @@ route::get('/pustakawan', [PustakawanController::class, 'index'])->name('pustaka
 route::get('/visi', [PustakawanController::class, 'visi'])->name('pustakawan.visi');
 route::get('/jam', [PustakawanController::class, 'jam'])->name('pustakawan.jam');
 route::get('/faq', [PembukaController::class, 'faq'])->name('pembuka.faq');
+
+Route::middleware(['auth'])->group(function () {
+    route::get('/buku/update_admin', [BukuController::class, 'update_admin'])->name('buku.update_admin');
+    route::get('/buku/detail/{id}', [BukuController::class, 'detail_buku'])->name('buku.detail_buku');
+    route::get('/buku/update_admin/create', [BukuController::class, 'create'])->name('buku.create');
+    route::post('/buku/update_admin/store', [BukuController::class, 'store'])->name('buku.store');
+    route::get('/buku/update_admin/edit/{id}', [BukuController::class, 'edit'])->name('buku.edit');
+    route::post('/buku/update_admin/update/{id}', [BukuController::class, 'update'])->name('buku.update');
+    route::post('/buku/update_admin/delete/{id}', [BukuController::class, 'delete'])->name('buku.delete');
+    route::post('/buku/update_admin/pinjam/{id}', [BukuController::class, 'pinjam'])->name('buku.pinjam');
+    route::get('/buku/update_admin/kembali/{id}', [BukuController::class, 'kembali'])->name('buku.kembali');
+    Route::get('/buku/update_admin/export_excel', [BukuController::class, 'export_excel']);
+    Route::post('/buku/update_admin/import_excel', [BukuController::class, 'import_excel']);
+    
+    route::get('/buku/update_admin/pinjambuku/admin', [PinjamBukuController::class, 'admin'])->name('pinjamb.admin');
+    route::get('/buku/update_admin/pinjambuku', [PinjamBukuController::class, 'index'])->name('buku.pinjamb');
+    route::get('/buku/update_admin/pinjambuku/create', [PinjamBukuController::class, 'create'])->name('pinjamb.create');
+    route::post('/buku/update_admin/pinjambuku/store', [PinjamBukuController::class, 'store'])->name('pinjamb.store');
+    route::post('/buku/update_admin/pinjambuku/delete/{id}', [PinjamBukuController::class, 'delete'])->name('pinjamb.delete');
+    route::post('/buku/update_admin/delete_all', [BukuController::class, 'delete_all'])->name('buku.delete_all');
+});
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

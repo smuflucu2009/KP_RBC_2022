@@ -55,7 +55,7 @@
                     </div>
                   </li>
                     @else
-                    <button class="btn-primary float-right btn-login" onclick="location.href = '/sesi'">Login</button>
+                    <button class="btn-primary float-right btn-login" onclick="location.href = '/login'">Login</button>
                 @endauth
 
             </ul>
