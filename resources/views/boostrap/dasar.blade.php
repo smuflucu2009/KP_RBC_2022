@@ -44,14 +44,17 @@
 
                 @auth
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn-primary float-right btn-login dropbtn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Hello, {{ auth()->user()->nama }}
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-content" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">My Account</a>
+                      <a class="dropdown-item" href="#">Dashboard</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
+                      <form action="/logout" method="post">
+                        @csrf
+                          <button type="submit" class="dropwdown-item border-0 bg-white px-3"><i class="bi bi-box-arrow-right"></i>Logout</button>
+                        </form>
                     </div>
                   </li>
                     @else
