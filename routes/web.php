@@ -11,6 +11,9 @@ use App\Http\Controllers\PembukaController;
 use App\Http\Controllers\PinjamBukuController;
 use App\Http\Controllers\PostinganController;
 use App\Http\Controllers\PustakawanController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SesiController;
 use App\Http\Controllers\SkripsiController;
 use App\Http\Controllers\TAController;
 use App\Models\artikel;
@@ -28,28 +31,55 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-route::get('/', [PembukaController::class, 'index'])->name('home.index');
+route::middleware(['guest'])->group(function() {
+    
+    Route::get('/', [SesiController::class, 'index'])->name('login');
+    Route::post('/', [SesiController::class, 'login']);
+
+});
+
+Route::get('/home', function () {
+    return redirect('/role');
+});
+
+Route::get('/register', [SesiController::class, 'register']);
+
+route::middleware(['auth'])->group(function() {
+    
+    Route::get('/role', [RoleController::class, 'index']);
+    Route::get('/admin', [RoleController::class, 'admin'])->middleware('userAkses:admin')->name('admin.index');
+    Route::get('/koor', [RoleController::class, 'koor'])->middleware('userAkses:koor')->name('koor.index');
+    Route::get('/logout', [SesiController::class, 'logout']);    
+    route::get('/buku/detail/{id}', [BukuController::class, 'detail_buku'])->name('buku.detail_buku');
+    route::get('/buku/update_admin', [BukuController::class, 'update_admin'])->name('buku.update_admin');
+    route::get('/buku/update_admin/create', [BukuController::class, 'create'])->name('buku.create');
+    route::post('/buku/update_admin/store', [BukuController::class, 'store'])->name('buku.store');
+    route::get('/caribuku', [BukuController::class, 'caribuku'])->name('buku.cari');
+    route::get('/buku/update_admin/edit/{id}', [BukuController::class, 'edit'])->name('buku.edit');
+    route::post('/buku/update_admin/update/{id}', [BukuController::class, 'update'])->name('buku.update');
+    route::get('/buku/update_admin/bin', [BukuController::class, 'bin'])->name('buku.bin');
+    route::post('/buku/update_admin/delete/{id}', [BukuController::class, 'delete'])->name('buku.delete');
+    route::post('/buku/update_admin/softdelete/{id}', [BukuController::class, 'softDelete'])->name('buku.softdelete');
+    route::get('/buku/update_admin/restore/{id}', [BukuController::class, 'restore'])->name('buku.restore');
+    route::post('/buku/update_admin/pinjam/{id}', [BukuController::class, 'pinjam'])->name('buku.pinjam');
+    route::get('/buku/update_admin/kembali/{id}', [BukuController::class, 'kembali'])->name('buku.kembali');
+    Route::get('/buku/update_admin/export_excel', [BukuController::class, 'export_excel']);
+    Route::post('/buku/update_admin/import_excel', [BukuController::class, 'import_excel']);
+});
+
+
+route::get('/home2', [PembukaController::class, 'index'])->name('home.index');
 
 route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
-route::get('/buku/update_admin', [BukuController::class, 'update_admin'])->name('buku.update_admin');
-route::get('/buku/detail/{id}', [BukuController::class, 'detail_buku'])->name('buku.detail_buku');
 route::get('/buku/cariJP', [BukuController::class, 'cariJP'])->name('buku.cariJP');
 route::get('/buku/cariDJP', [BukuController::class, 'cariDJP'])->name('buku.cariDJP');
-route::get('/buku/update_admin/create', [BukuController::class, 'create'])->name('buku.create');
-route::post('/buku/update_admin/store', [BukuController::class, 'store'])->name('buku.store');
-route::get('/caribuku', [BukuController::class, 'caribuku'])->name('buku.cari');
-route::get('/buku/update_admin/edit/{id}', [BukuController::class, 'edit'])->name('buku.edit');
-route::post('/buku/update_admin/update/{id}', [BukuController::class, 'update'])->name('buku.update');
-route::get('/buku/update_admin/bin', [BukuController::class, 'bin'])->name('buku.bin');
-route::post('/buku/update_admin/delete/{id}', [BukuController::class, 'delete'])->name('buku.delete');
-route::post('/buku/update_admin/softdelete/{id}', [BukuController::class, 'softDelete'])->name('buku.softdelete');
-route::get('/buku/update_admin/restore/{id}', [BukuController::class, 'restore'])->name('buku.restore');
-route::post('/buku/update_admin/pinjam/{id}', [BukuController::class, 'pinjam'])->name('buku.pinjam');
-route::get('/buku/update_admin/kembali/{id}', [BukuController::class, 'kembali'])->name('buku.kembali');
+
+route::get('/buku/update_admin/pinjambuku/admin', [PinjamBukuController::class, 'admin'])->name('pinjamb.admin');
 route::get('/buku/update_admin/pinjambuku', [PinjamBukuController::class, 'index'])->name('buku.pinjamb');
 route::get('/buku/update_admin/pinjambuku/create', [PinjamBukuController::class, 'create'])->name('pinjamb.create');
 route::post('/buku/update_admin/pinjambuku/store', [PinjamBukuController::class, 'store'])->name('pinjamb.store');
 route::post('/buku/update_admin/pinjambuku/delete/{id}', [PinjamBukuController::class, 'delete'])->name('pinjamb.delete');
+route::post('/buku/update_admin/delete_all', [BukuController::class, 'delete_all'])->name('buku.delete_all');
 
 route::get('/cariSkripsi', [SkripsiController::class, 'cariSkripsi'])->name('skripsi.cari');
 route::get('/cariSkripsi2', [SkripsiController::class, 'cariSkripsi2'])->name('skripsi.cari2');

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\BukuExport;
+use App\Imports\BukuImport;
 use App\Models\buku;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BukuController extends Controller
 {
@@ -38,6 +41,43 @@ class BukuController extends Controller
         
         return view('buku.index', ['data' => $data->paginate(10)]);
     }
+
+    public function export_excel()
+	{
+		return Excel::download(new BukuExport, 'buku.xlsx');
+	}
+
+    public function import_excel(Request $request) 
+	{
+		// validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file_buku',$nama_file);
+ 
+		// import data
+		Excel::import(new BukuImport, public_path('/file_buku/'.$nama_file));
+ 
+		// notifikasi dengan session
+		Session::flash('sukses','Data Buku Berhasil Diimport!');
+ 
+		// alihkan halaman kembali
+		return redirect('/buku/update_admin');
+	}
+
+    public function delete_all()
+	{
+		DB::table('buku')->delete();
+        return redirect()->route('buku.update_admin')->with('success', 'Data berhasil dihapus');
+	}
 
     function update_admin(Request $request) {
         // $data = DB::select('SELECT * FROM buku where deleted_at = 0');

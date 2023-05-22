@@ -41,7 +41,24 @@
                     </div>
                 </div>
                 <li class="nav-item dropbtn"> <a href="/faq">FAQ</a> </li>
-                <button class="btn-primary float-right btn-login" type="submit" href="/">Login</button>
+                @auth
+                <li class="nav-item dropdown">
+                    <a class="btn-primary float-right btn-login dropbtn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Hello, {{ auth()->user()->nama }}
+                    </a>
+                    <div class="dropdown-content" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">My Account</a>
+                      <a class="dropdown-item" href="#">Dashboard</a>
+                      <div class="dropdown-divider"></div>
+                      <form action="/logout" method="post">
+                        @csrf
+                          <button type="submit" class="dropwdown-item border-0 bg-white px-3"><i class="bi bi-box-arrow-right"></i>Logout</button>
+                        </form>
+                    </div>
+                  </li>
+                    @else
+                    <button class="btn-primary float-right btn-login" onclick="location.href = '/login'">Login</button>
+                @endauth
             </ul>
            
         </div>
