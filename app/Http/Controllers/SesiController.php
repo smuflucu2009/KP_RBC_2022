@@ -30,7 +30,7 @@ class SesiController extends Controller
 
         if(Auth::attempt($infologin)){
 
-            return redirect('/role');
+            return redirect('');
 
             // if (Auth::user()->role == 'mahasiswa'){
             //     return redirect('');
@@ -40,13 +40,13 @@ class SesiController extends Controller
             //     return redirect('/koor');
             // }
         }else{
-            return redirect('')->withErrors('Ada yang error')->withInput();
+            return redirect('/login')->withErrors('Ada yang error')->withInput();
         };
     }
 
     function logout() {
         Auth::logout();
-        return redirect('');
+        return redirect('/login');
     }
 
     function register() {
