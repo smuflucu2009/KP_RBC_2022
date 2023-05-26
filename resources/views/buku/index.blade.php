@@ -8,9 +8,12 @@
         <h1>Halaman Buku</h1>
     </div>
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <div class="pb-3">
+        @if (Auth::check() && Auth::user()->role == 'admin')
             <a href='/buku/update_admin' class="btn btn-primary">Update Buku</a>
-        </div>
+        @endif
+        {{-- <div class="pb-3">
+            
+        </div> --}}
         {{-- <div class="pb-3">
             <form action="" method="GET" >
             <input type="search" name="caribuku" placeholder="Cari...">

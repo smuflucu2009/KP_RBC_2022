@@ -7,9 +7,9 @@
     <div>
         <h1>Halaman Skripsi</h1>
     </div>
-    <div>
+    @if (Auth::check() && Auth::user()->role == 'admin')
         <a href="/skripsi/update_admin" class="btn btn-info">Update</a>
-    </div>
+    @endif
     <form action="/ta" method="get">
         @csrf
         <div class="row mb-3">

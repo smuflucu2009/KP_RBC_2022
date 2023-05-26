@@ -9,7 +9,7 @@
     <title>Login</title>
 </head>
 <body>
-    <h3>Berhasil</h3>
-    <a href='/logout' class="btn btn-primary">logout</a> 
+    <h1>Mohon maaf, tidak ada akses...</h1>
+    <a href="/" class="btn btn-info">kembali</a>
 </body>
 </html>

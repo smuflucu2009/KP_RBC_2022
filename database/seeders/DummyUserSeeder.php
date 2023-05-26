@@ -17,25 +17,25 @@ class DummyUserSeeder extends Seeder
     {
         $userdata = [
             [
-                'nama' => 'Admin Tampan dan Cantik (??)',
-                'nim' => '1',
-                'email' => 'adminrbc2008@gmail.com',
+                'nama' => 'Admin Tampan atau Cantik (??)',
+                'nim' => '123',
+                'email' => 'adminrbctekkom@gmail.com',
                 'role' => 'admin',
                 'password' =>bcrypt('tekkom2008')
             ],
             [
                 'nama' => 'Mahasiswa Teladan',
-                'nim' => '2',
+                'nim' => '213',
                 'email' => 'mahasiswa@gmail.com',
                 'role' => 'mahasiswa',
-                'password' =>bcrypt('mahasiswa')
+                'password' =>bcrypt('123')
             ],
             [
                 'nama' => 'Koordinator RBC',
-                'nim' => '3',
-                'email' => 'koordinatorrbc@gmail.com',
+                'nim' => '321',
+                'email' => 'koormbakeve2022@gmail.com',
                 'role' => 'koor',
-                'password' =>bcrypt('rbc2022')
+                'password' =>bcrypt('koormbakeve2022')
             ]
         ];
 

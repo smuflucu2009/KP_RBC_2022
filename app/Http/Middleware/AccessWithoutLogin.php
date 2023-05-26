@@ -4,9 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
-class UserAkses
+class AccessWithoutLogin
 {
     /**
      * Handle an incoming request.
@@ -15,12 +16,14 @@ class UserAkses
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, $role): Response
+    public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->role == $role) {
+        if (Auth::check()) {
+            // Jika pengguna sudah terotentikasi, lanjutkan ke rute yang diinginkan
             return $next($request);
         }
-            // return response()->json('Hayo, mau ngapain..');
-            return redirect('/role');
+
+        // Jika pengguna belum terotentikasi, berikan akses ke rute yang diinginkan
+            return $next($request);
     }
 }

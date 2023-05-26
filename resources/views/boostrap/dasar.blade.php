@@ -12,6 +12,29 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                @if (Auth::check() && Auth::user()->role == 'admin')
+                <div class="dropdown">
+                    <li class="nav-item dropdown"> <button class="dropbtn"><span style="white-space:nowrap">Admin <label
+                                class="arrow_down"></label></span></button> </li>
+                    <div class="dropdown-content">
+                        <a class="nav-link" aria-current="page" href="/buku/update_admin">Koleksi Tercetak</a>
+                        <a class="nav-link" href="/skripsi/update_admin">Tugas Akhir Digital</a>
+                        <a class="nav-link" href="/kp/update_admin">Kerja Praktek Digital</a>
+                        <a class="nav-link" href="/buku/update_admin/pinjambuku">Peminjaman Buku</a>
+                    </div>
+                </div>
+                @endif
+                @if (Auth::check() && Auth::user()->role == 'koor')
+                <div class="dropdown">
+                    <li class="nav-item dropdown"> <button class="dropbtn"><span style="white-space:nowrap">Koor <label
+                                class="arrow_down"></label></span></button> </li>
+                    <div class="dropdown-content">
+                        <a class="nav-link" aria-current="page" href="/buku">Koleksi Tercetak</a>
+                        <a class="nav-link" href="/ta">Tugas Akhir Digital</a>
+                        <a class="nav-link" href="/kp">Kerja Praktek Digital</a>
+                    </div>
+                </div>
+                @endif
                 <div class="dropdown">
                     <li class="nav-item dropdown"><button class="dropbtn"> <span style="white-space:nowrap"> Profil <label
                                 class="arrow_down"></label></span></button></li>
@@ -28,7 +51,7 @@
                         <a class="nav-link" aria-current="page" href="/buku">Koleksi Tercetak</a>
                         <a class="nav-link" href="/ta">Tugas Akhir Digital</a>
                         <a class="nav-link" href="/kp">Kerja Praktek Digital</a>
-                        <a class="nav-link" href="/kd">Karya Dosen Terindeks Scopus</a>
+                        {{-- <a class="nav-link" href="/kd">Karya Dosen Terindeks Scopus</a> --}}
                     </div>
                 </div>
                 <div class="dropdown">
@@ -47,10 +70,10 @@
                       Hello, {{ auth()->user()->nama }}
                     </a>
                     <div class="dropdown-content" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">My Account</a>
-                      <a class="dropdown-item" href="#">Dashboard</a>
+                      {{-- <a class="dropdown-item" href="#">My Account</a>
+                      <a class="dropdown-item" href="#">Dashboard</a> --}}
                       <div class="dropdown-divider"></div>
-                      <form action="/logout" method="post">
+                      <form action="/logout" method="get">
                         @csrf
                           <button type="submit" class="dropwdown-item border-0 bg-white px-3"><i class="bi bi-box-arrow-right"></i>Logout</button>
                         </form>

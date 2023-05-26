@@ -39,6 +39,9 @@
             <div class="mb-3 d-grid">
                 <button name="submit" type="submit" class="btn btn-primary">Login</button>
             </div>
+            <div class="mb-3 d-grid">
+                <a href='/register' class="btn btn-warning">Daftar</a>
+            </div>
         </form>
     </div> 
     </div>

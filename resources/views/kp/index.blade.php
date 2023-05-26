@@ -7,9 +7,9 @@
     <div>
         <h1>Halaman KP</h1>
     </div>
-    <div>
-        <a href="/kp/update_admin" class="btn btn-info">Update</a>
-    </div>
+    @if (Auth::check() && Auth::user()->role == 'admin')
+    <a href="/kp/update_admin" class="btn btn-info">Update</a>
+    @endif
     <form action="/kp" method="get">
         @csrf
         <div class="row mb-3">
