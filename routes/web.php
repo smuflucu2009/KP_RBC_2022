@@ -67,8 +67,8 @@ route::middleware(['auth'])->group(function() {
 
     // Peminjaman buku
     route::get('/buku/update_admin/pinjambuku', [PinjamBukuController::class, 'index'])->name('buku.pinjamb')->middleware('userAkses:admin');
-    route::get('/buku/update_admin/pinjambuku/create', [PinjamBukuController::class, 'create'])->name('pinjamb.create')->middleware('userAkses:admin');
-    route::post('/buku/update_admin/pinjambuku/store', [PinjamBukuController::class, 'store'])->name('pinjamb.store')->middleware('userAkses:admin');
+    route::get('/buku/update_admin/pinjambuku/create', [PinjamBukuController::class, 'create'])->name('pinjamb.create');
+    route::post('/buku/update_admin/pinjambuku/store', [PinjamBukuController::class, 'store'])->name('pinjamb.store');
     route::post('/buku/update_admin/pinjambuku/delete/{id}', [PinjamBukuController::class, 'delete'])->name('pinjamb.delete')->middleware('userAkses:admin');
 
     // TA / Skripsi
@@ -89,7 +89,7 @@ route::middleware(['auth'])->group(function() {
     route::post('/kp/update_admin/update/{id}', [KpController::class, 'update'])->name('kp.update')->middleware('userAkses:admin');
     route::post('/kp/update_admin/delete/{id}', [KpController::class, 'delete'])->name('kp.delete')->middleware('userAkses:admin');
     Route::post('/kp/update_admin/import_excel', [KpController::class, 'import_excel'])->middleware('userAkses:admin');
-    
+
 });
 
 //home
