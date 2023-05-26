@@ -126,7 +126,8 @@ route::get('/cariKP2', [KpController::class, 'cariKP2'])->name('kp.cari2');
 // route::get('/kp/update_admin/bin', [KpController::class, 'bin'])->name('kp.bin');
 route::post('/kp/update_admin/softdelete/{id}', [KpController::class, 'softDelete'])->name('kp.softdelete');
 route::get('/kp/update_admin/restore/{id}', [KpController::class, 'restore'])->name('kp.restore');
-
+Route::get('/kp/update_admin/export_excel', [KpController::class, 'export_excel']);
+Route::post('/kp/update_admin/import_excel', [KpController::class, 'import_excel']);
 route::get('/kd', [KDController::class, 'index'])->name('kd.index');
 
 route::get('/fasilitas', [FasilitasController::class, 'index'])->name('fasilitas.index');

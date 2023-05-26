@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Auth;
 class RoleController extends Controller
 {
     function index() {
-        return view('/role');
+        echo 'Selamat Datang';
+        // return view('/role');
     }
 
     function admin() {

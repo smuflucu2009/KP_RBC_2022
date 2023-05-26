@@ -30,7 +30,7 @@ class SesiController extends Controller
 
         if(Auth::attempt($infologin)){
 
-            return redirect('');
+            return redirect('/role');
 
             // if (Auth::user()->role == 'mahasiswa'){
             //     return redirect('');
