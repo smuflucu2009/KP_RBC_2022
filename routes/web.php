@@ -4,6 +4,7 @@ use App\Http\Controllers\API\KPController as APIKPController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\FasilitasController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\JurnalController;
 use App\Http\Controllers\KDController;
 use App\Http\Controllers\KpController;
@@ -55,12 +56,8 @@ route::middleware(['auth'])->group(function() {
     route::post('/buku/update_admin/store', [BukuController::class, 'store'])->name('buku.store')->middleware('userAkses:admin');    
     route::get('/buku/update_admin/edit/{id}', [BukuController::class, 'edit'])->name('buku.edit')->middleware('userAkses:admin');
     route::post('/buku/update_admin/update/{id}', [BukuController::class, 'update'])->name('buku.update')->middleware('userAkses:admin');
-    route::get('/buku/update_admin/bin', [BukuController::class, 'bin'])->name('buku.bin')->middleware('userAkses:admin');
     route::post('/buku/update_admin/delete/{id}', [BukuController::class, 'delete'])->name('buku.delete')->middleware('userAkses:admin');
-    route::post('/buku/update_admin/softdelete/{id}', [BukuController::class, 'softDelete'])->name('buku.softdelete')->middleware('userAkses:admin');
-    route::get('/buku/update_admin/restore/{id}', [BukuController::class, 'restore'])->name('buku.restore')->middleware('userAkses:admin');
     route::post('/buku/update_admin/pinjam/{id}', [BukuController::class, 'pinjam'])->name('buku.pinjam')->middleware('userAkses:admin');
-    route::get('/buku/update_admin/kembali/{id}', [BukuController::class, 'kembali'])->name('buku.kembali')->middleware('userAkses:admin');
     Route::get('/buku/update_admin/export_excel', [BukuController::class, 'export_excel'])->middleware('userAkses:admin');
     Route::post('/buku/update_admin/import_excel', [BukuController::class, 'import_excel'])->middleware('userAkses:admin');
     route::post('/buku/update_admin/delete_all', [BukuController::class, 'delete_all'])->name('buku.delete_all')->middleware('userAkses:admin');
@@ -94,17 +91,24 @@ route::middleware(['auth'])->group(function() {
 
     // Postingan
     route::get('/postingan', [PostinganController::class, 'index'])->name('postingan.index')->middleware('userAkses:admin');
-    route::get('/postingan/update_admin', [PostinganController::class, 'update_admin'])->name('postingan.update_admin')->middleware('userAkses:admin');
-    route::get('/caripostingan', [PostinganController::class, 'caripostingan'])->name('postingan.cari')->middleware('userAkses:admin');
-    route::get('/caripostingan2', [PostinganController::class, 'caripostingan2'])->name('postingan.cari2')->middleware('userAkses:admin');
     route::get('/postingan/detail/{id}', [PostinganController::class, 'detail_postingan'])->name('postingan.detail_postingan');
-    route::get('/postingan/update_admin/detail/{id}', [PostinganController::class, 'detail_postingan_admin'])->name('postingan.detail_postingan_admin')->middleware('userAkses:admin');
-    route::get('/postingan/update_admin/create', [PostinganController::class, 'create'])->name('postingan.create')->middleware('userAkses:admin');
-    route::post('/postingan/update_admin/store', [PostinganController::class, 'store'])->name('postingan.store')->middleware('userAkses:admin');
-    route::get('/postingan/update_admin/edit/{id}', [PostinganController::class, 'edit'])->name('postingan.edit')->middleware('userAkses:admin');
-    route::post('/postingan/update_admin/update/{id}', [PostinganController::class, 'update'])->name('postingan.update')->middleware('userAkses:admin');
-    route::post('/postingan/update_admin/delete/{id}', [PostinganController::class, 'delete'])->name('postingan.delete')->middleware('userAkses:admin');
+    route::get('/caripostingan', [PostinganController::class, 'caripostingan'])->name('postingan.cari')->middleware('userAkses:admin');
+    route::get('/postingan/create', [PostinganController::class, 'create'])->name('postingan.create')->middleware('userAkses:admin');
+    route::post('/postingan/store', [PostinganController::class, 'store'])->name('postingan.store')->middleware('userAkses:admin');
+    route::get('/postingan/edit/{id}', [PostinganController::class, 'edit'])->name('postingan.edit')->middleware('userAkses:admin');
+    route::post('/postingan/update/{id}', [PostinganController::class, 'update'])->name('postingan.update')->middleware('userAkses:admin');
+    route::post('/postingan/delete/{id}', [PostinganController::class, 'delete'])->name('postingan.delete')->middleware('userAkses:admin');
+
     
+    // Galery
+    route::get('/galery', [GalleryController::class, 'index'])->name('galery.index')->middleware('userAkses:admin');
+    route::get('/carigalery', [GalleryController::class, 'carigalery'])->name('galery.cari')->middleware('userAkses:admin');
+    route::get('/galery/create', [GalleryController::class, 'create'])->name('galery.create')->middleware('userAkses:admin');
+    route::post('/galery/store', [GalleryController::class, 'store'])->name('galery.store')->middleware('userAkses:admin');
+    route::get('/galery/edit/{id}', [GalleryController::class, 'edit'])->name('galery.edit')->middleware('userAkses:admin');
+    route::post('/galery/update/{id}', [GalleryController::class, 'update'])->name('galery.update')->middleware('userAkses:admin');
+    route::post('/galery/delete/{id}', [GalleryController::class, 'delete'])->name('galery.delete')->middleware('userAkses:admin');
+
 });
 
 //home
@@ -143,21 +147,11 @@ route::get('/faq', [PembukaController::class, 'faq'])->name('pembuka.faq');
 
 // route::get('/kd', [KDController::class, 'index'])->name('kd.index');
 
-// route::get('/buku/detail/{id}', [BukuController::class, 'detail_buku'])->name('buku.detail_buku');
-// route::get('/buku/update_admin', [BukuController::class, 'update_admin'])->name('buku.update_admin');
-// route::get('/buku/update_admin/create', [BukuController::class, 'create'])->name('buku.create');
-// route::post('/buku/update_admin/store', [BukuController::class, 'store'])->name('buku.store');
-// route::get('/caribuku', [BukuController::class, 'caribuku'])->name('buku.cari');
-// route::get('/buku/update_admin/edit/{id}', [BukuController::class, 'edit'])->name('buku.edit');
-// route::post('/buku/update_admin/update/{id}', [BukuController::class, 'update'])->name('buku.update');
-// route::get('/buku/update_admin/bin', [BukuController::class, 'bin'])->name('buku.bin');
-// route::post('/buku/update_admin/delete/{id}', [BukuController::class, 'delete'])->name('buku.delete');
-// route::post('/buku/update_admin/softdelete/{id}', [BukuController::class, 'softDelete'])->name('buku.softdelete');
-// route::get('/buku/update_admin/restore/{id}', [BukuController::class, 'restore'])->name('buku.restore');
-// route::post('/buku/update_admin/pinjam/{id}', [BukuController::class, 'pinjam'])->name('buku.pinjam');
-// route::get('/buku/update_admin/kembali/{id}', [BukuController::class, 'kembali'])->name('buku.kembali');
-// Route::get('/buku/update_admin/export_excel', [BukuController::class, 'export_excel']);
-// Route::post('/buku/update_admin/import_excel', [BukuController::class, 'import_excel']);
+// route::get('/buku/update_admin/bin', [BukuController::class, 'bin'])->name('buku.bin')->middleware('userAkses:admin');
+    
+// route::post('/buku/update_admin/softdelete/{id}', [BukuController::class, 'softDelete'])->name('buku.softdelete')->middleware('userAkses:admin');
+// route::get('/buku/update_admin/restore/{id}', [BukuController::class, 'restore'])->name('buku.restore')->middleware('userAkses:admin');
+// route::get('/buku/update_admin/kembali/{id}', [BukuController::class, 'kembali'])->name('buku.kembali')->middleware('userAkses:admin');
 
 // route::get('/skripsi/update_admin/bin', [SkripsiController::class, 'bin'])->name('skripsi.bin');
 // route::post('/skripsi/update_admin/softdelete/{id}', [SkripsiController::class, 'softDelete'])->name('skripsi.softdelete');
@@ -171,3 +165,7 @@ route::get('/faq', [PembukaController::class, 'faq'])->name('pembuka.faq');
 // route::post('/postingan/update_admin/softdelete/{id}', [PostinganController::class, 'softDelete'])->name('postingan.softdelete');
 // route::get('/postingan/update_admin/restore/{id}', [PostinganController::class, 'restore'])->name('postingan.restore');
 // route::get('/postingan/update_admin/bin', [PostinganController::class, 'bin'])->name('postingan.bin');
+
+// route::get('/postingan/update_admin', [PostinganController::class, 'update_admin'])->name('postingan.update_admin')->middleware('userAkses:admin');    
+// route::get('/caripostingan2', [PostinganController::class, 'caripostingan2'])->name('postingan.cari2')->middleware('userAkses:admin');    
+// route::get('/postingan/update_admin/detail/{id}', [PostinganController::class, 'detail_postingan_admin'])->name('postingan.detail_postingan_admin')->middleware('userAkses:admin');

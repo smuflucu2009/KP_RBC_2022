@@ -20,8 +20,8 @@ class PinjamBukuController extends Controller
         ->get();
 
         $joins = $joins->map(function($join) {
-            $join->tanggal_peminjaman = Carbon::parse($join->tanggal_peminjaman)->format('d M Y');
-            $join->tanggal_pengembalian = Carbon::parse($join->tanggal_pengembalian)->format('d M Y');
+            $join->tanggal_peminjaman = Carbon::parse($join->tanggal_peminjaman)->setTimezone('Asia/Jakarta')->format('d M Y');
+            $join->tanggal_pengembalian = Carbon::parse($join->tanggal_pengembalian)->setTimezone('Asia/Jakarta')->format('d M Y');
             return $join;
         });
 
@@ -34,31 +34,6 @@ class PinjamBukuController extends Controller
         }
 
         return view('pinjamb.index')->with('joins', $joins);
-    }
-
-    public function admin(){
-        $joins = DB::table('pinjambuku')
-        ->join('buku', 'pinjambuku.kode_gabungan_final', '=', 'buku.kode_gabungan_final')
-        ->join('users', 'pinjambuku.nim', '=', 'users.nim')
-        ->select('pinjambuku.id_pinjam', 'users.nama', 'users.nim', 'buku.kode_gabungan_final', 'buku.judul_buku',
-        'buku.status_pinjam', 'pinjambuku.tanggal_peminjaman', 'pinjambuku.tanggal_pengembalian', 'pinjambuku.kadaluarsa')
-        ->get();
-
-        $joins = $joins->map(function($join) {
-            $join->tanggal_peminjaman = Carbon::parse($join->tanggal_peminjaman)->format('d M Y');
-            $join->tanggal_pengembalian = Carbon::parse($join->tanggal_pengembalian)->format('d M Y');
-            return $join;
-        });
-
-        foreach ($joins as $join) {
-            // Hitung selisih hari antara tanggal sekarang dan tanggal pengembalian
-            $selisih = Carbon::parse($join->tanggal_pengembalian)->diffInDays(Carbon::now(), false);
-            
-            // Jika selisih hari negatif, tandai sebagai "Terlambat"
-            $join->kadaluarsa = $selisih > 0 ? 'Terlambat' : '';
-        }
-
-        return view('pinjamb.admin')->with('joins', $joins);
     }
 
     function create(){

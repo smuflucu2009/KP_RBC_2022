@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Postingan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -15,8 +16,12 @@ class PostinganController extends Controller
         $joins = DB::table('postingan')
         ->join('category', 'postingan.category_id', '=', 'category.id')
         ->select('postingan.id_posting', 'postingan.judul', 'postingan.deskripsi', 'category.name_category', 'postingan.waktu_posting', 'postingan.cover_gambar')
-        ->where('postingan.deleted_at',0)
         ->get();
+
+        $joins = $joins->map(function($join) {
+            $join->waktu_posting = Carbon::parse($join->waktu_posting)->setTimezone('Asia/Jakarta')->format('d M Y');
+            return $join;
+        });
 
         return view('postingan.index')->with('joins', $joins);
     }
@@ -28,36 +33,6 @@ class PostinganController extends Controller
         ->where('id_posting', $id)
         ->first();
         return view('postingan.detail_postingan')->with('joins', $joins);
-    }
-
-    function detail_postingan_admin($id){
-        $joins = DB::table('postingan')
-        ->join('category', 'postingan.category_id', '=', 'category.id')
-        ->select('postingan.id_posting', 'postingan.judul', 'postingan.deskripsi', 'category.name_category', 'postingan.waktu_posting', 'postingan.cover_gambar')
-        ->where('postingan.id_posting', $id)
-        ->first();
-        return view('postingan.detail_postingan_admin')->with('joins', $joins);
-    }
-
-    function update_admin() {
-        $joins = DB::table('postingan')
-        ->join('category', 'postingan.category_id', '=', 'category.id')
-        ->select('postingan.id_posting', 'postingan.judul', 'postingan.deskripsi', 'category.name_category', 'postingan.waktu_posting', 'postingan.cover_gambar')
-        ->where('postingan.deleted_at',0)
-        ->get();
-
-        return view('postingan.update_admin')->with('joins', $joins);
-    }
-
-    function bin() {
-        $joins = DB::table('postingan')
-        ->join('category', 'postingan.category_id', '=', 'category.id')
-        ->select('postingan.id_posting', 'postingan.judul', 'postingan.deskripsi', 'category.name_category', 'postingan.waktu_posting', 'postingan.cover_gambar')
-        ->where('postingan.deleted_at',1)
-        ->get();
-
-        return view('postingan.bin')
-        ->with('joins', $joins);
     }
 
     public function caripostingan(Request $request) {
@@ -73,21 +48,6 @@ class PostinganController extends Controller
         ->get();
 
         return view('postingan.index')->with('joins', $joins);
-    }
-
-    public function caripostingan2(Request $request) {
-        $caripostingan2 = $request->caripostingan2;
-
-        $joins = DB::table('postingan')
-        ->join('category', 'postingan.category_id', '=', 'category.id')
-        ->select('postingan.id_posting', 'postingan.judul', 'postingan.deskripsi', 'category.name_category', 'postingan.waktu_posting', 'postingan.cover_gambar')
-        // ->where('postingan.deleted_at',0)
-        ->orwhere('judul', 'like', "%$caripostingan2%")
-        ->orWhere('name_category', 'like', "%$caripostingan2%")
-        ->orWhere('waktu_posting', 'like', "%$caripostingan2%")
-        ->get();
-
-        return view('postingan.update_admin')->with('joins', $joins);
     }
 
     function create(){
@@ -114,22 +74,24 @@ class PostinganController extends Controller
             'cover_gambar.mimes' => 'Gambar cover wajib png, jpg, atau jpeg',
         ]);
 
+        $now = Carbon::now();
+
         $gambar_cover = $request->file('cover_gambar');
         $gambar_extensi = $gambar_cover->getClientOriginalName();
         $nama_gambar = date('ymdhis') . '.' . $gambar_extensi;
         $gambar_cover->move(public_path('storage/postingan/cover_image'), $nama_gambar);
 
         DB::insert('INSERT INTO postingan(judul, deskripsi, category_id,
-        cover_gambar)
-        VALUES (:judul, :deskripsi, :category_id, :cover_gambar)',
+        cover_gambar, waktu_posting) VALUES (:judul, :deskripsi, :category_id, :cover_gambar, :waktu_posting)',
         [
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
             'category_id' => $request->category_id,
             'cover_gambar' => $nama_gambar,
+            'waktu_posting' => $now,
         ]
         );
-        return redirect()->route('postingan.update_admin')->with('success', 'Berhasil menambahkan news!');
+        return redirect()->route('postingan.index')->with('success', 'Berhasil menambahkan posting!');
     }
 
     function edit($id)
@@ -143,7 +105,6 @@ class PostinganController extends Controller
             'judul' => 'required',
             'deskripsi' => 'required',
             'category_id' => 'required',
-            'cover_gambar' => 'required',
         ], [
             'judul.required' => 'Judul postingan wajib diisi',
             'deskripsi.required' => 'Deskripsi postingan wajib diisi',
@@ -151,49 +112,33 @@ class PostinganController extends Controller
             'cover_gambar.required' => 'Gambar cover wajib diupload',
         ]);
 
-        if ($request->hasFile('cover_gambar')) {
-            $request->validate([
-                'cover_gambar' => 'mimes:png,jpg,jpeg'
-            ], [
-                'cover_gambar.mimes' => 'Gambar cover wajib png, jpg, atau jpeg'
-            ]);
+        $file_gambar = $request->file('cover_gambar');
+        $gambar_extensi = $file_gambar->getClientOriginalName();
+        $nama_gambar = date('ymdhis') . '.' . $gambar_extensi;
+        $file_gambar->move(public_path('storage/postingan/cover_image'), $nama_gambar);
 
-            $file_gambar = $request->file('cover_gambar');
-            $gambar_extensi = $file_gambar->getClientOriginalName();
-            $nama_gambar = date('ymdhis') . '.' . $gambar_extensi;
-            $file_gambar->move(public_path('storage/postingan/cover_image'), $nama_gambar);
+        $data_postingan = Postingan::where('id_posting', $id)->first();
+        File::delete(public_path('storage/postingan/cover_image') . '/' . $data_postingan->cover_gambar);
 
-            $data_postingan = Postingan::where('id_posting', $id)->first();
-            File::delete(public_path('storage/postingan/cover_image') . '/' . $data_postingan->cover_gambar);
-
-        }
+        $now = Carbon::now();
 
         DB::update('UPDATE postingan SET judul = :judul, deskripsi = :deskripsi, category_id = :category_id,
-        cover_gambar = :cover_gambar WHERE id_posting = :id',
+        cover_gambar = :cover_gambar, waktu_posting = :waktu_posting WHERE id_posting = :id',
         [
             'id' => $id,
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
             'category_id' => $request->category_id,
             'cover_gambar' => $nama_gambar,
+            'waktu_posting' => $now,
         ]
         );
-        return redirect()->route('postingan.update_admin')->with('success', 'Berhasil update news!');
+        return redirect()->route('postingan.index')->with('success', 'Berhasil update posting!');
     }
 
     function delete($id)
     {
         DB::delete('DELETE FROM postingan WHERE id_posting = :id_posting', ['id_posting' => $id]);
-        return redirect()->route('postingan.update_admin')->with('success', 'Berhasil hapus news secara permanen!');
-    }
-
-    function softDelete($id) {
-        DB::update('UPDATE postingan SET deleted_at = 1 WHERE id = :id', ['id' => $id]);
-        return redirect()->route('postingan.update_admin')->with('success', 'Berhasil hapus news secara sementara');
-    }
-
-    function restore($id){
-        DB::update('UPDATE postingan SET deleted_at = 0 WHERE id = :id', ['id' => $id]);
-        return redirect()->route('postingan.update_admin')->with('success', 'Data news telah dikembalikan!');
+        return redirect()->route('postingan.index')->with('success', 'Berhasil hapus postingan secara permanen!');
     }
 }
