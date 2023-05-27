@@ -24,7 +24,6 @@ class kp extends Model
         "perusahaan",
         "lokasi_perusahaan",
         "dosen_id",
-        "dosen2_id",
         "abstrak",
         "file"
 

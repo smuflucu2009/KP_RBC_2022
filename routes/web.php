@@ -77,6 +77,7 @@ route::middleware(['auth'])->group(function() {
     route::post('/skripsi/update_admin/update/{id}', [SkripsiController::class, 'update'])->name('skripsi.update')->middleware('userAkses:admin');
     route::post('/skripsi/update_admin/delete/{id}', [SkripsiController::class, 'delete'])->name('skripsi.delete')->middleware('userAkses:admin');
     route::get('/skripsi/detail/{id}', [SkripsiController::class, 'detail_skripsi'])->name('skripsi.detail_skripsi')->middleware('userAkses:admin');
+    Route::post('/skripsi/update_admin/import_excel', [SkripsiController::class, 'import_excel'])->middleware('userAkses:admin');
 
     // Kerja Praktek
     route::get('/kp/detail/{id}', [KpController::class, 'detail_kp'])->name('kp.detail_kp')->middleware('userAkses:admin');

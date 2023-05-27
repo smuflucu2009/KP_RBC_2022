@@ -35,7 +35,7 @@
     {{-- <a href="/skripsi/update_admin/export_excel" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a> --}}
     <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form method="post" action="/buku/update_admin/import_excel" enctype="multipart/form-data">
+            <form method="post" action="/skripsi/update_admin/import_excel" enctype="multipart/form-data">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
@@ -154,6 +154,7 @@
                     <th>Judul</th>
                     <th>Dosen Pembimbing I</th>
                     <th>Dosen Pembimbing II</th>
+                    <th>File TA</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -178,10 +179,6 @@
                         </td>
                         <td>
                             <a href='{{ url('/skripsi/update_admin/edit/'.$join->id_skripsi) }}' class="btn btn-warning btn-sm">Edit</a>
-                            {{-- <form onsubmit="return confirm('Yakin ingin menghapus sementara data ini?')" class="d-inline" method="POST" action="{{ route('skripsi.softdelete', $join->id_skripsi) }}">
-                                @csrf
-                                <button type="submit" name="submit" class="btn btn-danger btn-sm">S.Del</button>
-                            </form> --}}
                             <form onsubmit="return confirm('Yakin ingin menghapus permanen data KP ini?')" class="d-inline" action="{{ route('skripsi.delete', $join->id_skripsi) }}" method="post">
                                 @csrf
                                 <button type="submit" name="submit" class="btn btn-danger btn-sm">Delete</button>

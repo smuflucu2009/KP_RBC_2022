@@ -65,16 +65,16 @@ class SkripsiController extends Controller
 		$nama_file = rand().$file->getClientOriginalName();
  
 		// upload ke folder file_siswa di dalam folder public
-		$file->move('file_buku',$nama_file);
+		$file->move('file_skripsi',$nama_file);
  
 		// import data
 		Excel::import(new SkripsiImport, public_path('/file_skripsi/'.$nama_file));
  
 		// notifikasi dengan session
-		Session::flash('sukses','Data Buku Berhasil Diimport!');
+		Session::flash('sukses','Data Skripsi Berhasil Diimport!');
  
 		// alihkan halaman kembali
-		return redirect('/buku/update_admin');
+		return redirect('/skripsi/update_admin');
 	}
 
     public function delete_all()
