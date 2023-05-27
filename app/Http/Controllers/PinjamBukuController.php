@@ -28,7 +28,7 @@ class PinjamBukuController extends Controller
         foreach ($joins as $join) {
             // Hitung selisih hari antara tanggal sekarang dan tanggal pengembalian
             $selisih = Carbon::parse($join->tanggal_pengembalian)->diffInDays(Carbon::now(), false);
-
+            
             // Jika selisih hari negatif, tandai sebagai "Terlambat"
             $join->kadaluarsa = $selisih > 0 ? 'Terlambat' : '';
         }
@@ -53,7 +53,7 @@ class PinjamBukuController extends Controller
         foreach ($joins as $join) {
             // Hitung selisih hari antara tanggal sekarang dan tanggal pengembalian
             $selisih = Carbon::parse($join->tanggal_pengembalian)->diffInDays(Carbon::now(), false);
-
+            
             // Jika selisih hari negatif, tandai sebagai "Terlambat"
             $join->kadaluarsa = $selisih > 0 ? 'Terlambat' : '';
         }
@@ -101,8 +101,9 @@ class PinjamBukuController extends Controller
         ]);
 
         return redirect()->route('buku.index')->with('success', 'Berhasil menambahkan data peminjaman buku');
+        // return redirect()->route('buku.detail_buku', $data->kode_gabungan_final)->with('success', 'Berhasil menambahkan data peminjaman buku');
     }
-
+    
     function delete($id) {
         Pinjambuku::where('id_pinjam',$id)->first()->delete();
         return redirect()->route('buku.pinjamb')->with('success', 'Berhasil menghapus data peminjaman buku secara permanen!');
@@ -110,7 +111,24 @@ class PinjamBukuController extends Controller
 
     function approvePinjamBuku($id)
     {
+        // $pinjamBuku = PinjamBuku::where('id_pinjam',$id)->first();
+        // $pinjamBuku->status = 'Terpinjam';
+        // $pinjamBuku->save();
+
         DB::update('UPDATE buku SET status_pinjam = "Tersedia" WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
+        
+        // $pinjamBuku->status = 'Tersedia';
+        // $pinjamBuku->save();
+
         return redirect()->route('buku.pinjamb')->with('success', 'Peminjaman buku berhasil disetujui. Status buku: terpinjam');
+    }
+
+    function denyPinjamBuku($id)
+    {
+        $pinjamBuku = PinjamBuku::findOrFail($id);
+        $pinjamBuku->status = 'Tersedia';
+        $pinjamBuku->save();
+    
+        return redirect()->route('buku.pinjamb')->with('success', 'Peminjaman buku ditolak. Status buku: tersedia');
     }
 }
