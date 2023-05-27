@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\pinjambuku;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -67,16 +68,16 @@ class PinjamBukuController extends Controller
 
     function store(Request $request)
     {
-        Session::flash('nim', $request->nim);
+        // Session::flash('nim', $request->nim);
         Session::flash('kode_gabungan_final', $request->kode_gabungan_final);
         Session::flash('tanggal_pengembalian', $request->akhir_pinjam);
 
         $request->validate([
-            'nim' => 'required',
+            // 'nim' => 'required',
             'kode_gabungan_final' => 'required',
             'tanggal_pengembalian' => 'required',
         ], [
-            'nim.required' => 'NIM wajib diisi',
+            // 'nim.required' => 'NIM wajib diisi',
             'kode_gabungan_final.required' => 'Kode buku wajib diisi',
             'tanggal_pengembalian.required' => 'Deadline Peminjaman wajib diisi',
         ]);
@@ -93,7 +94,7 @@ class PinjamBukuController extends Controller
 
         pinjambuku::create([
             'kode_gabungan_final' => $request->kode_gabungan_final,
-            'nim' => $request->nim,
+            'nim' => Auth::user()->nim,
             'tanggal_peminjaman' => $now,
             'tanggal_pengembalian' => $deadline,
             'kadaluarsa' => $kadaluarsa,
@@ -108,21 +109,26 @@ class PinjamBukuController extends Controller
         return redirect()->route('buku.pinjamb')->with('success', 'Berhasil menghapus data peminjaman buku secara permanen!');
     }
 
-    // function approvePinjamBuku($id)
-    // {
-    //     $pinjamBuku = PinjamBuku::findOrFail($id);
-    //     $pinjamBuku->status = 'Terpinjam';
-    //     $pinjamBuku->save();
-    
-    //     return redirect()->route('buku.pinjamb')->with('success', 'Peminjaman buku berhasil disetujui. Status buku: terpinjam');
-    // }
+    function approvePinjamBuku($id)
+    {
+        // $pinjamBuku = PinjamBuku::where('id_pinjam',$id)->first();
+        // $pinjamBuku->status = 'Terpinjam';
+        // $pinjamBuku->save();
 
-    // function denyPinjamBuku($id)
-    // {
-    //     $pinjamBuku = PinjamBuku::findOrFail($id);
-    //     $pinjamBuku->status = 'Tersedia';
-    //     $pinjamBuku->save();
+        DB::update('UPDATE buku SET status_pinjam = "Tersedia" WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
+        
+        // $pinjamBuku->status = 'Tersedia';
+        // $pinjamBuku->save();
+
+        return redirect()->route('buku.pinjamb')->with('success', 'Peminjaman buku berhasil disetujui. Status buku: terpinjam');
+    }
+
+    function denyPinjamBuku($id)
+    {
+        $pinjamBuku = PinjamBuku::findOrFail($id);
+        $pinjamBuku->status = 'Tersedia';
+        $pinjamBuku->save();
     
-    //     return redirect()->route('buku.pinjamb')->with('success', 'Peminjaman buku ditolak. Status buku: tersedia');
-    // }
+        return redirect()->route('buku.pinjamb')->with('success', 'Peminjaman buku ditolak. Status buku: tersedia');
+    }
 }

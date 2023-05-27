@@ -13,7 +13,7 @@ class Pinjambuku extends Model
     protected $primaryKey = 'id_pinjam';
 
     protected $table = 'pinjambuku';
-    protected $fillable = ['nim', 'kode_gabungan_final', 'tanggal_peminjaman', 'tanggal_pengembalian', 'kadaluarsa'];
+    protected $fillable = ['nim', 'kode_gabungan_final', 'tanggal_peminjaman', 'tanggal_pengembalian', 'kadaluarsa', 'status'];
 
     public function getTanggalPeminjamanAttribute($value)
     {
@@ -40,7 +40,7 @@ class Pinjambuku extends Model
 
         // Update status pinjam buku baru menjadi "Pinjam"
         Buku::where('kode_gabungan_final', $updatedBuku)
-            ->update(['status_pinjam' => 'Terpinjam']);
+            ->update(['status_pinjam' => 'Pending']);
 
         parent::save($options);
     }

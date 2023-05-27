@@ -70,6 +70,8 @@ route::middleware(['auth'])->group(function() {
     route::get('/buku/update_admin/pinjambuku/create', [PinjamBukuController::class, 'create'])->name('pinjamb.create');
     route::post('/buku/update_admin/pinjambuku/store', [PinjamBukuController::class, 'store'])->name('pinjamb.store');
     route::post('/buku/update_admin/pinjambuku/delete/{id}', [PinjamBukuController::class, 'delete'])->name('pinjamb.delete')->middleware('userAkses:admin');
+    Route::post('/buku/update_admin/pinjambuku/approve/{id}', [PinjamBukuController::class,'approvePinjamBuku'])->name('buku.approve')->middleware('userAkses:admin');
+    Route::post('/buku/update_admin/pinjambuku/deny/{id}', [PinjamBukuController::class,'denyPinjamBuku'])->name('buku.deny')->middleware('userAkses:admin');
 
     // TA / Skripsi
     route::get('/skripsi/update_admin', [SkripsiController::class, 'update_admin'])->name('skripsi.update_admin')->middleware('userAkses:admin');
@@ -159,8 +161,6 @@ route::get('/faq', [PembukaController::class, 'faq'])->name('pembuka.faq');
 // route::get('/buku/update_admin/kembali/{id}', [BukuController::class, 'kembali'])->name('buku.kembali');
 // Route::get('/buku/update_admin/export_excel', [BukuController::class, 'export_excel']);
 // Route::post('/buku/update_admin/import_excel', [BukuController::class, 'import_excel']);
-// Route::post('/buku/approve/{id}', BukuController::class,'approvePinjamBuku')->name('buku.approve');
-// Route::post('/buku/deny/{id}', BukuController::class,'denyPinjamBuku')->name('buku.deny');
 
 // route::get('/skripsi/update_admin/bin', [SkripsiController::class, 'bin'])->name('skripsi.bin');
 // route::post('/skripsi/update_admin/softdelete/{id}', [SkripsiController::class, 'softDelete'])->name('skripsi.softdelete');

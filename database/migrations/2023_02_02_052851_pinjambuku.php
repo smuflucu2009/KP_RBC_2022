@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreign('nim')->references('nim')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamp('tanggal_peminjaman')->useCurrent();
             $table->timestamp('tanggal_pengembalian')->nullable();
-            $table->string('kadaluarsa')->nullable();
+            $table->string('kadaluarsa')->nullable()->default('Belum Terlambat');
             $table->timestamps();
 
         });
