@@ -47,11 +47,11 @@
                                 <button type="submit" name="submit" class="btn btn-danger btn-sm">Hapus</button>
                             </form>
                             @if ($join->status_pinjam === 'Pending')
-                                <form action="{{ route('buku.approve', $join->id_pinjam) }}" method="POST">
+                                <form action="{{ route('buku.approve', $join->kode_gabungan_final) }}" method="POST">
                                     @csrf
                                     <button type="submit" name="submit">Approve</button>
                                 </form>
-                                <form action="{{ route('buku.deny', $join->id_pinjam) }}" method="POST">
+                                <form action="{{ route('buku.deny', $join->kode_gabungan_final) }}" method="POST">
                                     @csrf
                                     <button type="submit" name="submit">Deny</button>
                                 </form>
