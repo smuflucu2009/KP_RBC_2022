@@ -70,6 +70,7 @@ route::middleware(['auth'])->group(function() {
     Route::post('/buku/update_admin/pinjambuku/approve/{id}', [PinjamBukuController::class,'approvePinjamBuku'])->name('buku.approve')->middleware('userAkses:admin');
 
     // TA / Skripsi
+    route::get('/skripsi', [SkripsiController::class, 'index'])->name('skripsi.index');
     route::get('/skripsi/update_admin', [SkripsiController::class, 'update_admin'])->name('skripsi.update_admin')->middleware('userAkses:admin');
     route::get('/skripsi/update_admin/create', [SkripsiController::class, 'create'])->name('skripsi.create')->middleware('userAkses:admin');
     route::post('/skripsi/update_admin/store', [SkripsiController::class, 'store'])->name('skripsi.store')->middleware('userAkses:admin');
@@ -89,7 +90,6 @@ route::middleware(['auth'])->group(function() {
     route::post('/kp/update_admin/delete/{id}', [KpController::class, 'delete'])->name('kp.delete')->middleware('userAkses:admin');
     Route::post('/kp/update_admin/import_excel', [KpController::class, 'import_excel'])->middleware('userAkses:admin');
 
-
     // Postingan
     route::get('/postingan', [PostinganController::class, 'index'])->name('postingan.index')->middleware('userAkses:admin');
     route::get('/postingan/detail/{id}', [PostinganController::class, 'detail_postingan'])->name('postingan.detail_postingan');
@@ -99,7 +99,6 @@ route::middleware(['auth'])->group(function() {
     route::get('/postingan/edit/{id}', [PostinganController::class, 'edit'])->name('postingan.edit')->middleware('userAkses:admin');
     route::post('/postingan/update/{id}', [PostinganController::class, 'update'])->name('postingan.update')->middleware('userAkses:admin');
     route::post('/postingan/delete/{id}', [PostinganController::class, 'delete'])->name('postingan.delete')->middleware('userAkses:admin');
-
     
     // Galery
     route::get('/galery', [GalleryController::class, 'index'])->name('galery.index')->middleware('userAkses:admin');
@@ -127,7 +126,6 @@ route::get('/buku/cariDJP', [BukuController::class, 'cariDJP'])->name('buku.cari
 
 route::get('/cariSkripsi', [SkripsiController::class, 'cariSkripsi'])->name('skripsi.cari');
 route::get('/cariSkripsi2', [SkripsiController::class, 'cariSkripsi2'])->name('skripsi.cari2');
-route::get('/ta', [SkripsiController::class, 'index'])->name('skripsi.index');
 
 
 route::get('/kp', [KpController::class, 'index'])->name('kp.index');
