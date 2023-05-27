@@ -111,24 +111,7 @@ class PinjamBukuController extends Controller
 
     function approvePinjamBuku($id)
     {
-        // $pinjamBuku = PinjamBuku::where('id_pinjam',$id)->first();
-        // $pinjamBuku->status = 'Terpinjam';
-        // $pinjamBuku->save();
-
-        DB::update('UPDATE buku SET status_pinjam = "Tersedia" WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
-        
-        // $pinjamBuku->status = 'Tersedia';
-        // $pinjamBuku->save();
-
+        DB::update('UPDATE buku SET status_pinjam = "Terpinjam" WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
         return redirect()->route('buku.pinjamb')->with('success', 'Peminjaman buku berhasil disetujui. Status buku: terpinjam');
-    }
-
-    function denyPinjamBuku($id)
-    {
-        $pinjamBuku = PinjamBuku::findOrFail($id);
-        $pinjamBuku->status = 'Tersedia';
-        $pinjamBuku->save();
-    
-        return redirect()->route('buku.pinjamb')->with('success', 'Peminjaman buku ditolak. Status buku: tersedia');
     }
 }

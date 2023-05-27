@@ -21,6 +21,7 @@
                         <a class="nav-link" href="/skripsi/update_admin">Tugas Akhir Digital</a>
                         <a class="nav-link" href="/kp/update_admin">Kerja Praktek Digital</a>
                         <a class="nav-link" href="/buku/update_admin/pinjambuku">Peminjaman Buku</a>
+                        <a class="nav-link" href="/postingan">Postingan & Galery</a>
                     </div>
                 </div>
                 @endif

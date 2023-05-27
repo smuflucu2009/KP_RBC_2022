@@ -41,21 +41,16 @@
                         <td>{{ $join->tanggal_pengembalian}}</td>
                         <td>{{ $join->kadaluarsa}}</td>
                         <td>
-                            {{-- <a href="{{ route('buku.kembali', $join->kode_gabungan_final) }}" method="POST" class="btn btn-primary btn-sm">Kembalikan</a> --}}
-                            <form onsubmit="return confirm('Yakin ingin menghapus permanen data ini?')" class="d-inline" action="{{ route('pinjamb.delete', $join->id_pinjam) }}" method="post">
-                                @csrf
-                                <button type="submit" name="submit" class="btn btn-danger btn-sm">Hapus</button>
-                            </form>
                             @if ($join->status_pinjam === 'Pending')
-                                <form action="{{ route('buku.approve', $join->id_pinjam) }}" method="POST">
+                                <form action="{{ route('buku.approve', $join->kode_gabungan_final) }}" method="POST">
                                     @csrf
                                     <button type="submit" name="submit" class="btn btn-info btn-sm">Approve</button>
                                 </form>
-                                <form action="{{ route('buku.deny', $join->id_pinjam) }}" method="POST">
-                                    @csrf
-                                    <button type="submit" name="submit">Deny</button>
-                                </form>
                             @endif
+                            <form onsubmit="return confirm('Yakin ingin menghapus / menolak peminjaman buku ini?')" class="d-inline" action="{{ route('pinjamb.delete', $join->id_pinjam) }}" method="post">
+                                @csrf
+                                <button type="submit" name="submit" class="btn btn-danger btn-sm">Deny / Delete</button>
+                            </form>
                         </td>
                     </tr>
                   @endforeach
