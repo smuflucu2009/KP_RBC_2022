@@ -44,7 +44,7 @@
                             @if ($join->status_pinjam === 'Pending')
                                 <form action="{{ route('buku.approve', $join->kode_gabungan_final) }}" method="POST">
                                     @csrf
-                                    <button type="submit" name="submit">Approve</button>
+                                    <button type="submit" name="submit" class="btn btn-info btn-sm">Approve</button>
                                 </form>
                             @endif
                             {{-- <a href="{{ route('buku.kembali', $join->kode_gabungan_final) }}" method="POST" class="btn btn-primary btn-sm">Kembalikan</a> --}}
