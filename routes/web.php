@@ -20,6 +20,7 @@ use App\Http\Controllers\TAController;
 use App\Models\artikel;
 use App\Models\Postingan;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\formController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,18 +71,17 @@ route::middleware(['auth'])->group(function() {
     Route::post('/buku/update_admin/pinjambuku/approve/{id}', [PinjamBukuController::class,'approvePinjamBuku'])->name('buku.approve')->middleware('userAkses:admin');
 
     // TA / Skripsi
-    route::get('/skripsi', [SkripsiController::class, 'index'])->name('skripsi.index');
     route::get('/skripsi/update_admin', [SkripsiController::class, 'update_admin'])->name('skripsi.update_admin')->middleware('userAkses:admin');
     route::get('/skripsi/update_admin/create', [SkripsiController::class, 'create'])->name('skripsi.create')->middleware('userAkses:admin');
     route::post('/skripsi/update_admin/store', [SkripsiController::class, 'store'])->name('skripsi.store')->middleware('userAkses:admin');
     route::get('/skripsi/update_admin/edit/{id}', [SkripsiController::class, 'edit'])->name('skripsi.edit')->middleware('userAkses:admin');
     route::post('/skripsi/update_admin/update/{id}', [SkripsiController::class, 'update'])->name('skripsi.update')->middleware('userAkses:admin');
     route::post('/skripsi/update_admin/delete/{id}', [SkripsiController::class, 'delete'])->name('skripsi.delete')->middleware('userAkses:admin');
-    route::get('/skripsi/detail/{id}', [SkripsiController::class, 'detail_skripsi'])->name('skripsi.detail_skripsi')->middleware('userAkses:admin');
+    route::get('/skripsi/detail/{id}', [SkripsiController::class, 'detail_skripsi'])->name('skripsi.detail_skripsi');
     Route::post('/skripsi/update_admin/import_excel', [SkripsiController::class, 'import_excel'])->middleware('userAkses:admin');
 
     // Kerja Praktek
-    route::get('/kp/detail/{id}', [KpController::class, 'detail_kp'])->name('kp.detail_kp')->middleware('userAkses:admin');
+    route::get('/kp/detail/{id}', [KpController::class, 'detail_kp'])->name('kp.detail_kp');
     route::get('/kp/update_admin', [KpController::class, 'update_admin'])->name('kp.update_admin')->middleware('userAkses:admin');
     route::get('/kp/update_admin/create', [KpController::class, 'create'])->name('kp.create')->middleware('userAkses:admin');
     route::post('/kp/update_admin/store', [KpController::class, 'store'])->name('kp.store')->middleware('userAkses:admin');
@@ -122,6 +122,7 @@ route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
 route::get('/caribuku', [BukuController::class, 'caribuku'])->name('buku.cari');
 route::get('/buku/cariJP', [BukuController::class, 'cariJP'])->name('buku.cariJP');
 route::get('/buku/cariDJP', [BukuController::class, 'cariDJP'])->name('buku.cariDJP');
+route::get('/skripsi', [SkripsiController::class, 'index'])->name('skripsi.index');
 
 
 route::get('/cariSkripsi', [SkripsiController::class, 'cariSkripsi'])->name('skripsi.cari');
