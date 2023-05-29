@@ -9,25 +9,23 @@ html,body
 }
 .nav{
   display: flex;
-  background: #000637;
+  background: #020166;
 width: 100%;}
 
 .navbar-brand{
   width: 15%;
-  margin-left: 20px
+  margin-left: 5%
 }
 
 .navbar-brand img{
-  width: 150px;
+  width: 200px;
   height: auto;
 top: 2%;
 border-radius: 0px;
-/* margin-right: 45%; */
 }
 
 .dropbtn {
-  background: #000637;
-
+  background: #020166;
   margin-right: 42px;
   font-size: 12px;
   border: none;
@@ -137,17 +135,19 @@ padding: 10px;
   background: #3845A7;
 }
 
-.land .row{
-  margin-left: 10%;
-}
 .land h1{
 font-family: 'Raleway';
 font-style: normal;
 font-weight: 700;
 font-size: 60px;
-/* line-height: 40px; */
 color: #FDFDFF;
 margin-top: 5%;
+text-align: left;
+}
+
+.land .carousel-item{
+  height: 400px;
+  overflow: hidden;
 }
 
 .bg{
@@ -215,7 +215,7 @@ gap: 23px;
 
 }
 
-.btn_panduan button{
+.btn_panduan .card{
   margin: 2%;
   font-family: 'Open Sans';
   font-style: normal;
@@ -224,36 +224,26 @@ gap: 23px;
   line-height: 31px;
   align-items: center;
   color: #FDFDFF;
-  height: 110px;
-width: 250px;
+  height: 125px;
+width: 300px;
 border-radius: 20px;
 text-align: left;
-padding-left: 37px;
 border: none;
 size: 100%;
+background: linear-gradient(89.8deg, #3845A7 31.24%, rgba(70, 82, 172, 0) 131.95%);
+display: flex;
+}
+
+.btn_panduan .row{
+  flex-direction: row;
+justify-content: space-around;
+align-items: center;
+padding-left: 25px;
 }
 
 .btn_panduan a{
   text-decoration:none;
-  color:white
-}
-
-.btn_buku{
-  background: url(../asset/btn_buku.png) no-repeat scroll 0 0 transparent;
-  background-position: right;
-  background-size: 100%;
-}
-
-.btn_capstone{
-  background: url(../asset/btn_capstone.png) no-repeat scroll 0 0 transparent;
-  background-position: right;
-  background-size: 100%;
-}
-
-.btn_kp{
-  background: url(../asset/btn_kp.png) no-repeat scroll 0 0 transparent;
-  background-position: right;
-  background-size: 100%;
+  color:white;
 }
 
 .forms{
@@ -324,12 +314,6 @@ color: #FFFFFF;
   line-height: 43px;
   letter-spacing: 0.05em;
   text-align: left;
-}
-
-.tatib{
-  width: 100%;
-  margin: 5%;
-  align-items: center;
 }
 
 .bg-profil{
@@ -456,6 +440,7 @@ background-color:#FFFFFF;
   width: 520px;
   height: 226px;
   margin: 5%;
+  padding: 5%;
 
 }
 
@@ -468,22 +453,7 @@ background-color:#FFFFFF;
   margin: 5%;
   margin-left: auto;
   margin-right: 5%;
-}
-
-.cardd{
-  transform: rotate(-180deg);
-    width: 100%;
-    background: none;
-    border: none;
-    position: relative;
-}
-
-.image_pustakawan{
-height: 100px;
-background: #EEEFF0;
-border-radius: 64px;
-width:30%;
-align-self: left;
+  padding: 5%;
 }
 
 .pustakawan_text{
@@ -514,15 +484,6 @@ font-weight: 600;
 font-size: 30px;
 line-height: 37px;
 margin-top: 20px;
-}
-
-.mobile_bg{
-  background-image: url(../asset/mobile.png);
-  background-repeat: no-repeat;
-  background-position:center;
-  background-size: contain;
-  height: 100%;
-  margin: 3%;
 }
 
 .cards-wrapper {
@@ -636,5 +597,54 @@ color: #000000;
   vertical-align: middle;
   border-radius: 4px;
 }
+.mobile{
+  background: none;
+  border: none;
+  box-shadow: none;
+}
 
-.gpp{}
+#carouselExampleSlidesOnly .row{
+ margin-left: 10%;
+}
+
+.forms_page{
+  padding-top: 2%;
+  padding-left: 10%;
+  padding-right: 3%;
+  padding-bottom: 2%;
+  background: linear-gradient(180deg, rgba(56, 69, 167, 0.13) 0%, rgba(56, 69, 167, 0.253974) 8.08%, rgba(56, 69, 167, 0.5215) 25.52%, rgba(56, 69, 167, 0.545794) 51.56%, rgba(56, 69, 167, 0.554348) 74.48%, rgba(56, 69, 167, 0.328083) 91.15%, rgba(56, 69, 167, 0) 100%);
+  font-family: 'Raleway';
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 43px;
+  letter-spacing: 0.05em;
+  text-align: left;
+}
+
+.forms_page .form{
+  border-radius: 30px;
+}
+
+.forms_page ::placeholder{
+  color: #000000;
+  font-family: 'Raleway';
+font-style: normal;
+}
+
+.form_submit{
+  background: #44F676;
+border: 2px solid #000000;
+color: #3845A7;
+font-family: 'Raleway';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+}
+
+#durasi_pinjam{
+  width: fit-content;
+}
+
+.pinjam_buku{
+  padding-left: 10%;
+}

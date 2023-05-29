@@ -22,33 +22,174 @@
         </div>
 
         <div class="bg-profil">
-        
             <div class="row">
                 <div class="col-sm-6">
                     <div class="pustakawan_reverse">
-                        <div class="cardd">
-                            <div class="image_pustakawan">
-                                <img src=" " style="display: block; margin: 0 auto;">
+                        <div class="row" style="transform: rotate(-180deg)">
+                            <div class="col-sm-4">
+                              <div class="card">
+                                <div class="card-body">
+                                    <img src="{{asset('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzPkPhRZU5PdN3WWv8_Ovsm2qxR9v5SgLBlvzH10ea4S_Krt9l6Y4PmyrsWDaZQB55cOgOYRLsW8CwYI57D8wm0UlwBllUWYI8qzfhsxtw2-MAEL6TvjIQ1Fj0y-jI4OXFM9sdnT9TQTSDgcAaSJIVkvryvttYyYVvpZ27910wd8wv8iCsNOMLlPRu/s1080/39_Girl-DP-Sohohindi.in_.jpeg')}}" class="card-img-top">
+                                </div>
                             </div>
-                            <div class="pustakawan_text">
-                                <p>Nama</p>
-                                <p>NIM</p>
-                                <p>Jurusan - Angkatan</p>
                             </div>
-                        </div>
+                            <div class="col-sm-8">
+                                <div class="card-body pustakawan_text">
+                                    <p>Nama</p>
+                                    <p>NIM</p>
+                                    <p>Jurusan - Angkatan</p>
+                                </div>
+                            </div>
+                          </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="pustakawan">
-                        <div class="cardd" style="transform: none">
-                            <div class="pustakawan_text">
-                                <p>Nama</p>
-                                <p>NIM</p>
-                                <p>Jurusan - Angkatan</p>
+                        <div class="row">
+                            
+                            <div class="col-sm-8">
+                                <div class="card-body pustakawan_text">
+                                    <p>Nama</p>
+                                    <p>NIM</p>
+                                    <p>Jurusan - Angkatan</p>
+                                </div>
                             </div>
-                            <div class="image_pustakawan">
-                                <img src="">
+                            <div class="col-sm-4">
+                                <div class="card">
+                                  <div class="card-body">
+                                      <img src="{{asset('https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-mohamed-abdelghaffar-771742.jpg&fm=jpg')}}" class="card-img-top" alt="...">
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="pustakawan_reverse">
+                        <div class="row" style="transform: rotate(-180deg)">
+                            <div class="col-sm-4">
+                              <div class="card">
+                                <div class="card-body">
+                                    <img src="{{asset('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzPkPhRZU5PdN3WWv8_Ovsm2qxR9v5SgLBlvzH10ea4S_Krt9l6Y4PmyrsWDaZQB55cOgOYRLsW8CwYI57D8wm0UlwBllUWYI8qzfhsxtw2-MAEL6TvjIQ1Fj0y-jI4OXFM9sdnT9TQTSDgcAaSJIVkvryvttYyYVvpZ27910wd8wv8iCsNOMLlPRu/s1080/39_Girl-DP-Sohohindi.in_.jpeg')}}" class="card-img-top">
+                                </div>
+                              </div>
                             </div>
+                            <div class="col-sm-8">
+                                <div class="card-body pustakawan_text">
+                                    <p>Nama</p>
+                                    <p>NIM</p>
+                                    <p>Jurusan - Angkatan</p>
+                                </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="pustakawan">
+                        <div class="row">
+                            
+                            <div class="col-sm-8">
+                                <div class="card-body pustakawan_text">
+                                    <p>Nama</p>
+                                    <p>NIM</p>
+                                    <p>Jurusan - Angkatan</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card">
+                                  <div class="card-body">
+                                      <img src="{{asset('https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-mohamed-abdelghaffar-771742.jpg&fm=jpg')}}" class="card-img-top" alt="...">
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="pustakawan_reverse">
+                        <div class="row" style="transform: rotate(-180deg)">
+                            <div class="col-sm-4">
+                              <div class="card">
+                                <div class="card-body">
+                                    <img src="{{asset('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzPkPhRZU5PdN3WWv8_Ovsm2qxR9v5SgLBlvzH10ea4S_Krt9l6Y4PmyrsWDaZQB55cOgOYRLsW8CwYI57D8wm0UlwBllUWYI8qzfhsxtw2-MAEL6TvjIQ1Fj0y-jI4OXFM9sdnT9TQTSDgcAaSJIVkvryvttYyYVvpZ27910wd8wv8iCsNOMLlPRu/s1080/39_Girl-DP-Sohohindi.in_.jpeg')}}" class="card-img-top">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="card-body pustakawan_text">
+                                    <p>Nama</p>
+                                    <p>NIM</p>
+                                    <p>Jurusan - Angkatan</p>
+                                </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="pustakawan">
+                        <div class="row">
+                            
+                            <div class="col-sm-8">
+                                <div class="card-body pustakawan_text">
+                                    <p>Nama</p>
+                                    <p>NIM</p>
+                                    <p>Jurusan - Angkatan</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card">
+                                  <div class="card-body">
+                                      <img src="{{asset('https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-mohamed-abdelghaffar-771742.jpg&fm=jpg')}}" class="card-img-top" alt="...">
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="pustakawan_reverse">
+                        <div class="row" style="transform: rotate(-180deg)">
+                            <div class="col-sm-4">
+                              <div class="card">
+                                <div class="card-body">
+                                    <img src="{{asset('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzPkPhRZU5PdN3WWv8_Ovsm2qxR9v5SgLBlvzH10ea4S_Krt9l6Y4PmyrsWDaZQB55cOgOYRLsW8CwYI57D8wm0UlwBllUWYI8qzfhsxtw2-MAEL6TvjIQ1Fj0y-jI4OXFM9sdnT9TQTSDgcAaSJIVkvryvttYyYVvpZ27910wd8wv8iCsNOMLlPRu/s1080/39_Girl-DP-Sohohindi.in_.jpeg')}}" class="card-img-top">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="card-body pustakawan_text">
+                                    <p>Nama</p>
+                                    <p>NIM</p>
+                                    <p>Jurusan - Angkatan</p>
+                                </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="pustakawan">
+                        <div class="row">
+                            
+                            <div class="col-sm-8">
+                                <div class="card-body pustakawan_text">
+                                    <p>Nama</p>
+                                    <p>NIM</p>
+                                    <p>Jurusan - Angkatan</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card">
+                                  <div class="card-body">
+                                      <img src="{{asset('https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?cs=srgb&dl=pexels-mohamed-abdelghaffar-771742.jpg&fm=jpg')}}" class="card-img-top" alt="...">
+                                  </div>
+                                </div>
+                              </div>
                         </div>
                     </div>
                 </div>

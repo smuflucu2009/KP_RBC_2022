@@ -52,9 +52,10 @@ class UserController extends Controller
             'password' => 'required'
         ]);
 
-        $credentials = request(['nim', 'password']);
+        // $credentials = request(['nim', 'password']);
 
-        if(!Auth::attempt($credentials)){
+
+        if(!Auth::attempt(['nim' => $request->nim, 'password' => $request->password])){
             return ApiFormatter::createApi(500, 'unauthorized user');
         }
 
@@ -63,6 +64,9 @@ class UserController extends Controller
             if(! Hash::check($request->password, $user->password, [])) {
                 throw new  \Exception('Invalid Credentials');
             }
+
+
+
 
             $tokenresult = $user->createToken('authToken')->plainTextToken;
             return ApiFormatter::createApi(200, 'login berhasil',

@@ -24,7 +24,6 @@ class kp extends Model
         "perusahaan",
         "lokasi_perusahaan",
         "dosen_id",
-        "dosen2_id",
         "abstrak",
         "file"
 
@@ -60,7 +59,7 @@ class kp extends Model
 
 
     public function getFileUrlAttribute(){
-        return asset('https://docs.google.com/viewerng/viewer?url=' . env('APP_URL') . 'storage/pdf/kp' . $this->file);
+        return asset('https://docs.google.com/viewerng/viewer?url=' . env('APP_URL') . 'storage/' . $this->file);
     }
 
 
