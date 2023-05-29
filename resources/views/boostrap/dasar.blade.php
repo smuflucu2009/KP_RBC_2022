@@ -31,7 +31,7 @@
                                 class="arrow_down"></label></span></button> </li>
                     <div class="dropdown-content">
                         <a class="nav-link" aria-current="page" href="/buku">Koleksi Tercetak</a>
-                        <a class="nav-link" href="/ta">Tugas Akhir Digital</a>
+                        <a class="nav-link" href="/skripsi">Tugas Akhir Digital</a>
                         <a class="nav-link" href="/kp">Kerja Praktek Digital</a>
                     </div>
                 </div>
@@ -50,9 +50,9 @@
                                 class="arrow_down"></label></span></button> </li>
                     <div class="dropdown-content">
                         <a class="nav-link" aria-current="page" href="/buku">Koleksi Tercetak</a>
-                        <a class="nav-link" href="/ta">Tugas Akhir Digital</a>
+                        <a class="nav-link" href="/skripsi">Tugas Akhir Digital</a>
                         <a class="nav-link" href="/kp">Kerja Praktek Digital</a>
-                        <a class="nav-link" href="/kd">Karya Dosen Terindeks Scopus</a>
+                        {{-- <a class="nav-link" href="/kd">Karya Dosen Terindeks Scopus</a> --}}
                     </div>
                 </div>
                 <div class="dropdown">

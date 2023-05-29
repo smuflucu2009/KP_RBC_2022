@@ -10,7 +10,7 @@
     @if (Auth::check() && Auth::user()->role == 'admin')
         <a href="/skripsi/update_admin" class="btn btn-info">Update</a>
     @endif
-    <form action="/ta" method="get">
+    <form action="/skripsi" method="get">
         @csrf
         <div class="row mb-3">
             <div class="col-sm-3">

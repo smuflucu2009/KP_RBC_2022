@@ -17,10 +17,6 @@ class UserController extends Controller
 
     public function Register(Request $request){
 
-
-
-
-
             $request->validate([
                'nim' => ['required', 'integer', 'unique:users'],
                'nama' => ['required', 'string', 'max:255'],
