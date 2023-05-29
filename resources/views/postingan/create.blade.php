@@ -11,7 +11,7 @@
 </head>
 <title>Halaman Buat Postingan</title>
 <div>
-    <a href="/postingan/update_admin" class="btn btn-secondary">Kembali</a>
+    <a href="/postingan" class="btn btn-secondary">Kembali</a>
     <h1>Ini halaman untuk pembuatan postingan</h1>
 </div>
 <form action='{{ route('postingan.store') }}' method='post' enctype="multipart/form-data">

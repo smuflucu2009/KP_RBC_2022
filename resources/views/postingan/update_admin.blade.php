@@ -15,7 +15,7 @@
             <a href='/postingan' class="btn btn-primary">kembali</a>
         </div>
         <div class="d-flex justify-content-between pb-3">
-            <a href="/postingan/update_admin/create" class="btn btn-primary">+++</a>
+            
             {{-- <a href="/postingan/update_admin/bin" class="btn btn-info">Recycle Bin</a> --}}
         </div>
         <div class="pb-3">

@@ -18,9 +18,11 @@ return new class extends Migration
             $table->bigIncrements('id_pinjam');
             $table->string('kode_gabungan_final');
             $table->foreign('kode_gabungan_final')->references('kode_gabungan_final')->on('buku')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('nim')->references('nim')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->date('akhir_pinjam');
-            $table->date('awal_pinjam')->default(date("Y-m-d H:i:s"));
+            $table->bigInteger('nim');
+            $table->foreign('nim')->references('nim')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamp('tanggal_peminjaman')->useCurrent();
+            $table->timestamp('tanggal_pengembalian')->nullable();
+            $table->string('kadaluarsa')->nullable()->default('Belum Terlambat');
             $table->timestamps();
 
         });

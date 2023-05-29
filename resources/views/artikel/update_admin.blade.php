@@ -1,5 +1,5 @@
-@extends('boostrap/dasar')
-@section('isi_template')
+@extends('boostrap/dasar1')
+@section('isi_template1')
 <head>
     <title>Halaman Update Artikel - Admin</title>
 </head>

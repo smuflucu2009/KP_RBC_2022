@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\KpExport;
+use App\Imports\KpImport;
 use App\Models\Bidang;
 use App\Models\buku;
 use App\Models\Dosen;
@@ -11,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KpController extends Controller
 {
@@ -59,6 +62,44 @@ class KpController extends Controller
         ->first();
         return view('kp.detail_kp')->with('joins', $joins);
     }
+
+    public function export_excel()
+	{
+		return Excel::download(new KpExport, 'kp.xlsx');
+	}
+
+    public function import_excel(Request $request) 
+	{
+		// validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file_kp',$nama_file);
+ 
+		// import data
+		Excel::import(new KpImport, public_path('/file_kp/'.$nama_file));
+ 
+		// notifikasi dengan session
+		Session::flash('sukses','Data KP Berhasil Diimport!');
+ 
+		// alihkan halaman kembali
+		return redirect('/kp/update_admin');
+	}
+
+    public function delete_all()
+	{
+		DB::table('kp')->delete();
+        return redirect()->route('kp.update_admin')->with('success', 'Data berhasil dihapus');
+	}
+
 
     function update_admin(Request $request) {
         $joins = DB::table('kp')

@@ -2,7 +2,7 @@
 @section('isi_template')
 
     <head>
-        <title>Halaman Buku</title>
+        <title>Koleksi Tercetak</title>
     </head>
 
     <body>
@@ -20,7 +20,7 @@
                                                 d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
                                             </path>
                                         </svg> </span> </button>
-                                <input name="judul_buku" type="text" class="form-control search" placeholder="Judul"
+                                <input name="judul_buku" type="text" class="form-control search" placeholder="Judul" id="search_judul"
                                     value="{{ isset($_GET['judul_buku']) ? $_GET['judul_buku'] : '' }}">
                             </div>
                         </form>
@@ -42,9 +42,9 @@
                 <div class="collapse" id="collapseExample" style="background: #3845A7 !important; border: none">
                     <div class="card card-body" >
                         <div class="my-3 p-3 bg-body rounded shadow-sm" >
-                            <div class="pb-3">
+                            {{-- <div class="pb-3">
                                 <a href='/buku/update_admin' class="btn btn-primary">Update Buku</a>
-                            </div>
+                            </div> --}}
                             <form action="/buku" method="get">
                                 @csrf
                                 <div class="row mb-3">
@@ -117,13 +117,27 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-3">
-                                        <button type="submit" class="btn btn-primary mt-4">Search</button>
+                                        <a> <br> </a>
+                                        <button type="submit" class="btn btn-light search_btn"> <span class="input-group-text"
+                                            id="basic-addon1"style="background: none; border: none">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
+                                                class="bi bi-search" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+                                                </path>
+                                            </svg> </span> </button>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <a> <br> </a>
+                                        <a href='/buku' class="btn btn-danger">
+                                            <span class="input-group-text" id="basic-addon1"style="background: none; border: none">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-x-octagon" viewBox="0 0 16 16">
+                                            <path d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146zM5.1 1 1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1H5.1z"/>
+                                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                          </svg> </span> </a>
                                     </div>
                                 </div>
                             </form>
-                            <div class="pb-3 ">
-                                <a href='/buku' class="btn btn-danger">Reset Cari</a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -143,12 +157,11 @@
                             <th class="col-md-1">Jenis Peminatan</th>
                             <th class="col-md-1">Detail Jenis Peminatan</th>
                             <th class="col-md-1">Status Pinjam</th>
-                            <th class="col-md-1">Detail Buku</th>
                         </tr>
                     </thead>
                     <tbody class="content_table">
                         @foreach ($data as $item)
-                            <tr>
+                            <tr class="link_detail" data-href=" {{ url('/buku/detail/' . $item->kode_gabungan_final) }}">
                                 <td>{{ $item->kode_gabungan_final }}</td>
                                 <td>{{ $item->judul_buku }}</td>
                                 <td>{{ $item->penulis }}</td>
@@ -156,15 +169,41 @@
                                 <td>{{ $item->jenis_peminatan }}</td>
                                 <td>{{ $item->detail_jenis_peminatan }}</td>
                                 <td>{{ $item->status_pinjam }}</td>
-                                <td>
-                                    <a href='{{ url('/buku/detail/' . $item->kode_gabungan_final) }}'
-                                        class="btn btn-info btn-sm">Detail</a>
-                                </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
                 {{ $data->withQueryString()->links() }}
             </div>
+            <script>
+            jQuery(document).ready(function($) {
+                $(".link_detail").click(function() {
+                    window.location = $(this).data("href");
+                });
+            });
+            </script>
+            <script>
+                $(document).ready(function() {
+                    $("#search_judul").keyup(function() {
+                        $.ajax({
+                            type: "POST",
+                            url: "readCountry.php",
+                            data: 'keyword=' + $(this).val(),
+                            beforeSend: function() {
+                            },
+                            success: function(data) {
+                                $("#suggesstion-box").show();
+                                $("#suggesstion-box").html(data);
+                                $("#search_judul").css("background", "#FFF");
+                            }
+                        });
+                    });
+                });
+                //To select a country name
+                function selectCountry(val) {
+                    $("#search-box").val(val);
+                    $("#suggesstion-box").hide();
+                }
+            </script>
     </body>
 @endsection

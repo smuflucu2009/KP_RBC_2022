@@ -53,8 +53,7 @@ class Skripsi extends Model
     }
 
     public function getFileUrlAttribute(){
-        return asset('https://docs.google.com/viewerng/viewer?url=' . env('APP_URL') . 'storage/pdf/skripsi/' . $this->file);
+        return asset('https://docs.google.com/viewerng/viewer?url=' . env('APP_URL') . 'storage/pdf/skripsi' . $this->file);
     }
-
 
 }

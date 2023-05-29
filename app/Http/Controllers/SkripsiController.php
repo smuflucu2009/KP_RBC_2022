@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SkripsiExport;
+use App\Imports\SkripsiImport;
 use App\Models\Skripsi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SkripsiController extends Controller
 {
@@ -42,6 +45,43 @@ class SkripsiController extends Controller
 
         return view('skripsi.index')->with('joins', $joins);
     }
+
+    public function export_excel()
+	{
+		return Excel::download(new SkripsiExport, 'buku.xlsx');
+	}
+
+    public function import_excel(Request $request) 
+	{
+		// validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file_skripsi',$nama_file);
+ 
+		// import data
+		Excel::import(new SkripsiImport, public_path('/file_skripsi/'.$nama_file));
+ 
+		// notifikasi dengan session
+		Session::flash('sukses','Data Skripsi Berhasil Diimport!');
+ 
+		// alihkan halaman kembali
+		return redirect('/skripsi/update_admin');
+	}
+
+    public function delete_all()
+	{
+		DB::table('skripsi')->delete();
+        return redirect()->route('skripsi.update_admin')->with('success', 'Data berhasil dihapus');
+	}
 
     function detail_skripsi($id){
         $joins = DB::table('skripsi')

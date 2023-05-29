@@ -2,7 +2,7 @@
 @section('isi_template')
 <title>Halaman Detail {{$joins->judul}}</title>
 <div>
-    <a href="/ta" class="btn btn-secondary">Kembali</a>
+    <a href="/skripsi" class="btn btn-secondary">Kembali</a>
     <h1>Judul: {{ $joins->judul }}</h1>
     <h3>Tanggal Masuk: {{ $joins->tahun }}</h3>
     <div>
