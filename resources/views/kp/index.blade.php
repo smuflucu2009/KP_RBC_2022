@@ -71,45 +71,7 @@
         </div>
     </form>
     <div>
-        <a href="/kp" class="btn btn-danger">Reset</a>
-    </div>
-    <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <table class="table table-striped text-center">
-            <thead>
-                <tr>
-                    <th>Nama</th>
-                    <th>NIM</th>
-                    <th>Bidang</th>
-                    <th>Tahun</th>
-                    <th>Judul</th>
-                    <th>Perusahaan</th>
-                    <th>Pembimbing KP</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-            @foreach ($joins as $join)
-                <tr>
-                    <td>{{ $join->name }}</td>
-                    <td>{{ $join->nim }}</td>
-                    <td>{{ $join->nama_bidang }}</td>
-                    <td>{{ $join->tahun }}</td>
-                    <td>{{ $join->judul }}</td>
-                    <td>{{ $join->perusahaan }}</td>
-                    <td>{{ $join->nama_dosen }}</td>
-                    {{-- <td>
-                        @if ($join->file)
-                            <img style="max-width:50px;max-height:50px" src="{{ url('pdf\kp').'/' . $join->file}}"/>
-                        @endif
-                    </td> --}}
-                    <td>
-                        <a href='{{ url('/kp/detail/'.$join->id_kp) }}' class="btn btn-info btn-sm">Detail</a>
-                    </td>
-                </tr>
-              @endforeach
-          </tbody>
-        </table>
-        {{ $joins->withQueryString()->links() }}
+        <h2>intinya isinya kp lah</h2>
     </div>
 </body>
 @endsection

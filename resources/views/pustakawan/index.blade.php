@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="pustakawan_reverse">
-                        <div class="card">
+                        <div class="cardd">
                             <div class="image_pustakawan">
                                 <img src=" " style="display: block; margin: 0 auto;">
                             </div>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="pustakawan">
-                        <div class="card" style="transform: none">
+                        <div class="cardd" style="transform: none">
                             <div class="pustakawan_text">
                                 <p>Nama</p>
                                 <p>NIM</p>
