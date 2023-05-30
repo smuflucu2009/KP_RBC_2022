@@ -25,6 +25,7 @@
                         <a class="nav-link" href="/postingan">Postingan & Galery</a>
                         <a class="nav-link" href="/pengunjung/admin">Data Pengunjung</a>
                         <a class="nav-link" href="/feedback/admin">Feedback RBC</a>
+                        <a class="nav-link" href="/sumbangan_buku/admin">Sumbangan Buku RBC</a>
                     </div>
                 </div>
                 @endif

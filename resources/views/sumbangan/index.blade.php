@@ -1,19 +1,12 @@
 @extends('boostrap/dasar')
 @section('isi_template')
 <head>
-    <title>Halaman Postingan</title>
+    <title>Halaman Sumbangan</title>
 </head>
 <body>
-    <div>
-        <h1>Halaman Postingan</h1>
-    </div>
-    <div>
-        <a href="/postingan/create" class="btn btn-primary">+++</a>
-        <a href="/galery" class="btn btn-warning">Galery</a>
-    </div>
     <div> 
-        <form action={{ route('postingan.cari') }} method="GET" >
-            <input type="search" name="caripostingan" placeholder="Cari data Posting .." value="{{ Request::get('caripostingan')}}">
+        <form action={{ route('sumbangan.cari') }} method="GET" >
+            <input type="search" name="carisumbangan" placeholder="Cari data Sumbangan .." value="{{ Request::get('carisumbangan')}}">
             <button class="btn btn-primary" type="submit">Cari </button>
         </form>
     </div>
@@ -25,12 +18,15 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>ID Postingan</th>
-                    <th>Cover Gambar</th>
-                    <th>Judul</th>
-                    <th>Kategori Postingan</th>
-                    <th>Waktu Postingan</th>
-                    <th>Lebih Lanjut</th>
+                    <th>Nama Mahasiswa 1</th>
+                    <th>Nama Mahasiswa 2</th>
+                    <th>Nama Mahasiswa 3</th>
+                    <th>Angkatan Wisuda</th>
+                    <th>Judul Buku</th>
+                    <th>Tahun Terbit</th>
+                    <th>Nama Pengarang</th>
+                    <th>Waktu Menyumbang</th>
+                    <th>Detail</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -39,21 +35,20 @@
             @foreach ($joins as $join)
                 <tr>
                     <td>{{ $no++ }}</td>
-                    <td>{{ $join->id_posting }}</td>
+                    <td>{{ $join->nama }}</td>
+                    <td>{{ $join->nama2 }}</td>
+                    <td>{{ $join->nama3 }}</td>
+                    <td>{{ $join->angkatan_wisuda }}</td>
+                    <td>{{ $join->judul_buku }}</td>
+                    <td>{{ $join->tahun_terbit }}</td>
+                    <td>{{ $join->penulis }}</td>
+                    <td>{{ $join->waktu_sumbang }}</td>
                     <td>
-                        @if ($join->cover_gambar)
-                            <img style="max-width:50px;max-height:50px" src="{{ url('storage\postingan\cover_image').'/' . $join->cover_gambar}}"/>
-                        @endif
+                        <a href='{{ url('/sumbangan_buku/admin/detail/'.$join->id) }}' class="btn btn-info btn-sm">Detail</a>
                     </td>
-                    <td>{{ $join->judul }}</td>
-                    <td>{{ $join->name_category }}</td>
-                    <td>{{ $join->waktu_posting }}</td>
                     <td>
-                        <a href='{{ url('/postingan/detail/'.$join->id_posting) }}' class="btn btn-info btn-sm">Detail</a>
-                    </td>
-                    <td>
-                        <a href='{{ url('/postingan/edit/'.$join->id_posting) }}' class="btn btn-warning btn-sm">Edit</a>
-                        <form onsubmit="return confirm('Yakin ingin menghapus permanen postingan ini?')" class="d-inline" action="{{ route('postingan.delete', $join->id_posting) }}" method="post">
+                        <a href='{{ url('/sumbangan_buku/admin/edit/'.$join->id) }}' class="btn btn-warning btn-sm">Edit</a>
+                        <form onsubmit="return confirm('Yakin ingin menghapus permanen data sumbangan ini?')" class="d-inline" action="{{ route('sumbangan.delete', $join->id) }}" method="post">
                             @csrf
                             <button type="submit" name="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>

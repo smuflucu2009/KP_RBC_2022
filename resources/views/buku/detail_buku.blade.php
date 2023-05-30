@@ -46,12 +46,6 @@
 <form action='{{ route('pinjamb.store') }}' method='post'>
     @csrf
     <input type="hidden" name="kode_gabungan_final" value="{{ $data->kode_gabungan_final }}">
-    {{-- <div class="mb-3 row">
-        <label for="no" class="col-sm-2 col-form-label">NIM</label>
-        <div class="col-sm-10">
-            <input type="number" class="form-control" name='nim' value="{{ Session::get('nim')}}" id="nim">
-        </div>
-    </div> --}}
     <div>
         <label for="tanggal_pengembalian">Waktu Pengembalian:</label>
         <select name="tanggal_pengembalian" id="tanggal_pengembalian">

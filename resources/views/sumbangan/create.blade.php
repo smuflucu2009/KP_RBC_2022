@@ -24,70 +24,68 @@
         <div class="panduan">
             <div class="faq-page">
                 <div class="forms_page">
-                    <form>
-                        <fieldset disabled>
-                            <div class="row g-10 align-items-center">
-                                <div class="col-sm-2">
-                                    <label for="name" class="form-label">Nama Mahasiswa 1</label>
-                                </div>
-                                <div class="col-sm-7">
-                                    <input type="text" id="nama_mahasiswa_2t" class="form-control form"
-                                        placeholder="Didi Suhardi">
-                                </div>
-                            </div>
-                        </fieldset>
+                    <form action='{{ route('sumbangan.store') }}' method='post'>
+                        @csrf
                         <div class="row g-10 align-items-center">
                             <div class="col-sm-2">
-                                <label for="name_2" class="form-label">Nama Mahasiswa 2</label>
+                                <label for="nama" class="form-label">Nama Mahasiswa 1</label>
                             </div>
                             <div class="col-sm-7">
-                                <input type="text" id="nama_mahasiswa_2" class="form-control form"
-                                    placeholder="Nama Mahasiswa 3">
+                                <input type="text" id="nama" class="form-control form" placeholder="{{ auth()->user()->nama }}" name='nama' value="{{ auth()->user()->nama }}">
                             </div>
                         </div>
                         <div class="row g-10 align-items-center">
                             <div class="col-sm-2">
-                                <label for="nama_mahasiswa_3" class="form-label">Nama Mahasiswa 3</label>
+                                <label for="nama2" class="form-label">Nama Mahasiswa 2</label>
                             </div>
                             <div class="col-sm-7">
-                                <input type="text" id="nama_mahasiswa_3" class="form-control form"
-                                    placeholder="Nama Mahasiswa 3">
+                                <input type="text" id="nama2" class="form-control form"
+                                name='nama2' placeholder="Nama Mahasiswa 2" value="{{ Session::get('nama2')}}">
                             </div>
                         </div>
                         <div class="row g-10 align-items-center">
                             <div class="col-sm-2">
-                                <label for="nama_mahasiswa_4" class="form-label">Nama Mahasiswa 4</label>
+                                <label for="nama3" class="form-label">Nama Mahasiswa 3</label>
                             </div>
                             <div class="col-sm-7">
-                                <input type="text" id="nama_mahasiswa_4" class="form-control form"
-                                    placeholder="Nama Mahasiswa 4">
+                                <input type="text" id="nama3" class="form-control form"
+                                name='nama3' placeholder="Nama Mahasiswa 3" value="{{ Session::get('nama3')}}">
                             </div>
                         </div>
                         <div class="row g-10 align-items-center">
                             <div class="col-sm-2">
-                                <label for="nama_mahasiswa_5" class="form-label">Nama Mahasiswa 5</label>
+                                <label for="nama4" class="form-label">Nama Mahasiswa 4</label>
                             </div>
                             <div class="col-sm-7">
-                                <input type="text" id="nama_mahasiswa_5" class="form-control form"
-                                    placeholder="Nama Mahasiswa 5">
+                                <input type="text" id="nama4" class="form-control form"
+                                name='nama4' placeholder="Nama Mahasiswa 4" value="{{ Session::get('nama4')}}">
                             </div>
                         </div>
                         <div class="row g-10 align-items-center">
                             <div class="col-sm-2">
-                                <label for="nama_mahasiswa_6" class="form-label">Nama Mahasiswa 6</label>
+                                <label for="nama5" class="form-label">Nama Mahasiswa 5</label>
                             </div>
                             <div class="col-sm-7">
-                                <input type="text" id="nama_mahasiswa_6" class="form-control form"
-                                    placeholder="Nama Mahasiswa 6">
+                                <input type="text" id="nama5" class="form-control form"
+                                name='nama5' placeholder="Nama Mahasiswa 5" value="{{ Session::get('nama5')}}">
                             </div>
                         </div>
                         <div class="row g-10 align-items-center">
                             <div class="col-sm-2">
-                                <label for="nama_mahasiswa_7" class="form-label">Nama Mahasiswa 7</label>
+                                <label for="nama6" class="form-label">Nama Mahasiswa 6</label>
                             </div>
                             <div class="col-sm-7">
-                                <input type="text" id="nama_mahasiswa_7" class="form-control form"
-                                    placeholder="Nama Mahasiswa 7">
+                                <input type="text" id="nama6" class="form-control form"
+                                name='nama6' placeholder="Nama Mahasiswa 6" value="{{ Session::get('nama6')}}">
+                            </div>
+                        </div>
+                        <div class="row g-10 align-items-center">
+                            <div class="col-sm-2">
+                                <label for="nama7" class="form-label">Nama Mahasiswa 7</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <input type="text" id="nama7" class="form-control form"
+                                name='nama7' placeholder="Nama Mahasiswa 7" value="{{ Session::get('nama7')}}">
                             </div>
                         </div>
                         <div class="row g-10 align-items-center">
@@ -96,7 +94,7 @@
                             </div>
                             <div class="col-sm-7">
                                 <input type="text" id="angkatan_wisuda" class="form-control form"
-                                    placeholder="Bulan Tahun (contoh: Januari 2023)">
+                                    placeholder="Bulan Tahun (contoh: Januari 2023)" name='angkatan_wisuda' value="{{ Session::get('angkatan_wisuda')}}">
                             </div>
                         </div>
                         <div class="row g-10 align-items-center">
@@ -105,34 +103,34 @@
                             </div>
                             <div class="col-sm-7">
                                 <input type="text" id="judul_buku" class="form-control form"
-                                    placeholder="contoh: Dasar Sistem Kontrol">
+                                    placeholder="contoh: Dasar Sistem Kontrol" name='judul_buku' value="{{ Session::get('judul_buku')}}">
                             </div>
                         </div>
                         <div class="row g-10 align-items-center">
                             <div class="col-sm-2">
-                                <label for="tahun_buku" class="form-label">Tahun Terbit</label>
+                                <label for="tahun_terbit" class="form-label">Tahun Terbit</label>
                             </div>
                             <div class="col-sm-7">
-                                <input type="text" id="tahun_buku" class="form-control form"
-                                    placeholder="contoh: 2013">
+                                <input type="text" id="tahun_terbit" class="form-control form"
+                                    placeholder="contoh: 2013" name='tahun_terbit' value="{{ Session::get('tahun_terbit')}}">
                             </div>
                         </div>
                         <div class="row g-10 align-items-center">
                             <div class="col-sm-2">
-                                <label for="pengarang_buku" class="form-label">Nama Pengarang</label>
+                                <label for="penulis" class="form-label">Nama Pengarang</label>
                             </div>
                             <div class="col-sm-7">
-                                <input type="text" id="pengarang_buku" class="form-control form"
-                                    placeholder=" Contoh : Sumardi, Agung Warsito">
+                                <input type="text" id="penulis" class="form-control form"
+                                    placeholder=" Contoh : Sumardi, Agung Warsito" name='penulis' value="{{ Session::get('penulis')}}">
                             </div>
                         </div>
                         <div class="row align-items-end">
                             <div class="col-sm-2">
-                                <label for="harga_buku" class="form-label">Harga Buku</label>
+                                <label for="harga" class="form-label">Harga Buku</label>
                             </div>
                             <div class="col-sm-7">
-                                <input type="text" id="harga_buku" class="form-control form"
-                                    placeholder="contoh: 100000">
+                                <input type="text" id="harga" class="form-control form"
+                                    placeholder="contoh: 100000" name='harga' value="{{ Session::get('harga')}}">
                             </div>
                             <div class="col-sm-2">
                                 <button type="submit" class="btn btn-primary form_submit">Submit</button>

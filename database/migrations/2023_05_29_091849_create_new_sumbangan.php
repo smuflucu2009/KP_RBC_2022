@@ -16,11 +16,18 @@ return new class extends Migration
         Schema::create('sumbangan', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->bigInteger('nim');
-            $table->foreign('nim')->references('nim')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('angkatan');
-            $table->string('keperluan');
-            $table->timestamp('waktu_post')->useCurrent();
+            $table->string('nama2')->default('-')->nullable();
+            $table->string('nama3')->default('-')->nullable();
+            $table->string('nama4')->default('-')->nullable();
+            $table->string('nama5')->default('-')->nullable();
+            $table->string('nama6')->default('-')->nullable();
+            $table->string('nama7')->default('-')->nullable();
+            $table->string('angkatan_wisuda');
+            $table->string('judul_buku');
+            $table->integer('tahun_terbit');
+            $table->string('penulis');
+            $table->string('harga');
+            $table->timestamp('waktu_sumbang')->useCurrent();
             $table->timestamps();
         });
     }

@@ -125,13 +125,14 @@ route::middleware(['auth'])->group(function() {
     route::post('/feedback/admin/delete_all', [FeedbackController::class, 'delete_all'])->name('feedback.delete_all')->middleware('userAkses:admin');
 
     // Sumbangan
-    route::get('/sumbangan_buku/admin', [GalleryController::class, 'index'])->name('sumbangan.index')->middleware('userAkses:admin');
-    route::get('/carisumbangan', [GalleryController::class, 'carisumbangan'])->name('sumbangan.cari')->middleware('userAkses:admin');
-    route::get('/sumbangan_buku', [SumbanganController::class, 'create'])->name('sumbangan.create')->middleware('userAkses:admin');
-    route::post('/sumbangan_buku/store', [GalleryController::class, 'store'])->name('sumbangan.store')->middleware('userAkses:admin');
-    route::get('/sumbangan_buku/edit/{id}', [GalleryController::class, 'edit'])->name('sumbangan.edit')->middleware('userAkses:admin');
-    route::post('/sumbangan_buku/update/{id}', [GalleryController::class, 'update'])->name('sumbangan.update')->middleware('userAkses:admin');
-    route::post('/sumbangan_buku/delete/{id}', [GalleryController::class, 'delete'])->name('sumbangan.delete')->middleware('userAkses:admin');
+    route::get('/sumbangan_buku/admin', [SumbanganController::class, 'index'])->name('sumbangan.index')->middleware('userAkses:admin');
+    route::get('/carisumbangan', [SumbanganController::class, 'carisumbangan'])->name('sumbangan.cari')->middleware('userAkses:admin');
+    route::get('/sumbangan_buku/admin/detail/{id}', [SumbanganController::class, 'detail_sumbangan'])->name('sumbangan.detail_sumbangan')->middleware('userAkses:admin');
+    route::get('/sumbangan_buku', [SumbanganController::class, 'create'])->name('sumbangan.create');
+    route::post('/sumbangan_buku/store', [SumbanganController::class, 'store'])->name('sumbangan.store');
+    route::get('/sumbangan_buku/admin/edit/{id}', [SumbanganController::class, 'edit'])->name('sumbangan.edit')->middleware('userAkses:admin');
+    route::post('/sumbangan_buku/admin/update/{id}', [SumbanganController::class, 'update'])->name('sumbangan.update')->middleware('userAkses:admin');
+    route::post('/sumbangan_buku/admin/delete/{id}', [SumbanganController::class, 'delete'])->name('sumbangan.delete')->middleware('userAkses:admin');
 });
 
 //home
@@ -140,17 +141,14 @@ Route::get('/home', function () {
     return redirect('');
 });
 
-
 route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
 route::get('/caribuku', [BukuController::class, 'caribuku'])->name('buku.cari');
 route::get('/buku/cariJP', [BukuController::class, 'cariJP'])->name('buku.cariJP');
 route::get('/buku/cariDJP', [BukuController::class, 'cariDJP'])->name('buku.cariDJP');
 route::get('/skripsi', [SkripsiController::class, 'index'])->name('skripsi.index');
 
-
 route::get('/cariSkripsi', [SkripsiController::class, 'cariSkripsi'])->name('skripsi.cari');
 route::get('/cariSkripsi2', [SkripsiController::class, 'cariSkripsi2'])->name('skripsi.cari2');
-
 
 route::get('/kp', [KpController::class, 'index'])->name('kp.index');
 route::get('/cariKP', [KpController::class, 'cariKP'])->name('kp.cari');
@@ -165,7 +163,6 @@ route::post('/pengunjung/store', [PengunjungController::class, 'store'])->name('
 route::get('/fasilitas', [FasilitasController::class, 'index'])->name('fasilitas.index');
 route::get('/RuangBaca', [FasilitasController::class, 'RuangBaca'])->name('fasilitas.RuangBaca');
 route::get('/mobile', [FasilitasController::class, 'mobile'])->name('fasilitas.mobile');
-
 
 route::get('/pustakawan', [PustakawanController::class, 'index'])->name('pustakawan.index');
 route::get('/visi', [PustakawanController::class, 'visi'])->name('pustakawan.visi');

@@ -9,7 +9,7 @@ class sumbangan extends Model
 {
     use HasFactory;
 
-    protected $table = "buku";
-    protected $fillable = ['no', 'tanggal_masuk', 'judul_buku', 'penulis', 'penerbit', 'isbn', 'jenis_peminatan', 
-    'detail_jenis_peminatan', 'kode_peminatan', 'kode_detail_jenis_peminatan', 'kode_tahun', 'kode_nomor_urut_buku', 'kode_gabungan_final'];
+    protected $table = "sumbangan";
+    protected $fillable = ['nama', 'nama2', 'nama3', 'nama4', 'nama5', 'nama6', 'nama7', 
+    'angkatan_wisuda', 'judul_buku', 'tahun_terbit', 'penulis', 'harga', 'waktu_sumbang'];
 }
