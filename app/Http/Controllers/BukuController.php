@@ -124,6 +124,17 @@ class BukuController extends Controller
             ->with('data', $data);
     }
 
+    function autocomplete(Request $request)
+    {
+        $caribuku_update = $request->caribuku_update;
+
+        $data = DB::table('buku')
+        ->where('judul_buku', 'like', "%$caribuku_update%")
+        ->get();
+    
+        return response()->json($data);
+    }
+
     function detail_buku($id){
         $data = buku::where('kode_gabungan_final', $id)->first();
         return view('buku.detail_buku')->with('data', $data);

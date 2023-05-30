@@ -65,13 +65,13 @@ class PostinganController extends Controller
             'judul' => 'required',
             'deskripsi' => 'required',
             'category_id' => 'required',
-            'cover_gambar' => 'required|mimes:png,jpg,jpeg',
+            // 'cover_gambar' => 'required|mimes:png,jpg,jpeg',
         ], [
             'judul.required' => 'Judul postingan wajib diisi',
             'deskripsi.required' => 'Deskripsi postingan wajib diisi',
             'category_id.required' => 'Kategori postingan wajib diisi',
             'cover_gambar.required' => 'Gambar cover wajib diisi',
-            'cover_gambar.mimes' => 'Gambar cover wajib png, jpg, atau jpeg',
+            // 'cover_gambar.mimes' => 'Gambar cover wajib png, jpg, atau jpeg',
         ]);
 
         $now = Carbon::now();

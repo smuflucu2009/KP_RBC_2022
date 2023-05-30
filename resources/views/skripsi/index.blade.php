@@ -171,7 +171,7 @@
         <table class="table table-hover table_box">
             <thead class="head_table">
                 <tr>
-                    <th class="col-md-1">No</th>
+                    {{-- <th class="col-md-1">No</th> --}}
                     <th class="col-md-1">Nama</th>
                     <th class="col-md-1">NIM</th>
                     <th class="col-md-1">Bidang</th>
@@ -185,7 +185,7 @@
                 @php $no = 1; @endphp
                 @foreach ($joins as $join)
                     <tr class="link_detail" data-href="{{ url('/skripsi/detail/' . $join->id_skripsi) }}">
-                        <td>{{ $no++ }}</td>
+                        {{-- <td>{{ $no++ }}</td> --}}
                         <td>{{ $join->name }}</td>
                         <td>{{ $join->nim }}</td>
                         <td>{{ $join->nama_bidang }}</td>

@@ -3,6 +3,9 @@
 
     <head>
         <title>Koleksi Tercetak</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     </head>
 
     <body>
@@ -168,7 +171,13 @@
                                 <td>{{ $item->penerbit }}</td>
                                 <td>{{ $item->jenis_peminatan }}</td>
                                 <td>{{ $item->detail_jenis_peminatan }}</td>
-                                <td>{{ $item->status_pinjam }}</td>
+                                @if ($item->status_pinjam === 'Tersedia')
+                                    <td style="background-color: #44F676; ">{{ $item->status_pinjam }}</td>
+                                    @elseif ($item->status_pinjam === 'Pending')
+                                    <td style="background-color: #F2F644">{{ $item->status_pinjam }}</td>
+                                    @elseif ($item->status_pinjam === 'Terpinjam')
+                                    <td style="background-color: #FF0404;">{{ $item->status_pinjam }}</td>
+                                    @endif
                             </tr>
                         @endforeach
                     </tbody>
@@ -182,28 +191,32 @@
                 });
             });
             </script>
-            <script>
-                $(document).ready(function() {
-                    $("#search_judul").keyup(function() {
-                        $.ajax({
-                            type: "POST",
-                            url: "readCountry.php",
-                            data: 'keyword=' + $(this).val(),
-                            beforeSend: function() {
-                            },
-                            success: function(data) {
-                                $("#suggesstion-box").show();
-                                $("#suggesstion-box").html(data);
-                                $("#search_judul").css("background", "#FFF");
-                            }
-                        });
-                    });
-                });
-                //To select a country name
-                function selectCountry(val) {
-                    $("#search-box").val(val);
-                    $("#suggesstion-box").hide();
-                }
-            </script>
+            
+
+<script type="text/javascript">
+    var path = "{{ route('buku.autocomplete') }}";
+  
+    $( "#search_buku" ).autocomplete({
+        source: function( request, response ) {
+          $.ajax({
+            url: path,
+            type: 'GET',
+            dataType: "json",
+            data: {
+               search: request.term
+            },
+            success: function( data ) {
+               response( data );
+            }
+          });
+        },
+        select: function (event, ui) {
+           $('#search_buku').val(ui.item.label);
+           console.log(ui.item); 
+           return false;
+        }
+      });
+  
+</script>
     </body>
 @endsection

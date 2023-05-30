@@ -120,6 +120,11 @@ Route::get('/home', function () {
 
 route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
 route::get('/caribuku', [BukuController::class, 'caribuku'])->name('buku.cari');
+
+Route::controller(BukuController::class)->group(function(){
+    Route::get('autocomplete', 'autocomplete')->name('buku.autocomplete');
+});
+
 route::get('/buku/cariJP', [BukuController::class, 'cariJP'])->name('buku.cariJP');
 route::get('/buku/cariDJP', [BukuController::class, 'cariDJP'])->name('buku.cariDJP');
 route::get('/skripsi', [SkripsiController::class, 'index'])->name('skripsi.index');
