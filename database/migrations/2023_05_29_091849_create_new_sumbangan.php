@@ -13,8 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('new_sumbangan', function (Blueprint $table) {
+        Schema::create('sumbangan', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->bigInteger('nim');
+            $table->foreign('nim')->references('nim')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('angkatan');
+            $table->string('keperluan');
+            $table->timestamp('waktu_post')->useCurrent();
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('new_sumbangan');
+        Schema::dropIfExists('sumbangan');
     }
 };

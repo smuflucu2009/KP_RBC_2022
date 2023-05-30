@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class pengunjung extends Model
 {
     use HasFactory;
+
+    protected $table = "pengunjung";
+    protected $fillable = ['nama', 'nim', 'angkatan', 'keperluan', 'waktu_post'];
 }

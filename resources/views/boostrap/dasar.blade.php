@@ -23,6 +23,8 @@
                         <a class="nav-link" href="/kp/update_admin">Kerja Praktek Digital</a>
                         <a class="nav-link" href="/buku/update_admin/pinjambuku">Peminjaman Buku</a>
                         <a class="nav-link" href="/postingan">Postingan & Galery</a>
+                        <a class="nav-link" href="/pengunjung/admin">Data Pengunjung</a>
+                        <a class="nav-link" href="/feedback/admin">Feedback RBC</a>
                     </div>
                 </div>
                 @endif

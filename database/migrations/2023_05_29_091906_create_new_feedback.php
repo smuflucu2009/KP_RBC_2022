@@ -13,8 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('new_feedback', function (Blueprint $table) {
+        Schema::create('feedback', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->bigInteger('kontak');
+            $table->string('jenis_feedback');
+            $table->string('penjelasan');
+            $table->string('penjelasan_rinci');
+            $table->timestamp('waktu_post')->useCurrent();
             $table->timestamps();
         });
     }
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('new_feedback');
+        Schema::dropIfExists('feedback');
     }
 };
