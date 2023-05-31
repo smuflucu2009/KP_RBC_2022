@@ -41,7 +41,7 @@
                         <td>{{ $join->tanggal_pengembalian}}</td>
                         <td>{{ $join->kadaluarsa}}</td>
                         <td>
-                            @if ($join->status_pinjam === 'Pending')
+                            @if ($join->status_pinjam === 'Menunggu')
                                 <form action="{{ route('buku.approve', $join->kode_gabungan_final) }}" method="POST">
                                     @csrf
                                     <button type="submit" name="submit" class="btn btn-info btn-sm">Approve</button>
