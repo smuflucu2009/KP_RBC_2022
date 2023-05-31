@@ -59,7 +59,7 @@ class kp extends Model
 
 
     public function getFileUrlAttribute(){
-        return asset('https://docs.google.com/viewerng/viewer?url=' . env('APP_URL') . 'storage/' . $this->file);
+        return asset('https://docs.google.com/viewerng/viewer?url=' . env('APP_URL') . 'storage/pdf/kp/' . $this->file);
     }
 
 
