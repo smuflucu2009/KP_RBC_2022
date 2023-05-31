@@ -32,3 +32,10 @@ Route::post('gallery/store', [\App\Http\Controllers\API\GalleryController::class
 
 Route::get('post', [\App\Http\Controllers\API\PostController::class, 'index']);
 Route::post('post/store', [\App\Http\Controllers\API\PostController::class, 'store']);
+
+Route::post('login', [\App\Http\Controllers\API\UserController::class, 'login']);
+
+Route::middleware(['auth:sanctum'])->group(function () {
+Route::get('user',[\App\Http\Controllers\API\UserController::class, 'user'] );
+Route::post('logout',[\App\Http\Controllers\API\UserController::class, 'logout'] );
+});
