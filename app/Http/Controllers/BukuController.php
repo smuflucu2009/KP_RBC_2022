@@ -118,6 +118,7 @@ class BukuController extends Controller
         ->orWhere('jenis_peminatan', 'like', "%$caribuku_update%")
         ->orWhere('detail_jenis_peminatan', 'like', "%$caribuku_update%")
         ->orWhere('kode_gabungan_final', 'like', "%$caribuku_update%")
+        ->orWhere('status', 'like', "%$caribuku_update%")
         ->get();
 
         return view('buku.update_admin')

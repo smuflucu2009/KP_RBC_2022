@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\pinjambuku;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -19,8 +20,8 @@ class PinjamBukuController extends Controller
         ->get();
 
         $joins = $joins->map(function($join) {
-            $join->tanggal_peminjaman = Carbon::parse($join->tanggal_peminjaman)->format('d M Y');
-            $join->tanggal_pengembalian = Carbon::parse($join->tanggal_pengembalian)->format('d M Y');
+            $join->tanggal_peminjaman = Carbon::parse($join->tanggal_peminjaman)->setTimezone('Asia/Jakarta')->format('d M Y');
+            $join->tanggal_pengembalian = Carbon::parse($join->tanggal_pengembalian)->setTimezone('Asia/Jakarta')->format('d M Y');
             return $join;
         });
 
@@ -67,16 +68,16 @@ class PinjamBukuController extends Controller
 
     function store(Request $request)
     {
-        Session::flash('nim', $request->nim);
+        // Session::flash('nim', $request->nim);
         Session::flash('kode_gabungan_final', $request->kode_gabungan_final);
         Session::flash('tanggal_pengembalian', $request->akhir_pinjam);
 
         $request->validate([
-            'nim' => 'required',
+            // 'nim' => 'required',
             'kode_gabungan_final' => 'required',
             'tanggal_pengembalian' => 'required',
         ], [
-            'nim.required' => 'NIM wajib diisi',
+            // 'nim.required' => 'NIM wajib diisi',
             'kode_gabungan_final.required' => 'Kode buku wajib diisi',
             'tanggal_pengembalian.required' => 'Deadline Peminjaman wajib diisi',
         ]);
@@ -93,17 +94,24 @@ class PinjamBukuController extends Controller
 
         pinjambuku::create([
             'kode_gabungan_final' => $request->kode_gabungan_final,
-            'nim' => $request->nim,
+            'nim' => Auth::user()->nim,
             'tanggal_peminjaman' => $now,
             'tanggal_pengembalian' => $deadline,
             'kadaluarsa' => $kadaluarsa,
         ]);
 
-        return redirect()->route('buku.pinjamb')->with('success', 'Berhasil menambahkan data peminjaman buku');
+        return redirect()->route('buku.index')->with('success', 'Berhasil menambahkan data peminjaman buku');
+        // return redirect()->route('buku.detail_buku', $data->kode_gabungan_final)->with('success', 'Berhasil menambahkan data peminjaman buku');
     }
     
     function delete($id) {
         Pinjambuku::where('id_pinjam',$id)->first()->delete();
         return redirect()->route('buku.pinjamb')->with('success', 'Berhasil menghapus data peminjaman buku secara permanen!');
+    }
+
+    function approvePinjamBuku($id)
+    {
+        DB::update('UPDATE buku SET status_pinjam = "Terpinjam" WHERE kode_gabungan_final = :kode_gabungan_final', ['kode_gabungan_final' => $id]);
+        return redirect()->route('buku.pinjamb')->with('success', 'Peminjaman buku berhasil disetujui. Status buku: terpinjam');
     }
 }

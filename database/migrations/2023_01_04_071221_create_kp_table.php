@@ -17,17 +17,14 @@ return new class extends Migration
             $table->bigIncrements('id_kp');
             $table->string('name');
             $table->string('nim');
-            // $table->bigInteger('bidang_id');
             $table->foreignId('bidang_id')->references('id')->on('bidang')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('tahun');
             $table->string('judul');
             $table->string('perusahaan');
             $table->string('lokasi_perusahaan');
-
-            // $table->bigInteger('dosen_id');
             $table->foreignId('dosen_id')->references('id')->on('dosen')->onDelete('cascade')->onUpdate('cascade');
             $table->longText('abstrak');
-            $table->string('file');
+            $table->string('file')->nullable();
             $table->tinyInteger('deleted_at')->default('0');
             $table->timestamps();
 

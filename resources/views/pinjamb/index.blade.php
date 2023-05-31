@@ -11,8 +11,8 @@
         <h2>Tidak menerima pinjol</h2>
     </div>
     <a href="/buku/update_admin" class="btn btn-info">Kembali</a>
-    <a href="/buku/update_admin/pinjambuku/create" class="btn btn-info">+++</a>
-    <a href="/buku/update_admin/pinjambuku/admin" class="btn btn-info">Khusus Admin</a>
+    {{-- <a href="/buku/update_admin/pinjambuku/create" class="btn btn-info">+++</a>
+    <a href="/buku/update_admin/pinjambuku/admin" class="btn btn-info">Khusus Admin</a> --}}
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <table class="table table-striped text-center">
             <thead>
@@ -25,7 +25,7 @@
                     <th>Tanggal Peminjaman</th>
                     <th>Tanggal Pengembalian</th>
                     <th>Status Pengembalian</th>
-                    {{-- <th>Aksi</th> --}}
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,13 +40,18 @@
                         <td>{{ $join->tanggal_peminjaman}}</td>
                         <td>{{ $join->tanggal_pengembalian}}</td>
                         <td>{{ $join->kadaluarsa}}</td>
-                        {{-- <td>
-                            <a href="{{ route('buku.kembali', $join->kode_gabungan_final) }}" method="POST" class="btn btn-primary btn-sm">Kembalikan</a>
-                            <form onsubmit="return confirm('Yakin ingin menghapus permanen data ini?')" class="d-inline" action="{{ route('pinjamb.delete', $join->id_pinjam) }}" method="post">
+                        <td>
+                            @if ($join->status_pinjam === 'Pending')
+                                <form action="{{ route('buku.approve', $join->kode_gabungan_final) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" name="submit" class="btn btn-info btn-sm">Approve</button>
+                                </form>
+                            @endif
+                            <form onsubmit="return confirm('Yakin ingin menghapus / menolak peminjaman buku ini?')" class="d-inline" action="{{ route('pinjamb.delete', $join->id_pinjam) }}" method="post">
                                 @csrf
-                                <button type="submit" name="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                <button type="submit" name="submit" class="btn btn-danger btn-sm">Deny / Delete</button>
                             </form>
-                        </td> --}}
+                        </td>
                     </tr>
                   @endforeach
               </tbody>

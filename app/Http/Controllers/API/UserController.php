@@ -59,7 +59,7 @@ class UserController extends Controller
         // $credentials = request(['nim', 'password']);
 
 
-        if(!Auth::attempt(['nim' => $request->nim, 'password' => $request->password, 'status' => 'active'])){
+        if(!Auth::attempt(['nim' => $request->nim, 'password' => $request->password])){
             return ApiFormatter::createApi(500, 'unauthorized user');
         }
 
