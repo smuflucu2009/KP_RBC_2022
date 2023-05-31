@@ -32,7 +32,7 @@
 <div>
     <div>
         @if ($joins->cover_gambar)
-        <img style="max-width:350px;max-height:350px" src="{{ url('storage\postingan\cover_image').'/' . $joins->cover_gambar}}"/>
+        <img style="max-width:350px;max-height:350px" src="{{ url('storage/postingan/cover_gambar').'/' . $joins->cover_gambar}}"/>
         @endif
     </div>
     <h1>{{ $joins->judul }}</h1>
