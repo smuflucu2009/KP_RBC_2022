@@ -37,7 +37,7 @@ class Postingan extends Model
 
     public function Galleries(){
 
-        return $this->hasMany(Gallery::class, 'post_id', 'id');
+        return $this->hasMany(Gallery::class, 'post_id', 'id_posting');
     }
 
 

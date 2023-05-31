@@ -87,7 +87,7 @@
                     <button class="btn-primary float-right btn-login" onclick="location.href = '/login'">Login</button>
                 @endauth
             </ul>
-           
+
         </div>
     </nav>
 

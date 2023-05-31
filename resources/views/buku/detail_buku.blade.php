@@ -40,7 +40,7 @@
 <div>
     <b>status pinjam: </b>{{ $data->status_pinjam }}
 </div>
-@if ($data->status_pinjam == 'Terpinjam' || $data->status_pinjam == 'Pending')
+@if ($data->status_pinjam == 'Terpinjam' || $data->status_pinjam == 'Menunggu')
     <h3>Buku Sedang Dipinjam atau Masa Pending</h3>
 @else
 <form action='{{ route('pinjamb.store') }}' method='post'>

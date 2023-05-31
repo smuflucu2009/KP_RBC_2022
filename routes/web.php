@@ -22,6 +22,7 @@ use App\Http\Controllers\SumbanganController;
 use App\Http\Controllers\TAController;
 use App\Models\artikel;
 use App\Models\Postingan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\formController;
 
@@ -140,6 +141,18 @@ route::get('/', [PembukaController::class, 'index'])->name('home.index');
 Route::get('/home', function () {
     return redirect('');
 });
+
+// route::get('/sesi', [SessionController::class, 'index'])->middleware('isTamu');
+// route::post('/sesi/login', [SessionController::class, 'login'])->middleware('isTamu');
+// route::get('/sesi/logout', [SessionController::class, 'logout'])->name('session.logout');
+// route::post('/sesi/create', [SessionController::class, 'create'])->middleware('isTamu');
+// route::get('/sesi/register', [SessionController::class, 'register'])->name('session.register')->middleware('isTamu');
+// route::post('/buku/update_admin/softdelete/{id}', [BukuController::class, 'softDelete'])->name('buku.softdelete');
+// route::get('/buku/update_admin/restore/{id}', [BukuController::class, 'restore'])->name('buku.restore');
+// route::get('/buku/cariJP', [BukuController::class, 'cariJP'])->name('buku.cariJP');
+// route::get('/buku/cariDJP', [BukuController::class, 'cariDJP'])->name('buku.cariDJP');
+// route::get('/caribuku', [BukuController::class, 'caribuku'])->name('buku.cari');
+// route::get('/buku/update_admin/bin', [BukuController::class, 'bin'])->name('buku.bin');
 
 route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
 route::get('/caribuku', [BukuController::class, 'caribuku'])->name('buku.cari');

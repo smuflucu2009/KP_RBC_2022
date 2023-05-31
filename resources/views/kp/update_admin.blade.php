@@ -72,27 +72,27 @@
             <div class="row mb-3">
                 <div class="col-sm-3">
                     <label for="" class="form-label">Nama Mahasiswa</label>
-                    <input name="name" type="text" class="form-control" placeholder="Nama" value="{{isset($_GET['name']) ? $_GET['name'] : ''}}">  
+                    <input name="name" type="text" class="form-control" placeholder="Nama" value="{{isset($_GET['name']) ? $_GET['name'] : ''}}">
                 </div>
                 <div class="col-sm-3">
                     <label for="" class="form-label">NIM Mahasiswa</label>
-                    <input name="nim" type="text" class="form-control" placeholder="NIM" value="{{isset($_GET['nim']) ? $_GET['nim'] : ''}}">  
+                    <input name="nim" type="text" class="form-control" placeholder="NIM" value="{{isset($_GET['nim']) ? $_GET['nim'] : ''}}">
                 </div>
                 <div class="col-sm-3">
                     <label for="" class="form-label">Tahun</label>
-                    <input name="tahun" type="number" class="form-control" placeholder="Tahun" value="{{isset($_GET['tahun']) ? $_GET['tahun'] : ''}}">  
+                    <input name="tahun" type="number" class="form-control" placeholder="Tahun" value="{{isset($_GET['tahun']) ? $_GET['tahun'] : ''}}">
                 </div>
                 <div class="col-sm-3">
                     <label for="" class="form-label">Judul KP</label>
-                    <input name="judul" type="text" class="form-control" placeholder="Judul" value="{{isset($_GET['judul']) ? $_GET['judul'] : ''}}">  
+                    <input name="judul" type="text" class="form-control" placeholder="Judul" value="{{isset($_GET['judul']) ? $_GET['judul'] : ''}}">
                 </div>
                 <div class="col-sm-3">
                     <label for="" class="form-label">Nama Perusahaan</label>
-                    <input name="perusahaan" type="text" class="form-control" placeholder="Perusahaan" value="{{isset($_GET['perusahaan']) ? $_GET['perusahaan'] : ''}}">  
+                    <input name="perusahaan" type="text" class="form-control" placeholder="Perusahaan" value="{{isset($_GET['perusahaan']) ? $_GET['perusahaan'] : ''}}">
                 </div>
                 <div class="col-sm-3">
                     <label for="" class="form-label">Lokasi Perusahaan</label>
-                    <input name="lokasi_perusahaan" type="text" class="form-control" placeholder="Lokasi Perusahaan" value="{{isset($_GET['lokasi_perusahaan']) ? $_GET['lokasi_perusahaan'] : ''}}">  
+                    <input name="lokasi_perusahaan" type="text" class="form-control" placeholder="Lokasi Perusahaan" value="{{isset($_GET['lokasi_perusahaan']) ? $_GET['lokasi_perusahaan'] : ''}}">
                 </div>
                 <div class="col-sm-3">
                     <label for="" class="form-label">Jenis Bidang</label>
