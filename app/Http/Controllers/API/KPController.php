@@ -107,7 +107,7 @@ class KPController extends Controller
             ]);
 
 
-            $data = kp::where('id', '=', $kp->id)->get();
+            $data = kp::where('id_kp', '=', $kp->id)->get();
 
             if($data){
                 return ApiFormatter::createApi(200, 'Success', $data);
@@ -129,7 +129,7 @@ class KPController extends Controller
     public function show($id)
     {
         //
-        $data = kp::with(['Bidang', 'Dosen', 'Dosen2'])->where('id', $id)->first();
+        $data = kp::with(['Bidang', 'Dosen'])->where('id_kp', $id)->first();
 
         if(!$data){
             return ApiFormatter::createApi(400, 'id not found');

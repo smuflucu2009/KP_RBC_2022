@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
-use App\Models\Skripsi;
+use App\Models\Skripsi2;
 use App\Helpers\ApiFormatter;
 use Illuminate\Support\Facades\DB;
 
@@ -19,11 +19,12 @@ class SkripsiController extends Controller
     {
         //
 
+        $data_query = Skripsi2::with(['Bidang', 'Dosen', 'Dosen2']);
 
-        $data_query = DB::table('skripsi')
-        ->join('dosen as dosen1', 'skripsi.dosen_id', '=', 'dosen1.id')
-        ->join('dosen as dosen2', 'skripsi.dosen2_id', '=', 'dosen2.id')
-        ->join('bidang', 'skripsi.bidang_id', '=', 'bidang.id')->get();
+        // $data_query = DB::table('skripsi')
+        // ->join('dosen as dosen1', 'skripsi.dosen_id', '=', 'dosen1.id')
+        // ->join('dosen as dosen2', 'skripsi.dosen2_id', '=', 'dosen2.id')
+        // ->join('bidang', 'skripsi.bidang_id', '=', 'bidang.id');
 
         if($request->q){
             $data_query->where('judul', 'LIKE', '%' . $request->q . '%')->orWhere('name', 'LIKE', '%' . $request->q . '%');
@@ -80,7 +81,7 @@ class SkripsiController extends Controller
             //       'data' => $response
             //   ]);
             $filename = $request->file->getClientOriginalName();
-            $kp = Skripsi::create([
+            $kp = Skripsi2::create([
                 'name' => $request->name,
                 'nim' => $request->nim,
                 'bidang_id' => $request->bidang_id,
@@ -94,7 +95,7 @@ class SkripsiController extends Controller
             ]);
 
 
-            $data = Skripsi::where('id', '=', $kp->id)->get();
+            $data = Skripsi2::where('id', '=', $kp->id)->get();
 
             if($data){
                 return ApiFormatter::createApi(200, 'Success', $data);
@@ -116,11 +117,14 @@ class SkripsiController extends Controller
     public function show($id)
     {
         //
-        $data= DB::table('skripsi')
-        ->join('dosen as dosen1', 'skripsi.dosen_id', '=', 'dosen1.id')
-        ->join('dosen as dosen2', 'skripsi.dosen2_id', '=', 'dosen2.id')
-        ->join('bidang', 'skripsi.bidang_id', '=', 'bidang.id')->where('id_posting', $id)
-        ->first();
+        $data = Skripsi2::with(['Bidang', 'Dosen'])->where('id_skripsi', $id)->first();
+        // $data= DB::table('skripsi')
+        // ->join('dosen as dosen1', 'skripsi.dosen_id', '=', 'dosen1.id')
+        // ->join('dosen as dosen2', 'skripsi.dosen2_id', '=', 'dosen2.id')
+        // ->join('bidang', 'skripsi.bidang_id', '=', 'bidang.id')->where('id_skripsi', $id)
+        // ->select('skripsi.id_skripsi', 'skripsi.name', 'skripsi.nim', 'bidang.nama_bidang', 'skripsi.tahun',
+        //  'skripsi.judul', 'dosen1.nama_dosen as namadosen1', 'dosen2.nama_dosen as namadosen2', 'skripsi.abstrak', 'skripsi.file')
+        // ->first();
 
         if(!$data){
             return ApiFormatter::createApi(400, 'id not found');
