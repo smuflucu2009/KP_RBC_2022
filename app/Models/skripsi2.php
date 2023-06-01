@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Skripsi2 extends Model
+class skripsi2 extends Model
 {
     use HasFactory;
 
