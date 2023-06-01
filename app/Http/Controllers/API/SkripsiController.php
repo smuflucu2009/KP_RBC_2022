@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
-use App\Models\Skripsi2;
+use App\Models\skripsi2;
 use App\Helpers\ApiFormatter;
 use Illuminate\Support\Facades\DB;
 
@@ -19,7 +19,7 @@ class SkripsiController extends Controller
     {
         //
 
-        $data_query = Skripsi2::with(['Bidang', 'Dosen', 'Dosen2']);
+        $data_query = skripsi2::with(['Bidang', 'Dosen', 'Dosen2']);
 
         // $data_query = DB::table('skripsi')
         // ->join('dosen as dosen1', 'skripsi.dosen_id', '=', 'dosen1.id')
@@ -117,7 +117,7 @@ class SkripsiController extends Controller
     public function show($id)
     {
         //
-        $data = Skripsi2::with(['Bidang', 'Dosen'])->where('id_skripsi', $id)->first();
+        $data = skripsi2::with(['Bidang', 'Dosen'])->where('id_skripsi', $id)->first();
         // $data= DB::table('skripsi')
         // ->join('dosen as dosen1', 'skripsi.dosen_id', '=', 'dosen1.id')
         // ->join('dosen as dosen2', 'skripsi.dosen2_id', '=', 'dosen2.id')
