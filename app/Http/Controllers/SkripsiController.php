@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Skripsi;
 use App\Exports\SkripsiExport;
 use App\Imports\SkripsiImport;
-use App\Models\Skripsi;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -51,28 +52,28 @@ class SkripsiController extends Controller
 		return Excel::download(new SkripsiExport, 'buku.xlsx');
 	}
 
-    public function import_excel(Request $request) 
+    public function import_excel(Request $request)
 	{
 		// validasi
 		$this->validate($request, [
 			'file' => 'required|mimes:csv,xls,xlsx'
 		]);
- 
+
 		// menangkap file excel
 		$file = $request->file('file');
- 
+
 		// membuat nama file unik
 		$nama_file = rand().$file->getClientOriginalName();
- 
+
 		// upload ke folder file_siswa di dalam folder public
 		$file->move('file_skripsi',$nama_file);
- 
+
 		// import data
 		Excel::import(new SkripsiImport, public_path('/file_skripsi/'.$nama_file));
- 
+
 		// notifikasi dengan session
 		Session::flash('sukses','Data Skripsi Berhasil Diimport!');
- 
+
 		// alihkan halaman kembali
 		return redirect('/skripsi/update_admin');
 	}
@@ -143,7 +144,10 @@ class SkripsiController extends Controller
     }
 
     function create(){
-        $joins = Skripsi::all();
+        $joins = DB::table('skripsi')
+        ->join('dosen as dosen1', 'skripsi.dosen_id', '=', 'dosen1.id')
+        ->join('dosen as dosen2', 'skripsi.dosen2_id', '=', 'dosen2.id')
+        ->join('bidang', 'skripsi.bidang_id', '=', 'bidang.id')->get();
         return view('skripsi.create', compact('joins'));
     }
 
@@ -205,7 +209,11 @@ class SkripsiController extends Controller
 
     function edit($id)
     {
-        $joins = skripsi::where('id_skripsi', $id)->first();
+        $joins =DB::table('skripsi')
+        ->join('dosen as dosen1', 'skripsi.dosen_id', '=', 'dosen1.id')
+        ->join('dosen as dosen2', 'skripsi.dosen2_id', '=', 'dosen2.id')
+        ->join('bidang', 'skripsi.bidang_id', '=', 'bidang.id')->where('id_skripsi', $id)
+        ->first();
         return view('skripsi.edit')->with('joins', $joins);
     }
 
@@ -268,7 +276,11 @@ class SkripsiController extends Controller
 
     function delete($id)
     {
-        $data_kp = Skripsi::where('id_skripsi', $id)->first();
+        $data_kp = DB::table('skripsi')
+        ->join('dosen as dosen1', 'skripsi.dosen_id', '=', 'dosen1.id')
+        ->join('dosen as dosen2', 'skripsi.dosen2_id', '=', 'dosen2.id')
+        ->join('bidang', 'skripsi.bidang_id', '=', 'bidang.id')->where('id_skripsi', $id)
+        ->first();
         File::delete(public_path('storage/pdf/kp') . '/' . $data_kp->file);
 
 		// hapus data
