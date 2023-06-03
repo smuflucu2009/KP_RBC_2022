@@ -36,7 +36,7 @@ class KPController extends Controller
         }
         $data = $data_query->paginate();
 
-        if(count($data)){
+        if(count($result)){
             return ApiFormatter::createApi(200, 'Success', $data);
 
         } else{
