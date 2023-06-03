@@ -24,11 +24,10 @@ class KPController extends Controller
 
 
         $data_query = kp::with(['Bidang', 'Dosen']);
+        
+        $result =  $data_query->where('judul', 'LIKE', '%' . $request->q . '%')->orWhere('name', 'LIKE', '%' . $request->q . '%')->get();
 
-        if($request->q){
-            $data_query->where('judul', 'LIKE', '%' . $request->q . '%')->orWhere('name', 'LIKE', '%' . $request->q . '%');
-
-        }
+    
         // $data = kp::with(['Bidang', 'Dosen', 'Dosen2'])->paginate();
         if($request->bidang){
             $data_query->whereHas('Bidang', function($query) use($request){
@@ -37,7 +36,7 @@ class KPController extends Controller
         }
         $data = $data_query->paginate();
 
-        if($data){
+        if(count($data)){
             return ApiFormatter::createApi(200, 'Success', $data);
 
         } else{
