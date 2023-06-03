@@ -20,16 +20,15 @@ class SkripsiController extends Controller
         //
 
         $data_query = skripsi2::with(['Bidang', 'Dosen', 'Dosen2']);
+        
+        $result =   $data_query->where('judul', 'LIKE', '%' . $request->q . '%')->orWhere('name', 'LIKE', '%' . $request->q . '%')->get();
 
         // $data_query = DB::table('skripsi')
         // ->join('dosen as dosen1', 'skripsi.dosen_id', '=', 'dosen1.id')
         // ->join('dosen as dosen2', 'skripsi.dosen2_id', '=', 'dosen2.id')
         // ->join('bidang', 'skripsi.bidang_id', '=', 'bidang.id');
 
-        if($request->q){
-            $data_query->where('judul', 'LIKE', '%' . $request->q . '%')->orWhere('name', 'LIKE', '%' . $request->q . '%');
-
-        }
+    
         // $data = Skripsi::with(['Bidang', 'Dosen', 'Dosen2'])->paginate();
         if($request->bidang){
             $data_query->whereHas('Bidang', function($query) use($request){
@@ -38,7 +37,7 @@ class SkripsiController extends Controller
         }
         $data = $data_query->paginate();
 
-        if($data){
+        if(count($result)){
             return ApiFormatter::createApi(200, 'Success', $data);
 
         } else{
