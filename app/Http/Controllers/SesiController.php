@@ -17,29 +17,21 @@ class SesiController extends Controller
     function login(Request $request){
         $request -> validate([
             'email' => 'required',
-            // 'nim' => 'required',
             'password' => 'required'
         ], [
             'email.required' => 'Email diisi euy',
-            // 'nim.required' => 'nim diisi euy',
             'password.required' => 'Password wajib diisi',
         ]);
 
         $infologin = [
             'email' => $request->email,
-            // 'nim' => $request->nim,
             'password' => $request->password,
         ];
 
         if(Auth::attempt($infologin)){
-
-            // return redirect('/role');
-
             if (Auth::user()->role == 'mahasiswa'){
                 return redirect('');
             } elseif (Auth::user()->role == 'admin') {
-                return redirect('');
-            } elseif (Auth::user()->role == 'koor') {
                 return redirect('');
             }
         }else{
