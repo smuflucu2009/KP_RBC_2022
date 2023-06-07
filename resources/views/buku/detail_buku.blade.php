@@ -17,7 +17,7 @@
             <table style="margin-left: 5%">
                 <tr>
                     <th class="col-md-3"> Kode Buku </th>
-                    <td class="col-md-6"> <b>Teknik Komputer-Universitas Diponegoro </b> &emsp; &emsp;
+                    <td class="col-md-6"> <b>Teknik Komputer Universitas Diponegoro </b> &emsp; &emsp;
                         &emsp;{{ $data->tanggal_masuk }}</td>
                     <td> </td>
                 </tr>
@@ -81,14 +81,14 @@
     </div>
 
 <div class="modal fade" id="pinjam" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header panduan">
-                <h1 class="modal-title" id="exampleModalLabel">Form Peminjaman Buku</h1>
+    <div class="modal-dialog ">
+        <div class="modal-content ">
+            <div class="modal-header panduan ">
+                <h4 class="modal-title" id="exampleModalLabel">Form Peminjaman Buku</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body faq-page">
-                <div class="forms_page">
+            <div class="modal-body forms_page">
+                <div class="peminjaman">
                     <form action='{{ route('pinjamb.store') }}' method='post'>
                         @csrf
                         <input type="hidden" name="kode_gabungan_final" value="{{ $data->kode_gabungan_final }}">
@@ -112,13 +112,13 @@
                         </fieldset>
                         <div class="row g-12 align-items-center">
                             <div class="col-sm-4">
-                                <label for="durasi_pinjam" class="form-label ">Lama Pinjam</label>
+                                <label for="tanggal_pengembalian" class="form-label">Waktu Pengembalian:</label>
                             </div>
                             <div class="col-sm-8">
-                                <label for="tanggal_pengembalian">Waktu Pengembalian:</label>
-                                <select name="tanggal_pengembalian" id="tanggal_pengembalian" class="form">
-                                    <option value="A">7 hari</option>
-                                    <option value="B">14 hari</option>
+                                
+                                <select name="tanggal_pengembalian" id="tanggal_pengembalian" class="form" style="padding: 2%">
+                                    <option value="A">7 hari</option> &emsp;
+                                    <option value="B">14 hari</option> &emsp;
                                 </select>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                     
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer land">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
                 <button type="submit" class="btn btn-primary form_submit">Submit</button>
                 </form>

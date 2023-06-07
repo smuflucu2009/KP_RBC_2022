@@ -20,7 +20,7 @@
                     <div class="dropdown-content">
                         <a class="nav-link" aria-current="page" href="/buku/update_admin">Koleksi Tercetak</a>
                         <a class="nav-link" href="/skripsi/update_admin">Tugas Akhir Digital</a>
-                        <a class="nav-link" href="/kp/update_admin">Kerja Praktek Digital</a>
+                        <a class="nav-link" href="/kp/update_admin">Kerja Praktik Digital</a>
                         <a class="nav-link" href="/buku/update_admin/pinjambuku">Peminjaman Buku</a>
                         <a class="nav-link" href="/postingan">Postingan & Galery</a>
                     </div>
@@ -33,7 +33,7 @@
                     <div class="dropdown-content">
                         <a class="nav-link" aria-current="page" href="/buku">Koleksi Tercetak</a>
                         <a class="nav-link" href="/ta">Tugas Akhir Digital</a>
-                        <a class="nav-link" href="/kp">Kerja Praktek Digital</a>
+                        <a class="nav-link" href="/kp">Kerja Praktik Digital</a>
                     </div>
                 </div>
                 @endif
@@ -52,7 +52,7 @@
                     <div class="dropdown-content">
                         <a class="nav-link" aria-current="page" href="/buku">Koleksi Tercetak</a>
                         <a class="nav-link" href="/skripsi">Tugas Akhir Digital</a>
-                        <a class="nav-link" href="/kp">Kerja Praktek Digital</a>
+                        <a class="nav-link" href="/kp">Kerja Praktik Digital</a>
                         
                     </div>
                 </div>

@@ -2,7 +2,7 @@
 @section('isi_template')
 
     <head>
-        <title>Halaman Update Buku - Admin</title>
+        <title> Buku - Admin</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
@@ -12,23 +12,38 @@
             <div class="bg-2" style="max-height: 50%">
                 <div class="row" style="margin-left: 0%">
                     <div class="col-sm-9" style="margin-top: 2%">
-                        <a href="/buku/update_admin/create" class="btn btn-primary">Tambah buku</a>
-                        <a href="/buku/update_admin/pinjambuku" class="btn btn-warning">Peminjaman Buku</a>
-                        <a href="/buku/update_admin/export_excel" class="btn btn-success my-3" target="_blank">EXPORT
-                            EXCEL</a>
+                        <a href="/buku/update_admin/create" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg"
+                                width="16" height="16" fill="currentColor" class="bi bi-file-earmark-plus"
+                                viewBox="0 0 16 16">
+                                <path
+                                    d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
+                                <path
+                                    d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z" />
+                            </svg> tambah</a>
+                        <a href="/buku/update_admin/export_excel" class="btn btn-success my-3" target="_blank"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-download" viewBox="0 0 16 16">
+                                <path
+                                    d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                                <path
+                                    d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                            </svg> download data
+                        </a>
                         <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#importExcel">
-                            IMPORT EXCEL
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-upload" viewBox="0 0 16 16">
+                                <path
+                                    d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                                <path
+                                    d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z" />
+                            </svg> <a> upload data </a>
                         </button>
                         <form onsubmit="return confirm('Yakin ingin menghapus semua buku ?')" class="d-inline"
                             action="{{ route('buku.delete_all') }}" method="POST">
                             @csrf
-                            <button type="submit" name="submit" class="btn btn-danger btn-sm">Delete All</button>
+                            <button type="submit" name="submit" class="btn btn-danger btn-sm">Hapus semua <br>
+                                data</button>
                         </form>
-                    </div>
-                    <div class="col-sm-3">
-                        <button class="download" type="submit"
-                            href="/"style="float: right; margin-right:5%; margin-top:2%">Mobile App <br> Download <br>
-                            Here</button>
                     </div>
                     <p>
                         <a class="btn" data-bs-toggle="collapse" href="#collapseExample" role="button"
@@ -44,9 +59,6 @@
                 <div class="collapse" id="collapseExample" style="background: #3845A7 !important; border: none">
                     <div class="card card-body">
                         <div class="my-3 p-3 bg-body rounded shadow-sm">
-                            {{-- <div class="pb-3">
-                            <a href='/buku/update_admin' class="btn btn-primary">Update Buku</a>
-                        </div> --}}
                             <form action="/buku/update_admin" method="get">
                                 @csrf
                                 <div class="row mb-3">
@@ -68,7 +80,8 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="" class="form-label">Penerbit</label>
-                                        <input name="penerbit" type="text" class="form-control" placeholder="Penerbit"
+                                        <input name="penerbit" type="text" class="form-control"
+                                            placeholder="Penerbit"
                                             value="{{ isset($_GET['penerbit']) ? $_GET['penerbit'] : '' }}">
                                     </div>
                                     <div class="col-sm-3">
@@ -148,6 +161,7 @@
                 </div>
             </div>
         </div>
+        <div>
         {{-- notifikasi form validasi --}}
         @if ($errors->has('file'))
             <span class="invalid-feedback" role="alert">
@@ -188,57 +202,71 @@
                 </form>
             </div>
         </div>
-
+        </div>
         </div>
 
 
         <div id="land_header">
             <h1 class="index_header">Halaman Admin: Buku</h1>
         </div>
-        <table class="table table-hover table_box" style="width: 95%">
-            <thead class="head_table">
-                <tr>
-                    <th class="col-md-1">Kode Buku</th>
-                    <th class="col-md-2">Judul Buku</th>
-                    <th class="col-md-1">Penulis</th>
-                    <th class="col-md-1">Penerbit</th>
-                    <th class="col-md-2">Jenis Peminatan</th>
-                    <th class="col-md-2">Detail Jenis Peminatan</th>
-                    <th class="col-md-1">Status Pinjam</th>
-                    <th class="col-md-1">Aksi</th>
-                </tr>
-            </thead>
-            <tbody class="content_table">
-                @foreach ($data as $item)
-                    <tr class="link_detail">
-                        <td>{{ $item->kode_gabungan_final }}</td>
-                        <td>{{ $item->judul_buku }}</td>
-                        <td>{{ $item->penulis }}</td>
-                        <td>{{ $item->penerbit }}</td>
-                        <td>{{ $item->jenis_peminatan }}</td>
-                        <td>{{ $item->detail_jenis_peminatan }}</td>
-                        @if ($item->status_pinjam === 'Tersedia')
-                            <td style="background-color: #44F676; ">{{ $item->status_pinjam }}</td>
-                        @elseif ($item->status_pinjam === 'Pending')
-                            <td style="background-color: #F2F644">{{ $item->status_pinjam }}</td>
-                        @elseif ($item->status_pinjam === 'Terpinjam')
-                            <td style="background-color: #FF0404;">{{ $item->status_pinjam }}</td>
-                        @endif
-                        <td>
-                            <a href='{{ url('/buku/update_admin/edit/' . $item->kode_gabungan_final) }}'
-                                class="btn btn-warning btn-sm">Edit</a>
-                            <form
-                                onsubmit="return confirm('Yakin ingin menghapus buku {{ $item->judul_buku }} dengan kode {{ $item->kode_gabungan_final }}?')"
-                                class="d-inline" action="{{ route('buku.delete', $item->kode_gabungan_final) }}"
-                                method="post">
-                                @csrf
-                                <button type="submit" name="submit" class="btn btn-danger btn-sm">Delete</button>
-                            </form>
-                        </td>
+        <div class="overflow-scroll">
+            <table class="table table-hover table_box" style="width: 95%">
+                <thead class="head_table">
+                    <tr>
+                        <th class="col-md-1">Kode Buku</th>
+                        <th class="col-md-2">Judul Buku</th>
+                        <th class="col-md-1">Penulis</th>
+                        <th class="col-md-1">Penerbit</th>
+                        <th class="col-md-2">Jenis Peminatan</th>
+                        <th class="col-md-2">Detail Jenis Peminatan</th>
+                        <th class="col-md-1">Status Pinjam</th>
+                        <th class="col-md-1">Aksi</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody class="content_table">
+                    @foreach ($data as $item)
+                        <tr class="link_detail">
+                            <td>{{ $item->kode_gabungan_final }}</td>
+                            <td>{{ $item->judul_buku }}</td>
+                            <td>{{ $item->penulis }}</td>
+                            <td>{{ $item->penerbit }}</td>
+                            <td>{{ $item->jenis_peminatan }}</td>
+                            <td>{{ $item->detail_jenis_peminatan }}</td>
+                            @if ($item->status_pinjam === 'Tersedia')
+                                <td style="background-color: #44F676; ">{{ $item->status_pinjam }}</td>
+                            @elseif ($item->status_pinjam === 'Pending')
+                                <td style="background-color: #F2F644">{{ $item->status_pinjam }}</td>
+                            @elseif ($item->status_pinjam === 'Terpinjam')
+                                <td style="background-color: #FF0404;">{{ $item->status_pinjam }}</td>
+                            @endif
+                            <td>
+                                <a href='{{ url('/buku/update_admin/edit/' . $item->kode_gabungan_final) }}'
+                                    class="btn btn-warning btn-sm"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="currentColor" class="bi bi-pencil-square"
+                                        viewBox="0 0 16 16">
+                                        <path
+                                            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                        <path fill-rule="evenodd"
+                                            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                    </svg></a>
+                                <form
+                                    onsubmit="return confirm('Yakin ingin menghapus buku {{ $item->judul_buku }} dengan kode {{ $item->kode_gabungan_final }}?')"
+                                    class="d-inline" action="{{ route('buku.delete', $item->kode_gabungan_final) }}"
+                                    method="post">
+                                    @csrf
+                                    <button type="submit" name="submit" class="btn btn-danger btn-sm"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                        </svg></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
         {{ $data->withQueryString()->links() }}
         </div>
 

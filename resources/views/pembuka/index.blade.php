@@ -57,12 +57,11 @@
                                 <div class="card-body p-0 d-flex flex-column">
                                     <div class="row h-100">
                                         <a class="card-block stretched-link"
-                                            href="https://docs.google.com/forms/d/e/1FAIpQLSfyZz9He0__48n6PXslXLQrTaWKfjLg6UvWZmAQWGQr-yRfdw/viewform"
-                                            target="_blank">
-                                            <div class="col-sm-6 d-flex flex-column">
+                                            href="/panduan_pinjam">
+                                            <div class="col-6 d-flex flex-column">
                                                 <a>Peminjaman Buku</a>
                                             </div>
-                                            <div class="col-sm-6 text-right"><img src="{{ asset('asset/buku.png') }}"
+                                            <div class="col-6 text-right"><img src="{{ asset('asset/buku.png') }}"
                                                     class="card-img img-fluid" alt="" /></div>
                                         </a>
                                     </div>
@@ -75,10 +74,10 @@
                                     <div class="row h-100">
                                         <a class="card-block stretched-link"
                                             href="https://tekkom.ft.undip.ac.id/pendidikan/kerja-praktek" target="_blank">
-                                            <div class="col-sm-6 d-flex flex-column">
+                                            <div class="col-6 d-flex flex-column">
                                                 <a>Kerja Praktek</a>
                                             </div>
-                                            <div class="col-sm-6 text-right"><img src="{{ asset('asset/kp.png') }}"
+                                            <div class="col-6 text-right"><img src="{{ asset('asset/kp.png') }}"
                                                     class="card-img img-fluid" alt="" /></div>
                                         </a>
                                     </div>
@@ -91,10 +90,10 @@
                                     <div class="row h-100">
                                         <a class="card-block stretched-link" href="http://capstone-ta.ce.undip.ac.id/"
                                             target="_blank">
-                                            <div class="col-sm-6 d-flex flex-column">
+                                            <div class="col-6 d-flex flex-column">
                                                 <a>Capstone</a>
                                             </div>
-                                            <div class="col-sm-6 text-right"><img src="{{ asset('asset/capstone.png') }}"
+                                            <div class="col-6 text-right"><img src="{{ asset('asset/capstone.png') }}"
                                                     class="card-img img-fluid" alt="" /></div>
                                         </a>
                                     </div>

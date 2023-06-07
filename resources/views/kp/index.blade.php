@@ -1,7 +1,7 @@
 @extends('boostrap/dasar')
 @section('isi_template')
 <head>
-    <title>Kerja Praktek Digital</title>
+    <title>Kerja Praktik Digital</title>
 </head>
 <body>
     <div class="land">
@@ -42,7 +42,7 @@
                         {{-- <div class="pb-3">
                             <a href="/kp/update_admin" class="btn btn-info">Update</a>
                         </div> --}}
-                        <form action="/buku" method="get">
+                        <form action="/kp" method="get">
                             @csrf
                             <div class="row mb-3">
                                 <div class="col-sm-2">
@@ -126,8 +126,9 @@
     </div>
 
     <div id="land_header">
-        <h1 class="index_header">Kerja Praktek Digital</h1>
+        <h1 class="index_header">Kerja Praktik Digital</h1>
     </div>
+    <div class="overflow-scroll">
     <table class="table table-hover table_box">
         <thead class="head_table">
                 <tr>
@@ -154,6 +155,7 @@
               @endforeach
           </tbody>
         </table>
+    </div>
         {{ $joins->withQueryString()->links() }}
     </div>
     <script>

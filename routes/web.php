@@ -148,6 +148,7 @@ route::get('/pustakawan', [PustakawanController::class, 'index'])->name('pustaka
 route::get('/visi', [PustakawanController::class, 'visi'])->name('pustakawan.visi');
 route::get('/jam', [PustakawanController::class, 'jam'])->name('pustakawan.jam');
 route::get('/faq', [PembukaController::class, 'faq'])->name('pembuka.faq');
+route::get('/panduan_pinjam', [PembukaController::class, 'panduan'])->name('pembuka.panduan');
 
 route::get('/pengunjung', [formController::class, 'pengunjung'])->name('forms.form-pengunjung');
 route::get('/sumbangan_buku', [formController::class, 'sumbangan'])->name('forms.form-sumbangan');

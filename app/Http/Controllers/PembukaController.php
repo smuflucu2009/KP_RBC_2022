@@ -22,4 +22,9 @@ class PembukaController extends Controller
     function faq(){
         return view('pembuka.faq');
     }
+
+    function panduan(){
+        return view('pembuka.panduan_pinjam');
+    }
+
 }

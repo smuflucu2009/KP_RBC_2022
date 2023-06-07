@@ -1,53 +1,62 @@
 @extends('boostrap/dasar')
 @section('isi_template')
-<title>Halaman Buat Buku</title>
-<div>
-    <a href="/buku/update_admin" class="btn btn-secondary">Kembali</a>
-    <h1>Ini Halaman Buat Data Buku Baru</h1>
+<title>Tambah Buku</title>
+<div class="land">
+    <div class="bg-2">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center"> Form Tambah Data Buku </h1>
+            </div>
+            
+        </div>
+    </div>
 </div>
+<div class="panduan">
+    <div class="faq-page">
+        <div class="forms_page">
 <form action='{{ route('buku.store') }}' method='post'>
     @csrf
-    <div class="my-3 p-3 bg-body rounded shadow-sm">
+    
         <div class="mb-3 row">
             <label for="kode_gabungan_final" class="col-sm-2 col-form-label">Kode Buku</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name='kode_gabungan_final' value="{{ Session::get('kode_gabungan_final')}}" id="kode_gabungan_final">
+                <input type="text" class="form-control form" name='kode_gabungan_final' value="{{ Session::get('kode_gabungan_final')}}" id="kode_gabungan_final">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="tanggal_masuk" class="col-sm-2 col-form-label">Tahun Masuk</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" name='tanggal_masuk' value="{{ Session::get('tanggal_masuk')}}" id="tanggal_masuk">
+                <input type="number" class="form-control form" name='tanggal_masuk' value="{{ Session::get('tanggal_masuk')}}" id="tanggal_masuk">
             </div>
         </div> 
         <div class="mb-3 row">
             <label for="judul_buku" class="col-sm-2 col-form-label">Judul Buku</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name='judul_buku' value="{{ Session::get('judul_buku')}}" id="judul_buku">
+                <input type="text" class="form-control form" name='judul_buku' value="{{ Session::get('judul_buku')}}" id="judul_buku">
             </div>
         </div> 
         <div class="mb-3 row">
             <label for="penulis" class="col-sm-2 col-form-label">Penulis</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name='penulis' value="{{ Session::get('penulis')}}" id="penulis">
+                <input type="text" class="form-control form" name='penulis' value="{{ Session::get('penulis')}}" id="penulis">
             </div>
         </div> 
         <div class="mb-3 row">
             <label for="penerbit" class="col-sm-2 col-form-label">Penerbit</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name='penerbit' value="{{ Session::get('penerbit')}}" id="penerbit">
+                <input type="text" class="form-control form" name='penerbit' value="{{ Session::get('penerbit')}}" id="penerbit">
             </div>
         </div> 
         <div class="mb-3 row">
             <label for="isbn" class="col-sm-2 col-form-label">ISBN</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name='isbn' value="{{ Session::get('isbn')}}" id="isbn">
+                <input type="text" class="form-control form" name='isbn' value="{{ Session::get('isbn')}}" id="isbn">
             </div>
         </div> 
         <div class="mb-3 row">
             <label for="jenis_peminatan" class="col-sm-2 col-form-label">Jenis Peminatan</label>
             <div class="col-sm-10">
-                <select class="form-select" aria-label="Default select example" name='jenis_peminatan' value="{{ Session::get('jenis_peminatan')}}" id="jenis_peminatan">
+                <select class="form-select form" aria-label="Default select example" name='jenis_peminatan' value="{{ Session::get('jenis_peminatan')}}" id="jenis_peminatan">
                     <option selected>.</option>
                     <option value="Sistem Tertanam & Robotika">Sistem Tertanam & Robotika</option>
                     <option value="Multimedia">Multimedia</option>
@@ -60,7 +69,7 @@
         <div class="mb-3 row">
             <label for="detail_jenis_peminatan" class="col-sm-2 col-form-label">Detail Jenis Peminatan</label>
             <div class="col-sm-10">
-                <select class="form-select" aria-label="Default select example" name='detail_jenis_peminatan' value="{{ Session::get('detail_jenis_peminatan')}}" id="detail_jenis_peminatan">
+                <select class="form-select form" aria-label="Default select example" name='detail_jenis_peminatan' value="{{ Session::get('detail_jenis_peminatan')}}" id="detail_jenis_peminatan">
                     <option selected>.</option>
                     <option value="Linux">Linux</option>
                     <option value="Network Security">Network Security</option>
@@ -94,7 +103,7 @@
         <div class="mb-3 row">
             <label for="kode_peminatan" class="col-sm-2 col-form-label">Kode Peminatan</label>
             <div class="col-sm-10">
-                <select class="form-select" aria-label="Default select example" name='kode_peminatan' value="{{ Session::get('kode_peminatan')}}" id="kode_peminatan">
+                <select class="form-select form" aria-label="Default select example" name='kode_peminatan' value="{{ Session::get('kode_peminatan')}}" id="kode_peminatan">
                     <option selected>.</option>
                     <option value="E">Sistem Tertanam & Robotika</option>
                     <option value="M">Multimedia</option>
@@ -107,7 +116,7 @@
         <div class="mb-3 row">
             <label for="kode_detail_jenis_peminatan" class="col-sm-2 col-form-label">Kode Detail Jenis Peminatan</label>
             <div class="col-sm-10">
-                <select class="form-select" aria-label="Default select example" name='kode_detail_jenis_peminatan' value="{{ Session::get('kode_detail_jenis_peminatan')}}" id="kode_detail_jenis_peminatan">
+                <select class="form-select form" aria-label="Default select example" name='kode_detail_jenis_peminatan' value="{{ Session::get('kode_detail_jenis_peminatan')}}" id="kode_detail_jenis_peminatan">
                     <option selected>.</option>
                     <option value="01">Linux</option>
                     <option value="02">Network Security</option>
@@ -140,20 +149,22 @@
         <div class="mb-3 row">
             <label for="kode_tahun" class="col-sm-2 col-form-label">Kode Tahun</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" name='kode_tahun' value="{{ Session::get('kode_tahun')}}" id="kode_tahun">
+                <input type="number" class="form-control form" name='kode_tahun' value="{{ Session::get('kode_tahun')}}" id="kode_tahun">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="kode_nomor_urut_buku" class="col-sm-2 col-form-label">Kode Nomor Urut Buku</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" name='kode_nomor_urut_buku' value="{{ Session::get('kode_nomor_urut_buku')}}" id="kode_nomor_urut_buku">
+                <input type="number" class="form-control form" name='kode_nomor_urut_buku' value="{{ Session::get('kode_nomor_urut_buku')}}" id="kode_nomor_urut_buku">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="submit" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10"><button type="submit" class="btn btn-primary" name="submit">SIMPAN</button>
+            <div class="col-sm-10"><button type="submit" class="btn btn-primary form_submit" name="submit">SIMPAN</button>
             </div>
         </div>
-    </div>
 </form>
+</div>
+</div>
+</div>
 @endsection
