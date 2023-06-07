@@ -15,7 +15,7 @@ class PembukaController extends Controller
         $joins = DB::table('postingan')
         ->join('category', 'postingan.category_id', '=', 'category.id')
         ->select('postingan.id_posting', 'postingan.judul', 'postingan.deskripsi', 'postingan.cover_gambar')
-        ->get();
+        ->paginate(3);
         return view('pembuka.index')->with('joins', $joins);
     }
 

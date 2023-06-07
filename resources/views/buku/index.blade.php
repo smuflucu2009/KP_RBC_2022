@@ -1,12 +1,12 @@
 @extends('boostrap/dasar')
 @section('isi_template')
 
-    <head>
-        <title>Koleksi Tercetak</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    </head>
+        <head>
+            <title>Koleksi Tercetak</title>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        </head>
 
     <body>
         <div class="land">
@@ -23,7 +23,7 @@
                                                 d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
                                             </path>
                                         </svg> </span> </button>
-                                <input name="judul_buku" type="text" class="form-control search" placeholder="Judul" id="search_judul"
+                                <input name="judul_buku" type="text" class="typeahead form-control search" placeholder="Judul" id="search_judul"
                                     value="{{ isset($_GET['judul_buku']) ? $_GET['judul_buku'] : '' }}">
                             </div>
                         </form>
@@ -150,6 +150,7 @@
                 <div id="land_header">
                     <h1 class="index_header">Koleksi Tercetak Digital</h1>
                 </div>
+                <div class="overflow-scroll">
                 <table class="table table-hover table_box">
                     <thead class="head_table">
                         <tr>
@@ -176,12 +177,13 @@
                                     @elseif ($item->status_pinjam === 'Pending')
                                     <td style="background-color: #F2F644">{{ $item->status_pinjam }}</td>
                                     @elseif ($item->status_pinjam === 'Terpinjam')
-                                    <td style="background-color: #FF0404;">{{ $item->status_pinjam }}</td>
+                                    <td style="background-color: #4EA8DE;">{{ $item->status_pinjam }}</td>
                                     @endif
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                </div>
                 {{ $data->withQueryString()->links() }}
             </div>
             <script>
@@ -199,14 +201,15 @@
     $( "#search_buku" ).autocomplete({
         source: function( request, response ) {
           $.ajax({
-            url: path,
+            url: 'localhost/index.php',
             type: 'GET',
             dataType: "json",
             data: {
                search: request.term
             },
             success: function( data ) {
-               response( data );
+              // response( data );
+               console.log(data);
             }
           });
         },

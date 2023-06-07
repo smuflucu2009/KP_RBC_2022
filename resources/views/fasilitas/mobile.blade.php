@@ -21,19 +21,19 @@
                         </a>
                     </div>
                     <div class="col-sm-4">
-                        <img src="asset/logo_rbc.png" style="float:right; margin-top:25%; margin-right:20%;">
-                        <button class="download" type="submit" href="/" style="float:right; margin-top:25%; margin-right:20%;">Mobile App <br> Download <br> Here</button>
+                        <img src="asset/logo_rbc.png" class= "logo_rbc img">
+                        <button class="download logo_rbc" type="submit" href="/">Mobile App <br> Download <br> Here</button>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-3">
+                <div class="row overflow-scroll">
+                    <div class="col-md-3">
                       <div class="card mobile">
                         <div class="card-body mobile">
                             <img src="{{ asset('asset/mobile_1.png') }}" class="d-block w-100" alt="...">
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-md-3">
                       <div class="card mobile">
                         <div class="card-body mobile">
                             <br><br><br><br><br>
@@ -41,14 +41,14 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-md-3">
                         <div class="card mobile">
                           <div class="card-body mobile">
                               <img src="{{ asset('asset/mobile_3.png') }}" class="d-block w-100" alt="...">
                           </div>
                         </div>
                       </div>
-                      <div class="col-sm-3">
+                      <div class="col-md-3">
                         <div class="card mobile">
                           <div class="card-body mobile">
                             <br><br><br><br><br>
@@ -59,7 +59,6 @@
                   </div>
             </div>
         </div>
-
     </body>
 
 @endsection
