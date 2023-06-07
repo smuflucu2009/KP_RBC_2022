@@ -122,7 +122,7 @@
                                 {{-- <img src="{{ $join->cover_gambar }}" class="card-img-top" alt="..."> --}}
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $join->judul }}</h5>
-                                    <p class="card-text">{!! str_replace(['{', '}'], '', $join->deskripsi) !!}</p>
+                                    <p class="card-text">{!! strip_tags($join->deskripsi, '<strong><em><u>') !!}</p>
                                     <a href="{{ url('/postingan/detail/'.$join->id_posting) }}" class="btn btn-light news_btn">Learn More ></a>
                                 </div>
                             </div>
