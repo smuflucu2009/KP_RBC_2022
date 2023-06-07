@@ -42,7 +42,7 @@
                     <td>{{ $join->id_posting }}</td>
                     <td>
                         @if ($join->cover_gambar)
-                            <img style="max-width:50px;max-height:50px" src="{{ url('storage\postingan\cover_image').'/' . $join->cover_gambar}}"/>
+                            <img style="max-width:50px;max-height:50px" src="{{ url('storage/postingan/cover_gambar').'/' . $join->cover_gambar}}"/>
                         @endif
                     </td>
                     <td>{{ $join->judul }}</td>

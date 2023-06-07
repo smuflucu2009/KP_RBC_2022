@@ -648,3 +648,29 @@ font-size: 18px;
 .pinjam_buku{
   padding-left: 10%;
 }
+
+.deskripsi{
+  margin: 5%;
+  margin-top: 2%;
+  text-align: justify;
+  text-justify: inter-word;
+  font-family: 'Raleway';
+font-style: normal;
+}
+
+.larangan_akses{
+  background-color: #020166;
+  color: #FFFFFF;
+  text-align: center;
+  padding-top: 10%;
+}
+.login{
+  font-family: 'Raleway';
+font-style: normal;
+font-weight: 700;
+color: #f1f1f1;
+}
+.login .land h1{
+  text-align: center;
+  margin-top: auto;
+}

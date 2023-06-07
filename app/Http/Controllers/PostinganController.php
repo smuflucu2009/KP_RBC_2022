@@ -65,13 +65,13 @@ class PostinganController extends Controller
             'judul' => 'required',
             'deskripsi' => 'required',
             'category_id' => 'required',
-            'cover_gambar' => 'required|mimes:png,jpg,jpeg',
+            // 'cover_gambar' => 'required|mimes:png,jpg,jpeg',
         ], [
             'judul.required' => 'Judul postingan wajib diisi',
             'deskripsi.required' => 'Deskripsi postingan wajib diisi',
             'category_id.required' => 'Kategori postingan wajib diisi',
             'cover_gambar.required' => 'Gambar cover wajib diisi',
-            'cover_gambar.mimes' => 'Gambar cover wajib png, jpg, atau jpeg',
+            // 'cover_gambar.mimes' => 'Gambar cover wajib png, jpg, atau jpeg',
         ]);
 
         $now = Carbon::now();
@@ -79,7 +79,7 @@ class PostinganController extends Controller
         $gambar_cover = $request->file('cover_gambar');
         $gambar_extensi = $gambar_cover->getClientOriginalName();
         $nama_gambar = date('ymdhis') . '.' . $gambar_extensi;
-        $gambar_cover->move(public_path('storage/postingan/cover_image'), $nama_gambar);
+        $gambar_cover->move(public_path('storage/postingan/cover_gambar'), $nama_gambar);
 
         DB::insert('INSERT INTO postingan(judul, deskripsi, category_id,
         cover_gambar, waktu_posting) VALUES (:judul, :deskripsi, :category_id, :cover_gambar, :waktu_posting)',
@@ -115,7 +115,7 @@ class PostinganController extends Controller
         $file_gambar = $request->file('cover_gambar');
         $gambar_extensi = $file_gambar->getClientOriginalName();
         $nama_gambar = date('ymdhis') . '.' . $gambar_extensi;
-        $file_gambar->move(public_path('storage/postingan/cover_image'), $nama_gambar);
+        $file_gambar->move(public_path('storage/postingan/cover_gambar'), $nama_gambar);
 
         $data_postingan = Postingan::where('id_posting', $id)->first();
         File::delete(public_path('storage/postingan/cover_image') . '/' . $data_postingan->cover_gambar);

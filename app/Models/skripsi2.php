@@ -4,26 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use PhpParser\Node\Stmt\Do_;
 
-class kp extends Model
+class skripsi2 extends Model
 {
-    // ul ini kalo mau pake softdelete tinggal tulis kasih soft delete sama tambahin kolom deleted_at
     use HasFactory;
 
-
-
-    protected $table = 'kp';
-    protected $primaryKey = 'id';
+    protected $table = 'skripsi';
     protected $fillable = [
         "name",
         "nim",
         "bidang_id",
         "tahun",
         "judul",
-        "perusahaan",
-        "lokasi_perusahaan",
+        "koleksi",
         "dosen_id",
+        "dosen2_id",
         "abstrak",
         "file"
 
@@ -40,10 +35,7 @@ class kp extends Model
         "created_at",
         "updated_at",
         'file',
-        "deleted_at",
-        "perusahaan",
-        "lokasi_perusahaan"
-
+        'deleted_at'
     ];
 
 
@@ -56,14 +48,12 @@ class kp extends Model
     public function Dosen(){
         return $this->belongsTo(Dosen::class, 'dosen_id', 'id');
     }
-
-
-    public function getFileUrlAttribute(){
-        return asset('https://docs.google.com/viewerng/viewer?url=' . env('APP_URL') . 'storage/pdf/kp/' . $this->file);
+    public function Dosen2(){
+        return $this->belongsTo(Dosen::class, 'dosen2_id', 'id');
     }
 
-
-
+    public function getFileUrlAttribute(){
+        return asset('https://docs.google.com/viewerng/viewer?url=' . env('APP_URL') . 'storage/pdf/skripsi/' . $this->file);
+    }
 
 }
-

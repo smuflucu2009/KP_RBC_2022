@@ -2,8 +2,8 @@
 @section('isi_template1')
 <title>Halaman Peminjaman</title>
 <div>
-    <a href="/buku/update_admin/pinjambuku" class="btn btn-secondary">Kembali</a>
-    <h1>Ini halaman peminjaman khusus mahasiswa</h1>
+    <a href="/buku/update_admin" class="btn btn-secondary">Kembali</a>
+    <h1>Ini halaman peminjaman khusus admin</h1>
 </div>
 <form action='{{ route('pinjamb.store') }}' method='post'>
     @csrf
@@ -20,12 +20,11 @@
                 <input type="text" class="form-control" name='kode_gabungan_final' value="{{ Session::get('kode_gabungan_final')}}" id="kode_gabungan_final">
             </div>
         </div>
-        <div>
-            <label for="tanggal_pengembalian">Waktu Pengembalian:</label>
-            <select name="tanggal_pengembalian" id="tanggal_pengembalian">
-                <option value="A">Satu Minggu</option>
-                <option value="B">Dua Minggu</option>
-            </select>
+        <div class="mb-3 row">
+            <label for="tanggal_masuk" class="col-sm-2 col-form-label">Deadline Buku</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" name='akhir_pinjam' value="{{ Session::get('akhir_pinjam')}}" id="akhir_pinjam">
+            </div>
         </div> 
         <div class="mb-3 row">
             <label for="submit" class="col-sm-2 col-form-label"></label>

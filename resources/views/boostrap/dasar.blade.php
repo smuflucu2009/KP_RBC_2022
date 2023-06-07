@@ -56,7 +56,7 @@
                         <a class="nav-link" aria-current="page" href="/buku">Koleksi Tercetak</a>
                         <a class="nav-link" href="/skripsi">Tugas Akhir Digital</a>
                         <a class="nav-link" href="/kp">Kerja Praktek Digital</a>
-                        {{-- <a class="nav-link" href="/kd">Karya Dosen Terindeks Scopus</a> --}}
+                        
                     </div>
                 </div>
                 <div class="dropdown">
@@ -87,7 +87,7 @@
                     <button class="btn-primary float-right btn-login" onclick="location.href = '/login'">Login</button>
                 @endauth
             </ul>
-
+           
         </div>
     </nav>
 

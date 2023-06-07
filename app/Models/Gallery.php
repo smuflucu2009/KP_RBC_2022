@@ -19,7 +19,7 @@ class Gallery extends Model
         'created_at',
         'updated_at',
         'file',
-
+        
     ];
 
     public $timestamps = false;
@@ -33,6 +33,6 @@ class Gallery extends Model
     }
 
     public function Post(){
-        return $this->belongsTo(Postingan::class, 'post_id', 'id_posting');
+        return $this->belongsTo(Postingan::class, 'post_id', 'id');
     }
 }

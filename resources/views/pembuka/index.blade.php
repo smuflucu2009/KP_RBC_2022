@@ -145,9 +145,9 @@
                             <div class="card d-none d-md-block news">
                                 <img src="https://picsum.photos/900/500?image=1" class="card-img-top" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title">Research news 2</h5>
-                                    <p class="card-text">Description</p>
-                                    <a href="#" class="btn btn-light news_btn">Learn More ></a>
+                                    <h5 class="card-title">Get dari nama postingan</h5>
+                                    <p class="card-text">get dari postingan</p>
+                                    <a href="" class="btn btn-light news_btn">Learn More ></a>
                                 </div>
                             </div>
                             <div class="card d-none d-md-block news">
@@ -234,7 +234,7 @@
             <div>
                 <h3 id="land_header">E-RESOURCES</h3>
             </div>
-            <div id="carouselExampleControls" class="carousel carousel-dark slide slide" data-ride="carousel">
+            <div id="carouselExampleControls" class="carousel slide carousel-dark " data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="500">
                         <div class="cards-wrapper">
@@ -311,16 +311,6 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

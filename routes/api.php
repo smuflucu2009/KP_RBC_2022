@@ -32,7 +32,6 @@ Route::post('gallery/store', [\App\Http\Controllers\API\GalleryController::class
 
 Route::get('post', [\App\Http\Controllers\API\PostController::class, 'index']);
 Route::post('post/store', [\App\Http\Controllers\API\PostController::class, 'store']);
-Route::post('register', [\App\Http\Controllers\API\UserController::class, 'Register']);
 Route::post('login', [\App\Http\Controllers\API\UserController::class, 'login']);
 
 Route::middleware(['auth:sanctum'])->group(function () {

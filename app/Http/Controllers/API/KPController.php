@@ -25,10 +25,9 @@ class KPController extends Controller
 
         $data_query = kp::with(['Bidang', 'Dosen']);
 
-        if($request->q){
-            $data_query->where('judul', 'LIKE', '%' . $request->q . '%')->orWhere('name', 'LIKE', '%' . $request->q . '%');
+        $result =  $data_query->where('judul', 'LIKE', '%' . $request->q . '%')->orWhere('name', 'LIKE', '%' . $request->q . '%')->orWhere('tahun', 'LIKE', '%' . $request->q . '%')->get();
 
-        }
+
         // $data = kp::with(['Bidang', 'Dosen', 'Dosen2'])->paginate();
         if($request->bidang){
             $data_query->whereHas('Bidang', function($query) use($request){
@@ -37,7 +36,7 @@ class KPController extends Controller
         }
         $data = $data_query->paginate();
 
-        if($data){
+        if(count($result)){
             return ApiFormatter::createApi(200, 'Success', $data);
 
         } else{
@@ -107,7 +106,7 @@ class KPController extends Controller
             ]);
 
 
-            $data = kp::where('id', '=', $kp->id)->get();
+            $data = kp::where('id_kp', '=', $kp->id)->get();
 
             if($data){
                 return ApiFormatter::createApi(200, 'Success', $data);
@@ -129,7 +128,7 @@ class KPController extends Controller
     public function show($id)
     {
         //
-        $data = kp::with(['Bidang', 'Dosen', 'Dosen2'])->where('id', $id)->first();
+        $data = kp::with(['Bidang', 'Dosen'])->where('id_kp', $id)->first();
 
         if(!$data){
             return ApiFormatter::createApi(400, 'id not found');
