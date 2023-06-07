@@ -173,11 +173,11 @@
                                 <td>{{ $item->detail_jenis_peminatan }}</td>
                                 @if ($item->status_pinjam === 'Tersedia')
                                     <td style="background-color: #44F676; ">{{ $item->status_pinjam }}</td>
-                                    @elseif ($item->status_pinjam === 'Pending')
+                                    @elseif ($item->status_pinjam === 'Menunggu')
                                     <td style="background-color: #F2F644">{{ $item->status_pinjam }}</td>
                                     @elseif ($item->status_pinjam === 'Terpinjam')
                                     <td style="background-color: #FF0404;">{{ $item->status_pinjam }}</td>
-                                    @endif
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>
