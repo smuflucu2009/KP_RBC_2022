@@ -56,5 +56,4 @@ class Skripsi extends Model
         return asset('https://docs.google.com/viewerng/viewer?url=' . env('APP_URL') . 'storage/pdf/skripsi/' . $this->file);
     }
 
-
 }
