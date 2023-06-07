@@ -113,6 +113,41 @@
                         style="background-color: #4EA8DE;"></button>
                 </div>
                 <div class="carousel-inner">
+                    @foreach($joins->chunk(3) as $chunk)
+                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}" data-bs-interval="500">
+                        <div class="cards-wrapper">
+                            @foreach($chunk as $join)
+                            <div class="card news">
+                                <img style="max-width:350px;max-height:350px" src="{{ url('storage/postingan/cover_gambar').'/' . $join->cover_gambar}}" class="card-img-top" alt="...">
+                                {{-- <img src="{{ $join->cover_gambar }}" class="card-img-top" alt="..."> --}}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $join->judul }}</h5>
+                                    <p class="card-text">{!! str_replace(['{', '}'], '', $join->deskripsi) !!}</p>
+                                    <a href="{{ url('/postingan/detail/'.$join->id_posting) }}" class="btn btn-light news_btn">Learn More ></a>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                {{-- <div class="carousel-inner">
+                    @foreach($joins as $join)
+                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}" data-bs-interval="500">
+                        <div class="cards-wrapper">
+                            <div class="card news">
+                                <img src="{{ $join->cover_gambar }}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $join->judul }}</h5>
+                                    <p class="card-text">{{ $join->deskripsi }}</p>
+                                    <a href="#" class="btn btn-light news_btn">Learn More ></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div> --}}
+                {{-- <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="500">
                         <div class="cards-wrapper">
                             <div class="card news">
@@ -216,7 +251,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <a class="carousel-control-prev" href="#carouselExampleInterval" type="button"
                     data-bs-target="#carouselExampleInterval" data-bs-slide="prev"
                     style="background: #70C183; border-radius: 50%; width: 7vh; height: 7vh; top: 45%; margin-left: 3%">

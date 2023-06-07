@@ -2,7 +2,7 @@
 @section('isi_template')
 <title>Halaman Detail {{$joins->judul}}</title>
 <div>
-    <a href="/postingan" class="btn btn-secondary">Kembali</a>
+    <a href="/" class="btn btn-secondary">Kembali</a>
     <div>
         @if ($joins->cover_gambar)
         <img style="max-width:350px;max-height:350px" src="{{ url('storage/postingan/cover_gambar').'/' . $joins->cover_gambar}}"/>
