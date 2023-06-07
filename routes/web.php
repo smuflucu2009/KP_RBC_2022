@@ -170,6 +170,10 @@ route::get('/cariKP2', [KpController::class, 'cariKP2'])->name('kp.cari2');
 route::get('/feedback', [FeedbackController::class, 'create'])->name('feedback.create');
 route::post('/feedback/store', [FeedbackController::class, 'store'])->name('feedback.store');
 
+Route::controller(BukuController::class)->group(function(){
+    Route::get('autocomplete', 'autocomplete')->name('buku.autocomplete');
+});
+
 route::get('/pengunjung', [PengunjungController::class, 'create'])->name('pengunjung.create');
 route::post('/pengunjung/store', [PengunjungController::class, 'store'])->name('pengunjung.store');
 
