@@ -174,7 +174,7 @@
                         <td>{{ $join->namadosen2 }}</td>
                         <td>
                             @if ($join->file)
-                                <a class="btn btn-success btn-sm" href="{{ asset('storage/pdf/skripsi/'. $join->file)}}">Lihat File</a>
+                                <a class="btn btn-success btn-sm" href="{{ asset('storage/pdf/skripsi/'. $join->file)}}">Download</a>
                             @endif
                         </td>
                         <td>
