@@ -14,7 +14,7 @@
         <b>Jenis : </b>{{ $joins->name_category }}
     </div>
     <div>
-        <b>Deskripsi: </b>{{ $joins->deskripsi }}
+        <b>Deskripsi: </b>{!! str_replace(['{', '}'], '', $joins->deskripsi) !!}
     </div>
 </div>
 @endsection
