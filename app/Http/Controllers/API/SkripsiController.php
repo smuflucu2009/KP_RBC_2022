@@ -20,15 +20,15 @@ class SkripsiController extends Controller
         //
 
         $data_query = skripsi2::with(['Bidang', 'Dosen', 'Dosen2']);
-        
-        $result =   $data_query->where('judul', 'LIKE', '%' . $request->q . '%')->orWhere('name', 'LIKE', '%' . $request->q . '%')->get();
+
+        $result =   $data_query->where('judul', 'LIKE', '%' . $request->q . '%')->orWhere('name', 'LIKE', '%' . $request->q . '%')->orWhere('tahun', 'LIKE', '%' . $request->q . '%')->get();
 
         // $data_query = DB::table('skripsi')
         // ->join('dosen as dosen1', 'skripsi.dosen_id', '=', 'dosen1.id')
         // ->join('dosen as dosen2', 'skripsi.dosen2_id', '=', 'dosen2.id')
         // ->join('bidang', 'skripsi.bidang_id', '=', 'bidang.id');
 
-    
+
         // $data = Skripsi::with(['Bidang', 'Dosen', 'Dosen2'])->paginate();
         if($request->bidang){
             $data_query->whereHas('Bidang', function($query) use($request){
