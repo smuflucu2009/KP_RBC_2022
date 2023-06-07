@@ -126,13 +126,10 @@
         </div>
         <div class="col-sm-3">
             <h4> NEWS </h4>
-            <p><a href="/"> >NEWS 1</a></p>
+            @foreach($posts as $post)
+            <p><a href="{{ url('/postingan/detail/'.$post->id_posting) }}">{{ $post->judul }}</a></p>
             <br>
-            <p><a href="/"> >NEWS 2</a></p>
-            <br>
-            <p><a href="/"> >NEWS 3</a></p>
-            <br>
-            <p><a href="/"> >NEWS 4</a></p>
+            @endforeach    
         </div>
         <div class="col-sm-3">
             <h4> KONTAK </h4>
