@@ -103,6 +103,7 @@ route::middleware(['auth'])->group(function() {
     route::get('/postingan/edit/{id}', [PostinganController::class, 'edit'])->name('postingan.edit')->middleware('userAkses:admin');
     route::post('/postingan/update/{id}', [PostinganController::class, 'update'])->name('postingan.update')->middleware('userAkses:admin');
     route::post('/postingan/delete/{id}', [PostinganController::class, 'delete'])->name('postingan.delete')->middleware('userAkses:admin');
+    route::post('/postingan/delete_all', [PostinganController::class, 'delete_all'])->name('postingan.delete_all')->middleware('userAkses:admin');
     
     // Galery
     route::get('/galery', [GalleryController::class, 'index'])->name('galery.index')->middleware('userAkses:admin');

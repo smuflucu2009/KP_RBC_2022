@@ -10,6 +10,11 @@
     <div>
         <a href="/postingan/create" class="btn btn-primary">+++</a>
         <a href="/galery" class="btn btn-warning">Galery</a>
+        <form onsubmit="return confirm('Yakin ingin menghapus semua postingan ?')" class="d-inline"
+        action="{{ route('postingan.delete_all') }}" method="POST">
+        @csrf
+        <button type="submit" name="submit" class="btn btn-danger btn-sm">Delete All</button>
+        </form>
     </div>
     <div> 
         <form action={{ route('postingan.cari') }} method="GET" >
