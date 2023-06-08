@@ -141,4 +141,10 @@ class PostinganController extends Controller
         DB::delete('DELETE FROM postingan WHERE id_posting = :id_posting', ['id_posting' => $id]);
         return redirect()->route('postingan.index')->with('success', 'Berhasil hapus postingan secara permanen!');
     }
+
+    public function delete_all()
+	{
+		DB::table('postingan')->delete();
+        return redirect()->route('postingan.index')->with('success', 'Data berhasil dihapus');
+	}
 }

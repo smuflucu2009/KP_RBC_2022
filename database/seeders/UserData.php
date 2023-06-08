@@ -29,6 +29,11 @@ class UserData extends Seeder
             //     'level' =>2,
             // ],
             [
+                'nama' => 'Raung Kawijayan',
+                'nim' => '21120120140155',
+                'password' => bcrypt('21120120140155'),
+            ],
+            [
                 'nama' => 'Aldi Mulyawan',
                 'nim' => '21120119120026',
                 'password' => bcrypt('21120119120026'),

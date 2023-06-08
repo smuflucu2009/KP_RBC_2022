@@ -42,7 +42,6 @@
                 <input type="email" value="{{ old('email') }}" name="email"  class="form-control login_form" placeholder="masukkan email terdaftar">
                 </div>
             </div>
-
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <div class="input-group">

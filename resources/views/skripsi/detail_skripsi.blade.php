@@ -40,7 +40,9 @@
                 <th></th>
                 <td rowspan="2">{{ $joins->name }}, {{ $joins->namadosen1 }}, {{ $joins->namadosen2 }}</td>
                 <th>  &emsp; </th>
-                <td> <button type="submit" class="btn btn-primary form_submit" href="{{ asset('storage/pdf/skripsi/'. $joins->file)}}">Full PDF</button> </td> 
+                @if ($joins->file)
+                <td> <a type="submit" class="btn btn-primary form_submit" href="{{ asset('storage/pdf/skripsi/'. $joins->file)}}">Full PDF</a> </td> 
+                @endif
             </tr>
         </table>
         <br>

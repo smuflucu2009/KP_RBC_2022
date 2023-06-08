@@ -40,7 +40,7 @@ class Pinjambuku extends Model
 
         // Update status pinjam buku baru menjadi "Pinjam"
         Buku::where('kode_gabungan_final', $updatedBuku)
-            ->update(['status_pinjam' => 'Pending']);
+            ->update(['status_pinjam' => 'Menunggu']);
 
         parent::save($options);
     }

@@ -23,6 +23,9 @@
                         <a class="nav-link" href="/kp/update_admin">Kerja Praktik Digital</a>
                         <a class="nav-link" href="/buku/update_admin/pinjambuku">Peminjaman Buku</a>
                         <a class="nav-link" href="/postingan">Postingan & Galery</a>
+                        <a class="nav-link" href="/pengunjung/admin">Data Pengunjung</a>
+                        <a class="nav-link" href="/feedback/admin">Feedback RBC</a>
+                        <a class="nav-link" href="/sumbangan_buku/admin">Sumbangan Buku RBC</a>
                     </div>
                 </div>
                 @endif
@@ -34,6 +37,8 @@
                         <a class="nav-link" aria-current="page" href="/buku">Koleksi Tercetak</a>
                         <a class="nav-link" href="/ta">Tugas Akhir Digital</a>
                         <a class="nav-link" href="/kp">Kerja Praktik Digital</a>
+                        <a class="nav-link" href="/skripsi">Tugas Akhir Digital</a>
+                        <a class="nav-link" href="/kp">Kerja Praktek Digital</a>
                     </div>
                 </div>
                 @endif
@@ -118,13 +123,10 @@
         </div>
         <div class="col-sm-3">
             <h4> NEWS </h4>
-            <p><a href="/"> >NEWS 1</a></p>
+            @foreach($posts as $post)
+            <p><a href="{{ url('/postingan/detail/'.$post->id_posting) }}">{{ $post->judul }}</a></p>
             <br>
-            <p><a href="/"> >NEWS 2</a></p>
-            <br>
-            <p><a href="/"> >NEWS 3</a></p>
-            <br>
-            <p><a href="/"> >NEWS 4</a></p>
+            @endforeach    
         </div>
         <div class="col-sm-3">
             <h4> KONTAK </h4>
